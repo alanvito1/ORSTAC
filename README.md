@@ -1,6 +1,8 @@
 # superfree-binary-bot
 Hello user!
 
+Just PLAY bots On.
+
 You are using open source code tools to operate in binary.com on the largest opensource platform of the planet github.com.
 Robots gathered for those who want to test and use robots ready for learning free.
 
