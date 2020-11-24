@@ -16,6 +16,7 @@ You are the 10% of the population. Go on!
 
 [$1500 Bonus InstaForex](https://www.instaforex.com/pt/no_deposit_bonus/?x=mildbonus)
 
+Ejnoy the oportunitie ahead, well it can be played with cryptocurrencies, you can change USD to BTC/LTC/ETH on Binary/Deriv. I made a forum for general crypto discuss and need people. [Eye Gauge Zone](https://eyegaugezone.com/forum)
 
 Share it as you can.
 
