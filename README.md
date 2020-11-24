@@ -3,12 +3,9 @@ Hello user!
 
 Just PLAY bots On.
 
-You are using open source code tools to operate in binary.com on the largest opensource platform of the planet github.com.
 Robots gathered for those who want to test and use robots ready for learning free.
 
-I'm just making the tools available, keep your goals in mind and good operations.
-
-You are the 10% of the population. Go on!
+Making the tools available, keep your goals in mind and learn.
 
 [Create Binary/Deriv account](https://record.binary.com/_h1BT0Uryldi6tyDIijdDK2Nd7ZgqdRLk/1/)
 
@@ -16,7 +13,7 @@ You are the 10% of the population. Go on!
 
 [$1500 Bonus InstaForex](https://www.instaforex.com/pt/no_deposit_bonus/?x=mildbonus)
 
-Ejnoy the oportunitie ahead, well it can be played with cryptocurrencies, you can change USD to BTC/LTC/ETH on Binary/Deriv. I made a forum for general crypto discuss and need people. [Eye Gauge Zone](https://eyegaugezone.com/forum)
+Ejnoy the oportunitie ahead, well it can be played with cryptocurrencies, you can change USD to operate with BTC/LTC/ETH on Binary Bots. I made a forum for general crypto discuss and need people. [Eye Gauge Zone](https://eyegaugezone.com/forum)
 
 Share it as you can.
 
