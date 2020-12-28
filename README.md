@@ -1,13 +1,16 @@
 # superfree-binary-bot
-Hello user!
+Hello users!
 
-Just PLAY bots On.
+Just PLAY bots on your virtual account after all.
 
 Robots gathered for those who want to test and use robots ready for learning free.
 
 Making the tools available, keep your goals in mind and learn.
 
-[Create Binary/Deriv account](https://record.binary.com/_h1BT0Uryldi6tyDIijdDK2Nd7ZgqdRLk/1/)
+Bots are created for work on Deriv DBot:
+[Create Binary/Deriv account](https://track.deriv.com/_h1BT0Uryldi2vdm9PpHVCmNd7ZgqdRLk/1/)
+
+If wanna manual trades with bonus, here:
 
 [100$ Bonus FBS](https://ptfbs.com/promo/trade-100usd?ppu=3419105)
 
