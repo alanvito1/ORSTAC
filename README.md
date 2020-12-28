@@ -1,5 +1,5 @@
 # superfree-binary-bot
-Hello users!
+Hello! I'm learning and sharing content. Enjoy.
 
 Just PLAY bots on your virtual account after all.
 
