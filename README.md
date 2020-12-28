@@ -10,7 +10,7 @@ Making the tools available, keep your goals in mind and learn.
 Bots are created for work on Deriv DBot:
 [Create Deriv Account Here](https://track.deriv.com/_h1BT0Uryldi2vdm9PpHVCmNd7ZgqdRLk/1/)
 
-If wanna manual trades with bonus, here:
+If wanna try manual trades with bonus, here:
 
 [100$ Bonus FBS](https://ptfbs.com/promo/trade-100usd?ppu=3419105)
 
