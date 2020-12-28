@@ -8,7 +8,7 @@ Robots gathered for those who want to test and use robots ready for learning fre
 Making the tools available, keep your goals in mind and learn.
 
 Bots are created for work on Deriv DBot:
-[Create Binary/Deriv account](https://track.deriv.com/_h1BT0Uryldi2vdm9PpHVCmNd7ZgqdRLk/1/)
+[Create Deriv Account Here](https://track.deriv.com/_h1BT0Uryldi2vdm9PpHVCmNd7ZgqdRLk/1/)
 
 If wanna manual trades with bonus, here:
 
