@@ -16,7 +16,7 @@ If wanna try manual trades with bonus, here:
 
 [$1500 Bonus InstaForex](https://www.instaforex.com/pt/no_deposit_bonus/?x=mildbonus)
 
-Ejnoy the oportunitie ahead, well it can be played with cryptocurrencies, you can change USD to operate with BTC/LTC/ETH on Binary Bots. I made a forum for general crypto discuss and need people. [Eye Gauge Zone](https://eyegaugezone.com/forum)
+Ejnoy the oportunitie ahead, well it can be played with cryptocurrencies, you can change USD to operate with BTC/LTC/ETH on Binary Bots. I made a forum for general crypto discuss and need people. [Eye Gauge Zone](https://eyegaugezone.com)
 
 Share it as you can.
 
