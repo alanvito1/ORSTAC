@@ -1,7 +1,9 @@
 # superfree-binary-bot
 Hello! I'm learning and sharing content. Enjoy.
 
-Just PLAY bots on your virtual account after all.
+Just PLAY bots on your VIRTUAL ACCOUNT. LEARNING BOTS.
+
+DON'T PLAY IT ON REAL ACCOUNT, READ JHON NASH RULES. TAP ON GOOGLE.
 
 Robots gathered for those who want to test and use robots ready for learning free.
 
