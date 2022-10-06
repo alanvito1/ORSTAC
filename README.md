@@ -1,11 +1,9 @@
 # superfree-binary-bot
-Hello! I'm learning and sharing content. Enjoy.
+Hello! Welcome to the biggest repository of Deriv's Binary bots. We are here to learn and share. Enjoy.
 
-Just PLAY bots on your VIRTUAL ACCOUNT. LEARNING BOTS.
+Always Remember: "Game theory rules everything. Come to Win the game."
 
-READ ABOUT JHON NASH RULES. TAP ON GOOGLE.
-
-Robots gathered for those who want to test and use robots ready for learning free.
+Robots gathered for those who want to test and use robots. Each bot has one or more functions, study them, from there you can even create your own bot.
 
 Making the tools available, keep your goals in mind and learn.
 
@@ -14,9 +12,9 @@ Bots are created for work on Deriv DBot:
 
 Join [Telegram Group](https://t.me/superbinarybots)
  
-Ejnoy the oportunitie ahead, well it can be played with cryptocurrencies, you can change USD to operate with BTC/LTC/ETH on Binary Bots.
+Ejnoy it.
 
-Share it as you can.
+Share it.
 
 Best Regards,
 
