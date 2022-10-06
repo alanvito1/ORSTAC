@@ -7,7 +7,7 @@ Robots gathered for those who want to test and use robots. Each bot has one or m
 
 Making the tools available, keep your goals in mind and learn.
 
-Bots are created for work on Deriv DBot:
+Bots are created to work on Deriv's DBot:
 [Create Deriv Account Here](https://track.deriv.com/_h1BT0Uryldi2vdm9PpHVCmNd7ZgqdRLk/1/)
 
 Join [Telegram Group](https://t.me/superbinarybots)
