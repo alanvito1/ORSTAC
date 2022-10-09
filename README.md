@@ -1,8 +1,8 @@
 # superfree-binary-bot
 Hello! Welcome to the biggest repository of Deriv's Binary bots. We are here to learn and share. Enjoy.
 
-Bots are created to work on Deriv's DBot:
-[Create Deriv Account Here](https://track.deriv.com/_h1BT0Uryldi2vdm9PpHVCmNd7ZgqdRLk/1/)
+**Bots are created to work on Deriv's DBot:
+[Create Deriv Account Here](https://track.deriv.com/_h1BT0Uryldi2vdm9PpHVCmNd7ZgqdRLk/1/)**
 
 Always Remember: "Game theory rules everything. Come to Win the game."
 
