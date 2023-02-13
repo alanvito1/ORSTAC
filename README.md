@@ -3,8 +3,11 @@ Hello! Welcome to the biggest repository of Deriv's Binary bots. We are here to 
 
 **Bots are created to work on Deriv's DBot:
 [Create Deriv Account Here](https://track.deriv.com/_h1BT0Uryldi34Ib7uprVbWNd7ZgqdRLk/1/)**
+
 Or
+
 **[Become a partners](https://track.deriv.com/_h1BT0Uryldilxv1B6h4gZ2Nd7ZgqdRLk/1/)**
+
 Always Remember: "Game theory rules everything. Come to the game."
 
 Robots gathered for those who want to test and use robots. Each bot has one or more functions, study them, from there you can even create your own bot.
