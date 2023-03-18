@@ -27,7 +27,8 @@ Making the tools available, keep your goals in mind and learn.
 6- [Tap Run to start](https://track.deriv.com/_h1BT0Uryldi34Ib7uprVbWNd7ZgqdRLk/1/)
 
 **Join [Telegram Group](https://t.me/superbinarybots)**
- 
+
+Attention: always use the demo account when using it for the first time. 
 Ejnoy it.
 
 Share it.
