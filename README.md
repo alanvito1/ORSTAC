@@ -20,11 +20,11 @@ Making the tools available, keep your goals in mind and learn.
 
 3- [Go to Dbot area](https://track.deriv.com/_h1BT0Uryldi34Ib7uprVbWNd7ZgqdRLk/1/)
 
-4- [Download all bots here](https://github.com/alanvito1/superfree-binary-bot)
+4- [Download all bots here](https://github.com/alanvito1/superfree-binary-bot/archive/refs/heads/master.zip)
 
-5- [Upload the bot you want in Dbot](https://track.deriv.com/_h1BT0Uryldi34Ib7uprVbWNd7ZgqdRLk/1/)
+5- Upload the bot you want in Dbot
 
-6- [Tap Run to start](https://track.deriv.com/_h1BT0Uryldi34Ib7uprVbWNd7ZgqdRLk/1/)
+6- Tap Run to start
 
 **Join [Telegram Group](https://t.me/superbinarybots)**
 
