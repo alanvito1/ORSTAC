@@ -19,7 +19,5 @@ Our tools are available to support your goals and encourage learning. Follow the
 
 We also invite you to [join our Telegram group](https://t.me/superbinarybots) to connect with other enthusiasts and share your progress.
 
-Remember to always use a demo account when testing bots for the first time. Enjoy exploring and learning with our bots!
-
 Best regards,
 Alan Victor
