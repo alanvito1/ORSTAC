@@ -13,7 +13,7 @@ Our tools are available to support your goals and encourage learning. Follow the
 2. [Log in to your account](https://track.deriv.com/_h1BT0Uryldi34Ib7uprVbWNd7ZgqdRLk/1/)
 3. [Navigate to the Dbot area](https://track.deriv.com/_h1BT0Uryldi34Ib7uprVbWNd7ZgqdRLk/1/)
 4. [Download all of our bots here](https://github.com/alanvito1/superfree-binary-bot/archive/refs/heads/master.zip)
-# Remember to always use a demo account when testing bots for the first time. Enjoy exploring and learning with our bots!
+# Remember to always use a DEMO ACCOUNT when testing bots for the first time. Enjoy exploring and learning with our bots!
 5. Upload the bot you want to use in Dbot
 6. Click "Run" to get started
 
