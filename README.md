@@ -1,38 +1,21 @@
-# superfree-binary-bot
-Hello! Welcome to the biggest repository of Deriv's Binary bots. We are here to learn and share. Enjoy.
+Welcome to the largest repository of Deriv's Binary bots! Our goal is to share knowledge and learn from one another. 
 
-**Bots are created to work on Deriv's DBot:
-[Create Deriv Account Here](https://track.deriv.com/_h1BT0Uryldi34Ib7uprVbWNd7ZgqdRLk/1/)**
+Our bots are specifically designed to work on Deriv's DBot platform, which you can access by [creating a Deriv account](https://track.deriv.com/_h1BT0Uryldi34Ib7uprVbWNd7ZgqdRLk/1/) or by [becoming a partner](https://track.deriv.com/_h1BT0Uryldilxv1B6h4gZ2Nd7ZgqdRLk/1/). Remember, "Game theory rules everything. Come to the game."
 
-Or
+We've gathered a wide selection of robots for those interested in testing and using them. Each bot has one or more functions to explore, and studying them can even help you create your own bot.
 
-**[Become a partners](https://track.deriv.com/_h1BT0Uryldilxv1B6h4gZ2Nd7ZgqdRLk/1/)**
+Our tools are available to support your goals and encourage learning. Follow these steps to get started:
 
-Always Remember: "Game theory rules everything. Come to the game."
+1. [Sign up for Deriv](https://track.deriv.com/_h1BT0Uryldi34Ib7uprVbWNd7ZgqdRLk/1/)
+2. [Log in to your account](https://track.deriv.com/_h1BT0Uryldi34Ib7uprVbWNd7ZgqdRLk/1/)
+3. [Navigate to the Dbot area](https://track.deriv.com/_h1BT0Uryldi34Ib7uprVbWNd7ZgqdRLk/1/)
+4. [Download all of our bots here](https://github.com/alanvito1/superfree-binary-bot/archive/refs/heads/master.zip)
+5. Upload the bot you want to use in Dbot
+6. Click "Run" to get started
 
-Robots gathered for those who want to test and use robots. Each bot has one or more functions, study them, from there you can even create your own bot.
+We also invite you to [join our Telegram group](https://t.me/superbinarybots) to connect with other enthusiasts and share your progress.
 
-Making the tools available, keep your goals in mind and learn.
+Remember to always use a demo account when testing bots for the first time. Enjoy exploring and learning with our bots!
 
-1- [Sign Up](https://track.deriv.com/_h1BT0Uryldi34Ib7uprVbWNd7ZgqdRLk/1/)
-
-2- [Login](https://track.deriv.com/_h1BT0Uryldi34Ib7uprVbWNd7ZgqdRLk/1/)
-
-3- [Go to Dbot area](https://track.deriv.com/_h1BT0Uryldi34Ib7uprVbWNd7ZgqdRLk/1/)
-
-4- [Download all bots here](https://github.com/alanvito1/superfree-binary-bot/archive/refs/heads/master.zip)
-
-5- Upload the bot you want in Dbot
-
-6- Tap Run to start
-
-**Join [Telegram Group](https://t.me/superbinarybots)**
-
-Attention: always use the demo account when using it for the first time. 
-Ejnoy it.
-
-Share it.
-
-Best Regards,
-
+Best regards,
 Alan Victor
