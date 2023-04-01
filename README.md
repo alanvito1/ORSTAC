@@ -1,4 +1,4 @@
-# Deriv Binary Bots Repository
+# dBot Binary Bots Repository
 
 Welcome to the largest repository of Deriv's Binary bots! Our goal is to share knowledge and learn from one another.
 
