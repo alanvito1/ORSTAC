@@ -1,0 +1,1892 @@
+<xml xmlns="http://www.w3.org/1999/xhtml" collection="false">
+  <variables>
+    <variable type="" id="aw[Jub38Uifb(;7*)V;U">::Max Loss</variable>
+    <variable type="" id="304jIq#V.8EF@=i~IEG3">SMA_24</variable>
+    <variable type="" id="`p#Mv4BlZ82?./U2Q2BT">5mins Candle Lifetime</variable>
+    <variable type="" id="8Ukc!_vxG]1cBR~NNx$_">::Target Profit</variable>
+    <variable type="" id="=r7wKPCE[)q$V]4|gS{9">Trade Ticks</variable>
+    <variable type="" id="kdO;mO;h9UTy793EaAM1">::Stake</variable>
+    <variable type="" id="bBuMfYe;vT#K0BjGvrAL">SMA_36</variable>
+    <variable type="" id="8/Odv%yfGbSaNYol|SY5">3mins Candle Lifetime</variable>
+    <variable type="" id="(Dql,*^1$=]%,+u5;n~_">::Initial Stake</variable>
+    <variable type="" id="+K!ccyzG2Dw^xnJPn4fp">RSI_2</variable>
+    <variable type="" id="{`1Ix`JMqrq^?GDYI/=#">1min Candle Lifetime</variable>
+    <variable type="" id="c;P+$zRuQjs?!B54xdG1">RSI_17</variable>
+    <variable type="" id="nr/Z?.C-T.dvhG[uiI}:">RSI_35</variable>
+    <variable type="" id="#6d+9eET=$*J~.bYNA#/">Candle 5mins</variable>
+    <variable type="" id="^PZ~t(gvP(j]cexwBe,`">Current 5mins Candle</variable>
+    <variable type="" id="m$8dynrR=@ZH*@`3X[yh">Candle 3mins</variable>
+    <variable type="" id="~8j^Mji$Djp0h_9th]y(">Candle 1min</variable>
+    <variable type="" id="|@{-X9vkUFzXPYBL-W@S">Candle 5mins GREEN Count</variable>
+    <variable type="" id="W(LOSnoQzjO6`Ml=3HZQ">Candle 5mins RED Count</variable>
+    <variable type="" id="x4W]vDU7YnLZ.pB0,1VW">Current 3mins Candle</variable>
+    <variable type="" id="rxQcU(GkgrBk/t`%GU*z">Candle 3mins GREEN Count</variable>
+    <variable type="" id="msIQ`W%!u7J$Ho(EtZw=">Candle 1min GREEN Count</variable>
+    <variable type="" id="m7L+|67qnc?#CRR`#-qK">Candle 3mins RED Count</variable>
+    <variable type="" id="[{1KN?B2mn^]vC0p5y1M">Candle 1min RED Count</variable>
+    <variable type="" id="GUID8H!2jAw#2bOU,_JL">Current 1min Candle</variable>
+  </variables>
+  <block type="trade" id="xgH69|xFn9=70w.*3Vo@" x="0" y="0">
+    <field name="MARKET_LIST">synthetic_index</field>
+    <field name="SUBMARKET_LIST">random_daily</field>
+    <field name="SYMBOL_LIST">RDBEAR</field>
+    <field name="TRADETYPECAT_LIST">callput</field>
+    <field name="TRADETYPE_LIST">risefall</field>
+    <field name="TYPE_LIST">both</field>
+    <field name="CANDLEINTERVAL_LIST">60</field>
+    <field name="TIME_MACHINE_ENABLED">FALSE</field>
+    <field name="RESTARTONERROR">TRUE</field>
+    <statement name="INITIALIZATION">
+      <block type="variables_set" id="_[fqhFH%g)e~#RVk3kR4">
+        <field name="VAR" id="aw[Jub38Uifb(;7*)V;U" variabletype="">::Max Loss</field>
+        <value name="VALUE">
+          <block type="math_number" id="z7.nis#TY-jI46V9~AlZ">
+            <field name="NUM">50</field>
+          </block>
+        </value>
+        <next>
+          <block type="variables_set" id="ltr$@U{ZN;EA)2.9Lxhj">
+            <field name="VAR" id="8Ukc!_vxG]1cBR~NNx$_" variabletype="">::Target Profit</field>
+            <value name="VALUE">
+              <block type="math_number" id="/y`i-_.%ZhK#d6Yp$BAQ">
+                <field name="NUM">10</field>
+              </block>
+            </value>
+            <next>
+              <block type="variables_set" id="vy9z?A25aLvirrji7kZV">
+                <field name="VAR" id="(Dql,*^1$=]%,+u5;n~_" variabletype="">::Initial Stake</field>
+                <value name="VALUE">
+                  <block type="math_number" id="B!5afOR9Kfz=ie)cs7+J">
+                    <field name="NUM">0.35</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="variables_set" id="R%e`d|IsA[#!73-r+$us">
+                    <field name="VAR" id="kdO;mO;h9UTy793EaAM1" variabletype="">::Stake</field>
+                    <value name="VALUE">
+                      <block type="variables_get" id="7frBjvY,7bef,NT!R5?O">
+                        <field name="VAR" id="(Dql,*^1$=]%,+u5;n~_" variabletype="">::Initial Stake</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="variables_set" id="EueDN@s7e$I3n%r3*l`H">
+                        <field name="VAR" id="=r7wKPCE[)q$V]4|gS{9" variabletype="">Trade Ticks</field>
+                        <value name="VALUE">
+                          <block type="math_number" id="@,ORlPlId{!4s-@*V|YW">
+                            <field name="NUM">3</field>
+                          </block>
+                        </value>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <statement name="SUBMARKET">
+      <block type="tradeOptions" id="Xn0UsN=V)xGGH)c7^o,r">
+        <field name="DURATIONTYPE_LIST">t</field>
+        <field name="CURRENCY_LIST">USD</field>
+        <field name="BARRIEROFFSETTYPE_LIST">+</field>
+        <field name="SECONDBARRIEROFFSETTYPE_LIST">-</field>
+        <value name="DURATION">
+          <shadow type="math_number" id="plX[?E!3q$y{vdJYl#=8">
+            <field name="NUM">3</field>
+          </shadow>
+          <block type="variables_get" id="g0=w-)sLv36o_]as[_-H">
+            <field name="VAR" id="=r7wKPCE[)q$V]4|gS{9" variabletype="">Trade Ticks</field>
+          </block>
+        </value>
+        <value name="AMOUNT">
+          <shadow type="math_number" id="b5pBa^oUYwH@-hu^G}-s">
+            <field name="NUM">1</field>
+          </shadow>
+          <block type="variables_get" id="!p!C=rpVD%$T)IHL/C`)">
+            <field name="VAR" id="kdO;mO;h9UTy793EaAM1" variabletype="">::Stake</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+  </block>
+  <block type="after_purchase" id="D^Jz1^n=2vtZku1vBN@;" collapsed="true" x="0" y="554">
+    <statement name="AFTERPURCHASE_STACK">
+      <block type="controls_if" id="LZ.HikgXNiWp9/+WN/r9">
+        <mutation else="1"></mutation>
+        <value name="IF0">
+          <block type="contract_check_result" id="f0Y+!VjDf*^ziTNf/qjc">
+            <field name="CHECK_RESULT">win</field>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="variables_set" id="?Lf=15}6r4dg9_$p79#~">
+            <field name="VAR" id="kdO;mO;h9UTy793EaAM1" variabletype="">::Stake</field>
+            <value name="VALUE">
+              <block type="variables_get" id="C2:{YfeLMygJ~cZO`@*/">
+                <field name="VAR" id="(Dql,*^1$=]%,+u5;n~_" variabletype="">::Initial Stake</field>
+              </block>
+            </value>
+          </block>
+        </statement>
+        <statement name="ELSE">
+          <block type="variables_set" id="7#%1nv)B9ox[3bt{oXBL">
+            <field name="VAR" id="kdO;mO;h9UTy793EaAM1" variabletype="">::Stake</field>
+            <value name="VALUE">
+              <block type="math_arithmetic" id="t9FA|LG*K@C%]Q[7C?e5">
+                <field name="OP">MULTIPLY</field>
+                <value name="A">
+                  <shadow type="math_number" id="n9x2:`;,|A{-g;4CG/BO">
+                    <field name="NUM">1</field>
+                  </shadow>
+                  <block type="variables_get" id="MPxe=,83OnYhg,W,AjO{">
+                    <field name="VAR" id="kdO;mO;h9UTy793EaAM1" variabletype="">::Stake</field>
+                  </block>
+                </value>
+                <value name="B">
+                  <shadow type="math_number" id="}R*K7mb1_g@nvIY;MyCP">
+                    <field name="NUM">2.15</field>
+                  </shadow>
+                </value>
+              </block>
+            </value>
+          </block>
+        </statement>
+        <next>
+          <block type="controls_if" id="8*iSLxQj1[n/x^v?=;BZ">
+            <mutation elseif="1" else="1"></mutation>
+            <value name="IF0">
+              <block type="logic_compare" id="cnBhysih=c7gD?D6rM*0">
+                <field name="OP">LT</field>
+                <value name="A">
+                  <block type="total_profit" id="BOrNvlZbw8cC8EflFnV8"></block>
+                </value>
+                <value name="B">
+                  <block type="math_arithmetic" id="S`kCn0Sivy=M-,#Jc3p#">
+                    <field name="OP">MULTIPLY</field>
+                    <value name="A">
+                      <shadow type="math_number" id="`}A!O(Jh@uXq*%[*_JDy">
+                        <field name="NUM">-1</field>
+                      </shadow>
+                    </value>
+                    <value name="B">
+                      <shadow type="math_number" id="5CP`:+eEHMbv*%(v+5Xy">
+                        <field name="NUM">1</field>
+                      </shadow>
+                      <block type="variables_get" id="LgW:H56bMg7s+1w=:`5g">
+                        <field name="VAR" id="aw[Jub38Uifb(;7*)V;U" variabletype="">::Max Loss</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <statement name="DO0">
+              <block type="text_print" id="7vZ_P)LM`{dFn[A4Is`4">
+                <value name="TEXT">
+                  <shadow type="text" id="Zub#j8PD3uyS!puO}Svp">
+                    <field name="TEXT">STOP LOSS !!!</field>
+                  </shadow>
+                </value>
+              </block>
+            </statement>
+            <value name="IF1">
+              <block type="logic_compare" id="VNj[esLiCpil/{v[N(vI">
+                <field name="OP">GT</field>
+                <value name="A">
+                  <block type="total_profit" id="WjI6c{L?M1*XK!aE`mgX"></block>
+                </value>
+                <value name="B">
+                  <block type="variables_get" id="v8So-(!nM9nh`rQo=z~l">
+                    <field name="VAR" id="8Ukc!_vxG]1cBR~NNx$_" variabletype="">::Target Profit</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <statement name="DO1">
+              <block type="text_print" id="=KXAO6mKaZKas:+!TEp9">
+                <value name="TEXT">
+                  <shadow type="text" id="C*g0h7/TtK%A%`n;~h$o">
+                    <field name="TEXT">Session DONE with PROFIT.. Subscribe to Ultimate Trading Tools Youtube Channel &amp; Telegrfam Channel ::: T.me/binaryboss101 </field>
+                  </shadow>
+                </value>
+              </block>
+            </statement>
+            <statement name="ELSE">
+              <block type="trade_again" id="a_(b+AChtEW,9S~NfybS"></block>
+            </statement>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <block type="tick_analysis" id="va%5ZyosLDfga8KWrY*x" collapsed="true" x="330" y="553">
+    <statement name="TICKANALYSIS_STACK">
+      <block type="variables_set" id="NP3|EP$D_ABUQQ[.0b#S">
+        <field name="VAR" id="304jIq#V.8EF@=i~IEG3" variabletype="">SMA_24</field>
+        <value name="VALUE">
+          <block type="math_round" id="}`Y{U(WjlAC^XjTCFyRw">
+            <field name="OP">ROUNDDOWN</field>
+            <value name="NUM">
+              <shadow type="math_number" id="pi{;EEHQ+%DaXO+/:rGd">
+                <field name="NUM">3.1</field>
+              </shadow>
+              <block type="sma" id="d5[]MZWIlBvwWVqs8vC(">
+                <value name="INPUT">
+                  <block type="ticks" id="~wI+`$dl4.b=i?C}Ki]["></block>
+                </value>
+                <value name="PERIOD">
+                  <shadow type="math_number" id="TfyNHE`$n2Y]rQ1jaZZU">
+                    <field name="NUM">24</field>
+                  </shadow>
+                </value>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="variables_set" id="x.e#eogfiSY=:b^7[9Tm">
+            <field name="VAR" id="bBuMfYe;vT#K0BjGvrAL" variabletype="">SMA_36</field>
+            <value name="VALUE">
+              <block type="math_round" id="WU-iu1f%%,zGQaJn}eEJ">
+                <field name="OP">ROUNDDOWN</field>
+                <value name="NUM">
+                  <shadow type="math_number" id="$L(KPyIZ4bQnFCC[WD|x">
+                    <field name="NUM">3.1</field>
+                  </shadow>
+                  <block type="sma" id="fs?,E4kDt~^LIk=ib)*u">
+                    <value name="INPUT">
+                      <block type="ticks" id="P.:ecGpClDAL,!p@BnS%"></block>
+                    </value>
+                    <value name="PERIOD">
+                      <shadow type="math_number" id="6+0LBM%D_+}h)H5rjq1e">
+                        <field name="NUM">36</field>
+                      </shadow>
+                    </value>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="variables_set" id="1y1P?-_0:XZrw=pi*VHC">
+                <field name="VAR" id="+K!ccyzG2Dw^xnJPn4fp" variabletype="">RSI_2</field>
+                <value name="VALUE">
+                  <block type="math_round" id="_4g-*i%n/+d#%^LrPCX!">
+                    <field name="OP">ROUNDDOWN</field>
+                    <value name="NUM">
+                      <shadow type="math_number" id="DEs#Q4InrA3P[FDO)+~5">
+                        <field name="NUM">3.1</field>
+                      </shadow>
+                      <block type="rsi" id="7e_1TzG#]b!eZMN)OKBc">
+                        <value name="INPUT">
+                          <block type="ticks" id="SS~uU?;3wO}P([OZLti;"></block>
+                        </value>
+                        <value name="PERIOD">
+                          <shadow type="math_number" id="0coymaQSA37ghwz_$x{:">
+                            <field name="NUM">2</field>
+                          </shadow>
+                        </value>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="variables_set" id="}a2Z;j4G[.8]+$UR5Boc">
+                    <field name="VAR" id="c;P+$zRuQjs?!B54xdG1" variabletype="">RSI_17</field>
+                    <value name="VALUE">
+                      <block type="math_round" id="pkJ:=;=0!YFR=I,BQ]3m">
+                        <field name="OP">ROUNDDOWN</field>
+                        <value name="NUM">
+                          <shadow type="math_number" id="?ok?]^=YXV8][!4x/GF{">
+                            <field name="NUM">3.1</field>
+                          </shadow>
+                          <block type="rsi" id="G7!#?HvF:;(OKzbK%Sm=">
+                            <value name="INPUT">
+                              <block type="ticks" id="cn/y(}Na#RV[jVRD/8-P"></block>
+                            </value>
+                            <value name="PERIOD">
+                              <shadow type="math_number" id="}`(GsuS{7Vb,Of@Ndz:w">
+                                <field name="NUM">17</field>
+                              </shadow>
+                            </value>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="variables_set" id="Ax03e.YpOBRD2X=~U:Kn">
+                        <field name="VAR" id="nr/Z?.C-T.dvhG[uiI}:" variabletype="">RSI_35</field>
+                        <value name="VALUE">
+                          <block type="math_round" id="L3P,R#~N/lh?,uv*Oj70">
+                            <field name="OP">ROUNDDOWN</field>
+                            <value name="NUM">
+                              <shadow type="math_number" id="?ok?]^=YXV8][!4x/GF{">
+                                <field name="NUM">3.1</field>
+                              </shadow>
+                              <block type="rsi" id="{R-y000@stt5fh1e#}mZ">
+                                <value name="INPUT">
+                                  <block type="ticks" id="#M`.Z[DiI(vanx+ir-dN"></block>
+                                </value>
+                                <value name="PERIOD">
+                                  <shadow type="math_number" id="(7VVK/n,bS[0C|L-2Bc:">
+                                    <field name="NUM">35</field>
+                                  </shadow>
+                                </value>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <block type="before_purchase" id="i-CIx.(Onm4?ihxzA}Y]" collapsed="true" x="-6" y="627">
+    <statement name="BEFOREPURCHASE_STACK">
+      <block type="controls_if" id="px3O::U{|c)E*ld:3YpV">
+        <mutation elseif="1" else="1"></mutation>
+        <value name="IF0">
+          <block type="logic_operation" id="Q2}JxcKCL$f~UeIGBiy." inline="false">
+            <field name="OP">AND</field>
+            <value name="A">
+              <block type="logic_operation" id="L(dG$iEl*!m^]/5=OH[r" inline="false">
+                <field name="OP">AND</field>
+                <value name="A">
+                  <block type="logic_compare" id="|]RdBNRjXV(}b`!B}Lg!">
+                    <field name="OP">EQ</field>
+                    <value name="A">
+                      <block type="variables_get" id="a/lr$eeCA!/m_]lJ/E::">
+                        <field name="VAR" id="#6d+9eET=$*J~.bYNA#/" variabletype="">Candle 5mins</field>
+                      </block>
+                    </value>
+                    <value name="B">
+                      <block type="text" id="`n!h8O4dwgtEE)^mZwcG">
+                        <field name="TEXT">GREEN</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <value name="B">
+                  <block type="logic_operation" id="8s`iloO1=n+V%Y^T2H9P" inline="false">
+                    <field name="OP">AND</field>
+                    <value name="A">
+                      <block type="logic_compare" id="HlTJy*VgL[C{pLv6_oxS">
+                        <field name="OP">EQ</field>
+                        <value name="A">
+                          <block type="variables_get" id="|O;:}4pc./9OeLc1PQIU">
+                            <field name="VAR" id="m$8dynrR=@ZH*@`3X[yh" variabletype="">Candle 3mins</field>
+                          </block>
+                        </value>
+                        <value name="B">
+                          <block type="text" id="u@+Q/Q)mJZ^?l%PJK-PA">
+                            <field name="TEXT">GREEN</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <value name="B">
+                      <block type="logic_compare" id="z8v$~gT[O:oiXLg|bVl4">
+                        <field name="OP">EQ</field>
+                        <value name="A">
+                          <block type="variables_get" id="^fB1s0Jvfg6ni7(D7yC_">
+                            <field name="VAR" id="~8j^Mji$Djp0h_9th]y(" variabletype="">Candle 1min</field>
+                          </block>
+                        </value>
+                        <value name="B">
+                          <block type="text" id="[fl3!;kou~W#M6c%#3TJ">
+                            <field name="TEXT">GREEN</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <value name="B">
+              <block type="logic_operation" id="vGLG~s._BoR4ta/|xQ3Z" inline="false">
+                <field name="OP">AND</field>
+                <value name="A">
+                  <block type="logic_operation" id="]Z]7c*f`t9i09x?1UiGY">
+                    <field name="OP">AND</field>
+                    <value name="A">
+                      <block type="logic_compare" id="C:dRa:C$I9vh,l:`y;[.">
+                        <field name="OP">GT</field>
+                        <value name="A">
+                          <block type="variables_get" id="AjJbOEaXiZNVg:8Of?7@">
+                            <field name="VAR" id="|@{-X9vkUFzXPYBL-W@S" variabletype="">Candle 5mins GREEN Count</field>
+                          </block>
+                        </value>
+                        <value name="B">
+                          <block type="math_number" id="Thw4qPooziuot=.Ab9Ko">
+                            <field name="NUM">14</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <value name="B">
+                      <block type="logic_compare" id="zh)Bo2/fn1bmck?alkph">
+                        <field name="OP">LT</field>
+                        <value name="A">
+                          <block type="variables_get" id="n!tN%I[.0#V$N:!aVm{p">
+                            <field name="VAR" id="`p#Mv4BlZ82?./U2Q2BT" variabletype="">5mins Candle Lifetime</field>
+                          </block>
+                        </value>
+                        <value name="B">
+                          <block type="math_number" id="t^mln[E?!ucam;(W}ZFw">
+                            <field name="NUM">140</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <value name="B">
+                  <block type="logic_operation" id="(kT9k7K6pz-NXlU6L|Ax" inline="false">
+                    <field name="OP">AND</field>
+                    <value name="A">
+                      <block type="logic_operation" id="7I](0P{7,K_O[$=GK^qr">
+                        <field name="OP">AND</field>
+                        <value name="A">
+                          <block type="logic_compare" id="{ma`/Pewb0KrNLrINZ+g">
+                            <field name="OP">GT</field>
+                            <value name="A">
+                              <block type="variables_get" id="Con`ycvov;)@|,=1@_|~">
+                                <field name="VAR" id="rxQcU(GkgrBk/t`%GU*z" variabletype="">Candle 3mins GREEN Count</field>
+                              </block>
+                            </value>
+                            <value name="B">
+                              <block type="math_number" id="I`|r91F)?GOeeP05e1sI">
+                                <field name="NUM">10</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <value name="B">
+                          <block type="logic_compare" id="J)gvp:fCnoz3:vHQAUh+">
+                            <field name="OP">LT</field>
+                            <value name="A">
+                              <block type="variables_get" id="kea)A2DZ@m0}8B`EKng]">
+                                <field name="VAR" id="8/Odv%yfGbSaNYol|SY5" variabletype="">3mins Candle Lifetime</field>
+                              </block>
+                            </value>
+                            <value name="B">
+                              <block type="math_number" id="$TjhR+(;Sat#x~e^#sUQ">
+                                <field name="NUM">85</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <value name="B">
+                      <block type="logic_operation" id="0-BfB:ABLLH]Cd*O6%$`">
+                        <field name="OP">AND</field>
+                        <value name="A">
+                          <block type="logic_compare" id="PpIZv,QUpuwAS9j{%?N;">
+                            <field name="OP">GT</field>
+                            <value name="A">
+                              <block type="variables_get" id="%c|=[u`I6F|RJe~*dN1k">
+                                <field name="VAR" id="msIQ`W%!u7J$Ho(EtZw=" variabletype="">Candle 1min GREEN Count</field>
+                              </block>
+                            </value>
+                            <value name="B">
+                              <block type="math_number" id="d]pC!N=#.JEtLCJz-!4Q">
+                                <field name="NUM">10</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <value name="B">
+                          <block type="logic_compare" id="r|2A704T|6,xveg6Uw*[">
+                            <field name="OP">LT</field>
+                            <value name="A">
+                              <block type="variables_get" id="+F#F%L@7BATUk{yg}tNu">
+                                <field name="VAR" id="{`1Ix`JMqrq^?GDYI/=#" variabletype="">1min Candle Lifetime</field>
+                              </block>
+                            </value>
+                            <value name="B">
+                              <block type="math_number" id="yN=X@XX[)]X]]BD89O:n">
+                                <field name="NUM">25</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="notify" id="O=o*egA4?i+4Eo~aJ$i:">
+            <field name="NOTIFICATION_TYPE">success</field>
+            <field name="NOTIFICATION_SOUND">silent</field>
+            <value name="MESSAGE">
+              <shadow type="text" id="PT`:-`G^PQz}Ht=qWZ)h">
+                <field name="TEXT">Candles GREEN</field>
+              </shadow>
+            </value>
+            <next>
+              <block type="controls_if" id="qs~XYgO+dk-K4h+L-=:c" collapsed="true">
+                <value name="IF0">
+                  <block type="logic_operation" id="l290cI)w!!WuBl?E8*2n" inline="false">
+                    <field name="OP">AND</field>
+                    <value name="A">
+                      <block type="logic_compare" id="xl_3{FZeBn!Na_~Sc9G1">
+                        <field name="OP">GT</field>
+                        <value name="A">
+                          <block type="variables_get" id="zB6ET-.#Jo*p--u4h9KV">
+                            <field name="VAR" id="304jIq#V.8EF@=i~IEG3" variabletype="">SMA_24</field>
+                          </block>
+                        </value>
+                        <value name="B">
+                          <block type="variables_get" id="W0DHONWgX^[itDPtBhVQ">
+                            <field name="VAR" id="bBuMfYe;vT#K0BjGvrAL" variabletype="">SMA_36</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <value name="B">
+                      <block type="logic_operation" id="4E5_y3A]`K0Qt8SPG(#c" inline="false">
+                        <field name="OP">AND</field>
+                        <value name="A">
+                          <block type="logic_compare" id="`@;^Q38d@sZ8:I+Y})e#">
+                            <field name="OP">GT</field>
+                            <value name="A">
+                              <block type="variables_get" id="A(/l:RIAeL}^@?B*)lQk">
+                                <field name="VAR" id="+K!ccyzG2Dw^xnJPn4fp" variabletype="">RSI_2</field>
+                              </block>
+                            </value>
+                            <value name="B">
+                              <block type="variables_get" id="pE+{.FaIF*.=fCBh.m]@">
+                                <field name="VAR" id="c;P+$zRuQjs?!B54xdG1" variabletype="">RSI_17</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <value name="B">
+                          <block type="logic_compare" id="^2|Cu#;NvGCnB*49.dw*">
+                            <field name="OP">GT</field>
+                            <value name="A">
+                              <block type="variables_get" id="u`f(m{6TF}2G~-_gJ#Pr">
+                                <field name="VAR" id="c;P+$zRuQjs?!B54xdG1" variabletype="">RSI_17</field>
+                              </block>
+                            </value>
+                            <value name="B">
+                              <block type="variables_get" id="d9k`o1A7yb@55mJ,QwT;">
+                                <field name="VAR" id="nr/Z?.C-T.dvhG[uiI}:" variabletype="">RSI_35</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <statement name="DO0">
+                  <block type="notify" id="|4:(TNxOOf.Sz7n:mN,+" collapsed="true">
+                    <field name="NOTIFICATION_TYPE">info</field>
+                    <field name="NOTIFICATION_SOUND">silent</field>
+                    <value name="MESSAGE">
+                      <shadow type="text" id=")z?`x_jSA]`D*b:n=v}%">
+                        <field name="TEXT">abc</field>
+                      </shadow>
+                      <block type="text_join" id="t}uiH,lhd2fs[viSEre?">
+                        <mutation items="2"></mutation>
+                        <value name="ADD0">
+                          <block type="text" id="m_-ZXijodr3J=3QhV=H8">
+                            <field name="TEXT">UP Trend</field>
+                          </block>
+                        </value>
+                        <value name="ADD1">
+                          <block type="text_join" id="iQbIw-cLSJlI-)xh/)v@">
+                            <mutation items="3"></mutation>
+                            <value name="ADD0">
+                              <block type="text_join" id="#8F3tUvD~J~_;},(xoR?">
+                                <mutation items="2"></mutation>
+                                <value name="ADD0">
+                                  <block type="text" id="JV6d,Ni=o`pGY2N?tk)J">
+                                    <field name="TEXT"> | RSI 2: </field>
+                                  </block>
+                                </value>
+                                <value name="ADD1">
+                                  <block type="variables_get" id="_okRT5M5wxZ9I:[hGs~Z">
+                                    <field name="VAR" id="+K!ccyzG2Dw^xnJPn4fp" variabletype="">RSI_2</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                            <value name="ADD1">
+                              <block type="text_join" id="*fSEmK(zQ3HR77FHO_yb">
+                                <mutation items="2"></mutation>
+                                <value name="ADD0">
+                                  <block type="text" id="k=M^j~LD2vnzZAs=@8XW">
+                                    <field name="TEXT"> | RSI 17: </field>
+                                  </block>
+                                </value>
+                                <value name="ADD1">
+                                  <block type="variables_get" id="z=gPWW$,oH|-1(lXL23p">
+                                    <field name="VAR" id="c;P+$zRuQjs?!B54xdG1" variabletype="">RSI_17</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                            <value name="ADD2">
+                              <block type="text_join" id="7Ur*HSeW290?Wcr5KaUE">
+                                <mutation items="2"></mutation>
+                                <value name="ADD0">
+                                  <block type="text" id="ll.}H+cUx~Nt/PjOnTBG">
+                                    <field name="TEXT"> | RSI 35: </field>
+                                  </block>
+                                </value>
+                                <value name="ADD1">
+                                  <block type="variables_get" id="dTO?+|VDYMK.?Tgh3hp.">
+                                    <field name="VAR" id="nr/Z?.C-T.dvhG[uiI}:" variabletype="">RSI_35</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="controls_if" id="tLi@%FCg/11zi@OC,[To">
+                        <value name="IF0">
+                          <block type="logic_compare" id="N|IhcrylcA#^1+0BjxWl" inline="false">
+                            <field name="OP">EQ</field>
+                            <value name="A">
+                              <block type="logic_compare" id="!bR(w9_jWkMaWz)Sn9|9">
+                                <field name="OP">GTE</field>
+                                <value name="A">
+                                  <block type="math_arithmetic" id=".zciR]!s=v~;`e#xpmJ2">
+                                    <field name="OP">MINUS</field>
+                                    <value name="A">
+                                      <shadow type="math_number" id="6Cd;KR)39cJFCrz)/agF">
+                                        <field name="NUM">1</field>
+                                      </shadow>
+                                      <block type="variables_get" id="x/IzWVsW8aWy2HM[e~Y0">
+                                        <field name="VAR" id="c;P+$zRuQjs?!B54xdG1" variabletype="">RSI_17</field>
+                                      </block>
+                                    </value>
+                                    <value name="B">
+                                      <shadow type="math_number" id="/hFKuh)Qaq4Shpv~@:WV">
+                                        <field name="NUM">1</field>
+                                      </shadow>
+                                      <block type="variables_get" id="xsZv!prNHL;zX/2C|cTd">
+                                        <field name="VAR" id="nr/Z?.C-T.dvhG[uiI}:" variabletype="">RSI_35</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                                <value name="B">
+                                  <block type="math_number" id="IXg#WS4gkKo6f1=),qVh">
+                                    <field name="NUM">3</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                            <value name="B">
+                              <block type="logic_operation" id="/_rV(*W:`RNc-TIo;1Q+" inline="false">
+                                <field name="OP">AND</field>
+                                <value name="A">
+                                  <block type="logic_compare" id="eU]m..R%?)Rh|?Gt$VF+">
+                                    <field name="OP">GTE</field>
+                                    <value name="A">
+                                      <block type="variables_get" id="@Pp}aA=q3F$#4ZhQ]P@+">
+                                        <field name="VAR" id="+K!ccyzG2Dw^xnJPn4fp" variabletype="">RSI_2</field>
+                                      </block>
+                                    </value>
+                                    <value name="B">
+                                      <block type="math_number" id="gR/W;.8LAINQeRYM,GwL">
+                                        <field name="NUM">60</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                                <value name="B">
+                                  <block type="logic_compare" id="`mwlUv=:}Q0#|gkNHff@">
+                                    <field name="OP">LTE</field>
+                                    <value name="A">
+                                      <block type="variables_get" id="}n]~)pCN)Or+pdm8PsEU">
+                                        <field name="VAR" id="+K!ccyzG2Dw^xnJPn4fp" variabletype="">RSI_2</field>
+                                      </block>
+                                    </value>
+                                    <value name="B">
+                                      <block type="math_number" id="N`NCh#3mw!l:j[u7emO@">
+                                        <field name="NUM">92</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <statement name="DO0">
+                          <block type="notify" id="n,Uq%xw}f]eA%]n1mH8E">
+                            <field name="NOTIFICATION_TYPE">success</field>
+                            <field name="NOTIFICATION_SOUND">silent</field>
+                            <value name="MESSAGE">
+                              <shadow type="text" id="+1@3Cv?@@Lxkp/=l#P=-">
+                                <field name="TEXT">Make trade on RISE...</field>
+                              </shadow>
+                            </value>
+                            <next>
+                              <block type="purchase" id="Go^,^7SI|[PZTo[huO/N">
+                                <field name="PURCHASE_LIST">CALL</field>
+                              </block>
+                            </next>
+                          </block>
+                        </statement>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <value name="IF1">
+          <block type="logic_operation" id="LWVevUx5p2]6;Rc+Wp{T" inline="false">
+            <field name="OP">AND</field>
+            <value name="A">
+              <block type="logic_operation" id="[SyYeVrRe!{+1Y7H_h,%" inline="false">
+                <field name="OP">AND</field>
+                <value name="A">
+                  <block type="logic_compare" id="4eyR}i1blb46doGsnbmF">
+                    <field name="OP">EQ</field>
+                    <value name="A">
+                      <block type="variables_get" id="J%L_B%jqt0TI~Dx{fJq[">
+                        <field name="VAR" id="#6d+9eET=$*J~.bYNA#/" variabletype="">Candle 5mins</field>
+                      </block>
+                    </value>
+                    <value name="B">
+                      <block type="text" id="S3B_ghb852Vn;SYb$GDu">
+                        <field name="TEXT">RED</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <value name="B">
+                  <block type="logic_operation" id=",V*O_pjooonDj)mfbq8E" inline="false">
+                    <field name="OP">AND</field>
+                    <value name="A">
+                      <block type="logic_compare" id="bCYhC2`u,zW@ltirh3WR">
+                        <field name="OP">EQ</field>
+                        <value name="A">
+                          <block type="variables_get" id="*kfK+G48^w0rfr_w].M?">
+                            <field name="VAR" id="m$8dynrR=@ZH*@`3X[yh" variabletype="">Candle 3mins</field>
+                          </block>
+                        </value>
+                        <value name="B">
+                          <block type="text" id="O5AB!?SBd8|PW.=8%fJK">
+                            <field name="TEXT">RED</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <value name="B">
+                      <block type="logic_compare" id="[dMR:Nty57F|4?1#[|{@">
+                        <field name="OP">EQ</field>
+                        <value name="A">
+                          <block type="variables_get" id="KNk|cFnz^Vx2$2@IGSgz">
+                            <field name="VAR" id="~8j^Mji$Djp0h_9th]y(" variabletype="">Candle 1min</field>
+                          </block>
+                        </value>
+                        <value name="B">
+                          <block type="text" id="DUt@/[_b2rsaY+ccRqVC">
+                            <field name="TEXT">RED</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <value name="B">
+              <block type="logic_operation" id="T)146/_iu6HD~=fyCWHR" inline="false">
+                <field name="OP">AND</field>
+                <value name="A">
+                  <block type="logic_operation" id="G8|{WQb^kz8c{AG*b2uR">
+                    <field name="OP">AND</field>
+                    <value name="A">
+                      <block type="logic_compare" id="%/H%w+?Fhe[*KLK4)@+q">
+                        <field name="OP">GT</field>
+                        <value name="A">
+                          <block type="variables_get" id="DZr,aJn)K{fml}X=2L*2">
+                            <field name="VAR" id="W(LOSnoQzjO6`Ml=3HZQ" variabletype="">Candle 5mins RED Count</field>
+                          </block>
+                        </value>
+                        <value name="B">
+                          <block type="math_number" id=";rAYnZWyN-I{8)QHm8i.">
+                            <field name="NUM">14</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <value name="B">
+                      <block type="logic_compare" id="aLymdpjCwW~(kbG/Uwb/">
+                        <field name="OP">LT</field>
+                        <value name="A">
+                          <block type="variables_get" id="Yw4T,H*6W-7N1Y4ss!!3">
+                            <field name="VAR" id="`p#Mv4BlZ82?./U2Q2BT" variabletype="">5mins Candle Lifetime</field>
+                          </block>
+                        </value>
+                        <value name="B">
+                          <block type="math_number" id="e1/r.|t$eh@|?D,!j,o6">
+                            <field name="NUM">140</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <value name="B">
+                  <block type="logic_operation" id=".#:G;)!M?a?hrE4mEb3{" inline="false">
+                    <field name="OP">AND</field>
+                    <value name="A">
+                      <block type="logic_operation" id="dec_E~Hft%X{}4V4`:5l">
+                        <field name="OP">AND</field>
+                        <value name="A">
+                          <block type="logic_compare" id="LQh|.QU5TzNaV{Y5^0-#">
+                            <field name="OP">GT</field>
+                            <value name="A">
+                              <block type="variables_get" id="GCwA`L9f{),a}[_n:P:k">
+                                <field name="VAR" id="m7L+|67qnc?#CRR`#-qK" variabletype="">Candle 3mins RED Count</field>
+                              </block>
+                            </value>
+                            <value name="B">
+                              <block type="math_number" id="kU;9z,)8iEf5@;s1=%~T">
+                                <field name="NUM">10</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <value name="B">
+                          <block type="logic_compare" id="MPzkZ=-0~vFY5Z|jPgLx">
+                            <field name="OP">LT</field>
+                            <value name="A">
+                              <block type="variables_get" id=":D?ftTq0)m?a764G3V3+">
+                                <field name="VAR" id="8/Odv%yfGbSaNYol|SY5" variabletype="">3mins Candle Lifetime</field>
+                              </block>
+                            </value>
+                            <value name="B">
+                              <block type="math_number" id="aVxd0i=PE7Mj6]$,A@#|">
+                                <field name="NUM">85</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <value name="B">
+                      <block type="logic_operation" id="iE:09+K:d60LxOhIZ/?.">
+                        <field name="OP">AND</field>
+                        <value name="A">
+                          <block type="logic_compare" id="(Ise5_q*=4h@+!%w]l~v">
+                            <field name="OP">GT</field>
+                            <value name="A">
+                              <block type="variables_get" id=",Yx*(TZ)#sqkJHPp!TT?">
+                                <field name="VAR" id="[{1KN?B2mn^]vC0p5y1M" variabletype="">Candle 1min RED Count</field>
+                              </block>
+                            </value>
+                            <value name="B">
+                              <block type="math_number" id="ZmMws:z[plTeC)qWHj55">
+                                <field name="NUM">10</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <value name="B">
+                          <block type="logic_compare" id="{+CLZi8a(6]v6$,S_|`}">
+                            <field name="OP">LT</field>
+                            <value name="A">
+                              <block type="variables_get" id="3?w#*`_B]vNXg,awX(bQ">
+                                <field name="VAR" id="{`1Ix`JMqrq^?GDYI/=#" variabletype="">1min Candle Lifetime</field>
+                              </block>
+                            </value>
+                            <value name="B">
+                              <block type="math_number" id="9w-APA$A|E[O~3NB,^Yc">
+                                <field name="NUM">25</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO1">
+          <block type="notify" id="(PBKB,y9BO}1O!OeZv4v">
+            <field name="NOTIFICATION_TYPE">error</field>
+            <field name="NOTIFICATION_SOUND">silent</field>
+            <value name="MESSAGE">
+              <shadow type="text" id="z/0`;Y|D:f0ICMmr/Acb">
+                <field name="TEXT">Candles RED</field>
+              </shadow>
+            </value>
+            <next>
+              <block type="controls_if" id="6VJj~.Q$:s83RWXtGN$J" collapsed="true">
+                <value name="IF0">
+                  <block type="logic_operation" id="BO?!NdSp$f`=61MW86v[" inline="false">
+                    <field name="OP">AND</field>
+                    <value name="A">
+                      <block type="logic_compare" id="{E*ABOc/YO2LgjOS0n*]">
+                        <field name="OP">LT</field>
+                        <value name="A">
+                          <block type="variables_get" id="?I]AMJ`B(*,xG1CUi`-7">
+                            <field name="VAR" id="304jIq#V.8EF@=i~IEG3" variabletype="">SMA_24</field>
+                          </block>
+                        </value>
+                        <value name="B">
+                          <block type="variables_get" id="ptA6veJkMjO51E~h|6ah">
+                            <field name="VAR" id="bBuMfYe;vT#K0BjGvrAL" variabletype="">SMA_36</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <value name="B">
+                      <block type="logic_operation" id="P5yzy=${[rbB=i6`1B;@" inline="false">
+                        <field name="OP">AND</field>
+                        <value name="A">
+                          <block type="logic_compare" id="{n{MvATu_A00XQXGa)^7">
+                            <field name="OP">LT</field>
+                            <value name="A">
+                              <block type="variables_get" id="ZwwDT;KGe(;X%s4Cr~;I">
+                                <field name="VAR" id="+K!ccyzG2Dw^xnJPn4fp" variabletype="">RSI_2</field>
+                              </block>
+                            </value>
+                            <value name="B">
+                              <block type="variables_get" id="ub#kQUmZpz@3,(gb!L2l">
+                                <field name="VAR" id="c;P+$zRuQjs?!B54xdG1" variabletype="">RSI_17</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <value name="B">
+                          <block type="logic_compare" id="F3Y,A?A%l5~5~}o)$09H">
+                            <field name="OP">LT</field>
+                            <value name="A">
+                              <block type="variables_get" id="Fy}jxt^md_cfwK-+lHo:">
+                                <field name="VAR" id="c;P+$zRuQjs?!B54xdG1" variabletype="">RSI_17</field>
+                              </block>
+                            </value>
+                            <value name="B">
+                              <block type="variables_get" id="/cbB~xUgeMLIR9:I]-P]">
+                                <field name="VAR" id="nr/Z?.C-T.dvhG[uiI}:" variabletype="">RSI_35</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <statement name="DO0">
+                  <block type="notify" id="4ApP2OV`v%cGO}p^E}`B" collapsed="true">
+                    <field name="NOTIFICATION_TYPE">error</field>
+                    <field name="NOTIFICATION_SOUND">silent</field>
+                    <value name="MESSAGE">
+                      <shadow type="text" id=")z?`x_jSA]`D*b:n=v}%">
+                        <field name="TEXT">abc</field>
+                      </shadow>
+                      <block type="text_join" id="HywZ^4#jAhBRz!):ptSD">
+                        <mutation items="2"></mutation>
+                        <value name="ADD0">
+                          <block type="text" id="}0xHQaS{2q1Kf^iqz6j9">
+                            <field name="TEXT">DOWN Trend</field>
+                          </block>
+                        </value>
+                        <value name="ADD1">
+                          <block type="text_join" id="=:~C3YN=-SmEuH5VX|e:">
+                            <mutation items="3"></mutation>
+                            <value name="ADD0">
+                              <block type="text_join" id=")iG1fEd!w-mN)~K^6AS^">
+                                <mutation items="2"></mutation>
+                                <value name="ADD0">
+                                  <block type="text" id="^{G^xUi(c58z+KWC=BdN">
+                                    <field name="TEXT"> | RSI 2: </field>
+                                  </block>
+                                </value>
+                                <value name="ADD1">
+                                  <block type="variables_get" id="|SZL2qMx_?dJgqF{S[8h">
+                                    <field name="VAR" id="+K!ccyzG2Dw^xnJPn4fp" variabletype="">RSI_2</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                            <value name="ADD1">
+                              <block type="text_join" id="QCs/,fbC+iXzx3_OO|{]">
+                                <mutation items="2"></mutation>
+                                <value name="ADD0">
+                                  <block type="text" id="NpZ=mQ%m7jyd}DBHa+V^">
+                                    <field name="TEXT"> | RSI 17: </field>
+                                  </block>
+                                </value>
+                                <value name="ADD1">
+                                  <block type="variables_get" id="7Ei@5~{=4R(R_EC_:4g_">
+                                    <field name="VAR" id="c;P+$zRuQjs?!B54xdG1" variabletype="">RSI_17</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                            <value name="ADD2">
+                              <block type="text_join" id="=-dJ]1otJgATvnL!Mp*p">
+                                <mutation items="2"></mutation>
+                                <value name="ADD0">
+                                  <block type="text" id="p(/bIhuXG4G3mXb6%tQI">
+                                    <field name="TEXT"> | RSI 35: </field>
+                                  </block>
+                                </value>
+                                <value name="ADD1">
+                                  <block type="variables_get" id="yxrar9`m?X.RwoLU4}Km">
+                                    <field name="VAR" id="nr/Z?.C-T.dvhG[uiI}:" variabletype="">RSI_35</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="controls_if" id="~e~q[MaHZaCe{8I_s_fZ">
+                        <value name="IF0">
+                          <block type="logic_compare" id="H9@-NX+h`IP]yQ?h,jU," inline="false">
+                            <field name="OP">EQ</field>
+                            <value name="A">
+                              <block type="logic_compare" id="qYl1|Bx?eWCMzT7Mavn8">
+                                <field name="OP">GTE</field>
+                                <value name="A">
+                                  <block type="math_arithmetic" id=";Z(R)g5fkHa9xm}G_Hw(">
+                                    <field name="OP">MINUS</field>
+                                    <value name="A">
+                                      <shadow type="math_number" id="6Cd;KR)39cJFCrz)/agF">
+                                        <field name="NUM">1</field>
+                                      </shadow>
+                                      <block type="variables_get" id="[OS$F[?{|FmS2In7aK[z">
+                                        <field name="VAR" id="nr/Z?.C-T.dvhG[uiI}:" variabletype="">RSI_35</field>
+                                      </block>
+                                    </value>
+                                    <value name="B">
+                                      <shadow type="math_number" id="/hFKuh)Qaq4Shpv~@:WV">
+                                        <field name="NUM">1</field>
+                                      </shadow>
+                                      <block type="variables_get" id="RUJSP4k?Lw4+{#8-%twD">
+                                        <field name="VAR" id="c;P+$zRuQjs?!B54xdG1" variabletype="">RSI_17</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                                <value name="B">
+                                  <block type="math_number" id="EAY4?%IRqr[W~k3*+kOw">
+                                    <field name="NUM">3</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                            <value name="B">
+                              <block type="logic_operation" id=")zUSS;bfJ,%`!hYJ(HbB" inline="false">
+                                <field name="OP">AND</field>
+                                <value name="A">
+                                  <block type="logic_compare" id="dCQYvDYQ3!?RI$P.@!hM">
+                                    <field name="OP">GTE</field>
+                                    <value name="A">
+                                      <block type="variables_get" id="$?b/9gt_z$8WUu-VLThQ">
+                                        <field name="VAR" id="+K!ccyzG2Dw^xnJPn4fp" variabletype="">RSI_2</field>
+                                      </block>
+                                    </value>
+                                    <value name="B">
+                                      <block type="math_number" id="_D)EAN5ea@k.2W8@2KON">
+                                        <field name="NUM">8</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                                <value name="B">
+                                  <block type="logic_compare" id=":hB^hvEa,:h%rgG~{0_a">
+                                    <field name="OP">LTE</field>
+                                    <value name="A">
+                                      <block type="variables_get" id="AYVJy@)TSwN$+a6-kj|A">
+                                        <field name="VAR" id="+K!ccyzG2Dw^xnJPn4fp" variabletype="">RSI_2</field>
+                                      </block>
+                                    </value>
+                                    <value name="B">
+                                      <block type="math_number" id="P8`s*4!))IxLdHn_wpvE">
+                                        <field name="NUM">40</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <statement name="DO0">
+                          <block type="notify" id="~HNi(ruBi8Z{rCbQp^[H">
+                            <field name="NOTIFICATION_TYPE">success</field>
+                            <field name="NOTIFICATION_SOUND">silent</field>
+                            <value name="MESSAGE">
+                              <shadow type="text" id=")z?`x_jSA]`D*b:n=v}%">
+                                <field name="TEXT">Make trade on FALL...</field>
+                              </shadow>
+                            </value>
+                            <next>
+                              <block type="purchase" id="U)PYZbVKpUP_^],v;u)w">
+                                <field name="PURCHASE_LIST">PUT</field>
+                              </block>
+                            </next>
+                          </block>
+                        </statement>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <statement name="ELSE">
+          <block type="notify" id="{AAvBQ?.+X.u,HJl=Qg!">
+            <field name="NOTIFICATION_TYPE">warn</field>
+            <field name="NOTIFICATION_SOUND">silent</field>
+            <value name="MESSAGE">
+              <shadow type="text" id="GO6b#{ICT(xf$bil;iZ;">
+                <field name="TEXT">Waiting for candles...</field>
+              </shadow>
+            </value>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+  <block type="tick_analysis" id="r]TXR4M-w{Y7~eiQ.LQY" collapsed="true" x="320" y="622">
+    <statement name="TICKANALYSIS_STACK">
+      <block type="math_change" id="D%BC;(Pr.A_1wGr+z6Dk">
+        <field name="VAR" id="`p#Mv4BlZ82?./U2Q2BT" variabletype="">5mins Candle Lifetime</field>
+        <value name="DELTA">
+          <shadow type="math_number" id="dC6puWERbxErr{x}vGPh">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+        <next>
+          <block type="math_change" id="8Z1RYBtMM[_@hmK%/.%m">
+            <field name="VAR" id="8/Odv%yfGbSaNYol|SY5" variabletype="">3mins Candle Lifetime</field>
+            <value name="DELTA">
+              <shadow type="math_number" id="5H]J:cB=jXNfMk}6)~qx">
+                <field name="NUM">1</field>
+              </shadow>
+            </value>
+            <next>
+              <block type="math_change" id="`Vx*]f^gl_=h$DtLlT#_">
+                <field name="VAR" id="{`1Ix`JMqrq^?GDYI/=#" variabletype="">1min Candle Lifetime</field>
+                <value name="DELTA">
+                  <shadow type="math_number" id="1rX,P:-J4Sby$wF*c7m#">
+                    <field name="NUM">1</field>
+                  </shadow>
+                </value>
+                <next>
+                  <block type="controls_if" id="D/cdq:b%Dp-v$P|}.aa^">
+                    <mutation elseif="1"></mutation>
+                    <value name="IF0">
+                      <block type="logic_negate" id="15xEQck||TV4Zk3s5+`V">
+                        <value name="BOOL">
+                          <block type="variables_get" id="E5,^yqgaiu~WT,:`@k4u">
+                            <field name="VAR" id="^PZ~t(gvP(j]cexwBe,`" variabletype="">Current 5mins Candle</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <statement name="DO0">
+                      <block type="variables_set" id="?UMzX^#PCJcp^E(]A?c[">
+                        <field name="VAR" id="^PZ~t(gvP(j]cexwBe,`" variabletype="">Current 5mins Candle</field>
+                        <value name="VALUE">
+                          <block type="read_ohlc" id="*v.r0mt)@_E)L,M.L@D2">
+                            <field name="OHLCFIELD_LIST">epoch</field>
+                            <field name="CANDLEINTERVAL_LIST">300</field>
+                            <value name="CANDLEINDEX">
+                              <shadow type="math_number" id="9.n8PID7^?9]^[wHT{{X">
+                                <field name="NUM">1</field>
+                              </shadow>
+                            </value>
+                          </block>
+                        </value>
+                      </block>
+                    </statement>
+                    <value name="IF1">
+                      <block type="logic_compare" id="D3$@Q8f0D}O;*~mch%)3">
+                        <field name="OP">NEQ</field>
+                        <value name="A">
+                          <block type="variables_get" id="(_ZIb=%m/Deud7RhZ-X,">
+                            <field name="VAR" id="^PZ~t(gvP(j]cexwBe,`" variabletype="">Current 5mins Candle</field>
+                          </block>
+                        </value>
+                        <value name="B">
+                          <block type="read_ohlc" id="pR*2m%XsPygi`KUMr9$P">
+                            <field name="OHLCFIELD_LIST">epoch</field>
+                            <field name="CANDLEINTERVAL_LIST">300</field>
+                            <value name="CANDLEINDEX">
+                              <shadow type="math_number" id="{MXgHtURiSJDQ5W;sJDt">
+                                <field name="NUM">1</field>
+                              </shadow>
+                            </value>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <statement name="DO1">
+                      <block type="variables_set" id="0Hq2L_.EpgCh2G~8yi1l">
+                        <field name="VAR" id="^PZ~t(gvP(j]cexwBe,`" variabletype="">Current 5mins Candle</field>
+                        <value name="VALUE">
+                          <block type="read_ohlc" id="3J55YBN^ybcGpw[avRzY">
+                            <field name="OHLCFIELD_LIST">epoch</field>
+                            <field name="CANDLEINTERVAL_LIST">300</field>
+                            <value name="CANDLEINDEX">
+                              <shadow type="math_number" id="6Ns$2x?-adpZV]xoT{ws">
+                                <field name="NUM">1</field>
+                              </shadow>
+                            </value>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="variables_set" id="Y2zt%|2@C`O~23atg?b5">
+                            <field name="VAR" id="`p#Mv4BlZ82?./U2Q2BT" variabletype="">5mins Candle Lifetime</field>
+                            <value name="VALUE">
+                              <block type="math_number" id="RYD**9P%6w]^!RP.:G?A">
+                                <field name="NUM">0</field>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="variables_set" id="B~ya${15Ay?%)(~Ff)r$">
+                                <field name="VAR" id="|@{-X9vkUFzXPYBL-W@S" variabletype="">Candle 5mins GREEN Count</field>
+                                <value name="VALUE">
+                                  <block type="math_number" id="Fz64]+#Z3]6-Oyc-8FC$">
+                                    <field name="NUM">0</field>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="variables_set" id="Tcf,/Zqm.vLrlY)3f2xd">
+                                    <field name="VAR" id="W(LOSnoQzjO6`Ml=3HZQ" variabletype="">Candle 5mins RED Count</field>
+                                    <value name="VALUE">
+                                      <block type="math_number" id="L5OTCh1g5~DQT{Gnr~V!">
+                                        <field name="NUM">0</field>
+                                      </block>
+                                    </value>
+                                    <next>
+                                      <block type="notify" id=":PzB3{@WTJ1YfJ!SA28k">
+                                        <field name="NOTIFICATION_TYPE">success</field>
+                                        <field name="NOTIFICATION_SOUND">silent</field>
+                                        <value name="MESSAGE">
+                                          <shadow type="text" id="M^RekKlU:nDx/lJe=RL~">
+                                            <field name="TEXT">New 5mins CANDLE</field>
+                                          </shadow>
+                                        </value>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <next>
+                      <block type="controls_if" id="AX@NYuhDeM(=EAwl/~%e">
+                        <mutation elseif="1"></mutation>
+                        <value name="IF0">
+                          <block type="logic_negate" id="iEA#up59$TJK(UX)47xY">
+                            <value name="BOOL">
+                              <block type="variables_get" id="C[)4./x49mg,Z336.uy-">
+                                <field name="VAR" id="x4W]vDU7YnLZ.pB0,1VW" variabletype="">Current 3mins Candle</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <statement name="DO0">
+                          <block type="variables_set" id="[,s_OG{:#+y8QtnqA[8l">
+                            <field name="VAR" id="x4W]vDU7YnLZ.pB0,1VW" variabletype="">Current 3mins Candle</field>
+                            <value name="VALUE">
+                              <block type="read_ohlc" id="pMi/g9ma6.H53fr!2m2c">
+                                <field name="OHLCFIELD_LIST">epoch</field>
+                                <field name="CANDLEINTERVAL_LIST">180</field>
+                                <value name="CANDLEINDEX">
+                                  <shadow type="math_number" id="QT?S~--vU4p4;!bnYZRm">
+                                    <field name="NUM">1</field>
+                                  </shadow>
+                                </value>
+                              </block>
+                            </value>
+                          </block>
+                        </statement>
+                        <value name="IF1">
+                          <block type="logic_compare" id="}zPgS3a_[i+iDD75zYP-">
+                            <field name="OP">NEQ</field>
+                            <value name="A">
+                              <block type="variables_get" id="d37[^Zz]DU]~_1:E^+~r">
+                                <field name="VAR" id="x4W]vDU7YnLZ.pB0,1VW" variabletype="">Current 3mins Candle</field>
+                              </block>
+                            </value>
+                            <value name="B">
+                              <block type="read_ohlc" id="?mQL_#w!pata^j}+h6;`">
+                                <field name="OHLCFIELD_LIST">epoch</field>
+                                <field name="CANDLEINTERVAL_LIST">180</field>
+                                <value name="CANDLEINDEX">
+                                  <shadow type="math_number" id="5VEH3E6%#^8UYlHI%fC1">
+                                    <field name="NUM">1</field>
+                                  </shadow>
+                                </value>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <statement name="DO1">
+                          <block type="variables_set" id="Q@+6-`F^Od3:Kz^7wYSA">
+                            <field name="VAR" id="x4W]vDU7YnLZ.pB0,1VW" variabletype="">Current 3mins Candle</field>
+                            <value name="VALUE">
+                              <block type="read_ohlc" id="D-s#1Em.$LxMZn:HZ*2C">
+                                <field name="OHLCFIELD_LIST">epoch</field>
+                                <field name="CANDLEINTERVAL_LIST">180</field>
+                                <value name="CANDLEINDEX">
+                                  <shadow type="math_number" id="x(XC+2;pLDHJ7LQvN{mM">
+                                    <field name="NUM">1</field>
+                                  </shadow>
+                                </value>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="variables_set" id="H@QRVM/+*Rrrgc]?j%z.">
+                                <field name="VAR" id="8/Odv%yfGbSaNYol|SY5" variabletype="">3mins Candle Lifetime</field>
+                                <value name="VALUE">
+                                  <block type="math_number" id="J~c+n9n4pXUZcgYMeFZA">
+                                    <field name="NUM">0</field>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="variables_set" id="oB2E4VtC^u6$,T?v3YqJ">
+                                    <field name="VAR" id="rxQcU(GkgrBk/t`%GU*z" variabletype="">Candle 3mins GREEN Count</field>
+                                    <value name="VALUE">
+                                      <block type="math_number" id="mc)/E7T]j+Y:OO~@%r`#">
+                                        <field name="NUM">0</field>
+                                      </block>
+                                    </value>
+                                    <next>
+                                      <block type="variables_set" id="l$0lFte,{-Hfm%40)v9Z">
+                                        <field name="VAR" id="m7L+|67qnc?#CRR`#-qK" variabletype="">Candle 3mins RED Count</field>
+                                        <value name="VALUE">
+                                          <block type="math_number" id="Peew?JC~b^Ro_xkWX*Fr">
+                                            <field name="NUM">0</field>
+                                          </block>
+                                        </value>
+                                        <next>
+                                          <block type="notify" id="JXR/29R=.u|OVHS_9YjR">
+                                            <field name="NOTIFICATION_TYPE">success</field>
+                                            <field name="NOTIFICATION_SOUND">silent</field>
+                                            <value name="MESSAGE">
+                                              <shadow type="text" id="M.{1=G5o5=DZ-u$e2Jwh">
+                                                <field name="TEXT">New 3mins CANDLE</field>
+                                              </shadow>
+                                            </value>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </statement>
+                        <next>
+                          <block type="controls_if" id="(7pwZ%MjaM-%$?kTr%ta">
+                            <mutation elseif="1"></mutation>
+                            <value name="IF0">
+                              <block type="logic_negate" id="`+OP3upm?3IM6k7YU3=y">
+                                <value name="BOOL">
+                                  <block type="variables_get" id="ODnKn`]#9VtxaLlr0%7;">
+                                    <field name="VAR" id="GUID8H!2jAw#2bOU,_JL" variabletype="">Current 1min Candle</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                            <statement name="DO0">
+                              <block type="variables_set" id="Jo=2q;zw7K#*Q#C*8q|@">
+                                <field name="VAR" id="GUID8H!2jAw#2bOU,_JL" variabletype="">Current 1min Candle</field>
+                                <value name="VALUE">
+                                  <block type="read_ohlc" id="N2f%,Zj3~YmSL#0mk8$j">
+                                    <field name="OHLCFIELD_LIST">epoch</field>
+                                    <field name="CANDLEINTERVAL_LIST">60</field>
+                                    <value name="CANDLEINDEX">
+                                      <shadow type="math_number" id="Il|T,uSO}Bh$p//rI,x+">
+                                        <field name="NUM">1</field>
+                                      </shadow>
+                                    </value>
+                                  </block>
+                                </value>
+                              </block>
+                            </statement>
+                            <value name="IF1">
+                              <block type="logic_compare" id="-]pwtR-IhcF:an3whp_:">
+                                <field name="OP">NEQ</field>
+                                <value name="A">
+                                  <block type="variables_get" id="d|{St_$M}ut7];qJ1M6_">
+                                    <field name="VAR" id="GUID8H!2jAw#2bOU,_JL" variabletype="">Current 1min Candle</field>
+                                  </block>
+                                </value>
+                                <value name="B">
+                                  <block type="read_ohlc" id="h1O=}OMD`DQ)$4h?AX(L">
+                                    <field name="OHLCFIELD_LIST">epoch</field>
+                                    <field name="CANDLEINTERVAL_LIST">60</field>
+                                    <value name="CANDLEINDEX">
+                                      <shadow type="math_number" id="57=*ru-mi|pvc1|w)/]!">
+                                        <field name="NUM">1</field>
+                                      </shadow>
+                                    </value>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                            <statement name="DO1">
+                              <block type="variables_set" id="C:B^cT2KLR[G+]!pcM-3">
+                                <field name="VAR" id="GUID8H!2jAw#2bOU,_JL" variabletype="">Current 1min Candle</field>
+                                <value name="VALUE">
+                                  <block type="read_ohlc" id="h+220i5G,e;=]MNrX8~j">
+                                    <field name="OHLCFIELD_LIST">epoch</field>
+                                    <field name="CANDLEINTERVAL_LIST">60</field>
+                                    <value name="CANDLEINDEX">
+                                      <shadow type="math_number" id="h(-5V!H+}=*W-6#fD^8y">
+                                        <field name="NUM">1</field>
+                                      </shadow>
+                                    </value>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="variables_set" id="TCu/z(1RegE+|+S`x7!C">
+                                    <field name="VAR" id="{`1Ix`JMqrq^?GDYI/=#" variabletype="">1min Candle Lifetime</field>
+                                    <value name="VALUE">
+                                      <block type="math_number" id="]hRW}s.NJ]Qq6f=C.4%(">
+                                        <field name="NUM">0</field>
+                                      </block>
+                                    </value>
+                                    <next>
+                                      <block type="variables_set" id="i$W!#.)eBYw/mT1YU]v:">
+                                        <field name="VAR" id="msIQ`W%!u7J$Ho(EtZw=" variabletype="">Candle 1min GREEN Count</field>
+                                        <value name="VALUE">
+                                          <block type="math_number" id="Z(oz:JViM5jx6D.o|c@c">
+                                            <field name="NUM">0</field>
+                                          </block>
+                                        </value>
+                                        <next>
+                                          <block type="variables_set" id="M?$_W`+GjX!T4r*Dt_:M">
+                                            <field name="VAR" id="[{1KN?B2mn^]vC0p5y1M" variabletype="">Candle 1min RED Count</field>
+                                            <value name="VALUE">
+                                              <block type="math_number" id="u361)E)7LI{DE?T/kq4%">
+                                                <field name="NUM">0</field>
+                                              </block>
+                                            </value>
+                                            <next>
+                                              <block type="notify" id=":vT4dsFK(Zb/|VF6GE]S">
+                                                <field name="NOTIFICATION_TYPE">success</field>
+                                                <field name="NOTIFICATION_SOUND">silent</field>
+                                                <value name="MESSAGE">
+                                                  <shadow type="text" id="r${=@SGR8VY+4F$p/M7v">
+                                                    <field name="TEXT">New 1min CANDLE</field>
+                                                  </shadow>
+                                                </value>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </statement>
+                            <next>
+                              <block type="controls_if" id="gkPn/fBDtte3qGQppQPI">
+                                <mutation elseif="1"></mutation>
+                                <value name="IF0">
+                                  <block type="logic_compare" id="zO)*i#X%*6Y(m;N0|Hhf" inline="false">
+                                    <field name="OP">GT</field>
+                                    <value name="A">
+                                      <block type="read_ohlc" id="!=({;0;SDF+e7l_(y2~q">
+                                        <field name="OHLCFIELD_LIST">close</field>
+                                        <field name="CANDLEINTERVAL_LIST">300</field>
+                                        <value name="CANDLEINDEX">
+                                          <shadow type="math_number" id="r*05tb/AnhX~FU-:7qme">
+                                            <field name="NUM">1</field>
+                                          </shadow>
+                                        </value>
+                                      </block>
+                                    </value>
+                                    <value name="B">
+                                      <block type="read_ohlc" id="w-[Z,0Ruq4rCK%;@P/8/">
+                                        <field name="OHLCFIELD_LIST">open</field>
+                                        <field name="CANDLEINTERVAL_LIST">300</field>
+                                        <value name="CANDLEINDEX">
+                                          <shadow type="math_number" id="VCgve6%pm+cG;[Wo(!=o">
+                                            <field name="NUM">1</field>
+                                          </shadow>
+                                        </value>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                                <statement name="DO0">
+                                  <block type="variables_set" id="*5$~;s3RmyRsgSxunJ%r">
+                                    <field name="VAR" id="#6d+9eET=$*J~.bYNA#/" variabletype="">Candle 5mins</field>
+                                    <value name="VALUE">
+                                      <block type="text" id="?*|O5-y_!H_w}SK^MA@a">
+                                        <field name="TEXT">GREEN</field>
+                                      </block>
+                                    </value>
+                                    <next>
+                                      <block type="math_change" id="7]c%v}PqQOU:clh4jXFr">
+                                        <field name="VAR" id="|@{-X9vkUFzXPYBL-W@S" variabletype="">Candle 5mins GREEN Count</field>
+                                        <value name="DELTA">
+                                          <shadow type="math_number" id="~BkM-B$Jyq)[0.Rz9O$s">
+                                            <field name="NUM">1</field>
+                                          </shadow>
+                                        </value>
+                                        <next>
+                                          <block type="variables_set" id="}j7^`UN4+a.^DK.(ikZL">
+                                            <field name="VAR" id="W(LOSnoQzjO6`Ml=3HZQ" variabletype="">Candle 5mins RED Count</field>
+                                            <value name="VALUE">
+                                              <block type="math_number" id="rk/o$!6IJuMvpCvN%ZTt">
+                                                <field name="NUM">0</field>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </statement>
+                                <value name="IF1">
+                                  <block type="logic_compare" id="q0+a.^FW6$rT`YK/KGMx" inline="false">
+                                    <field name="OP">LT</field>
+                                    <value name="A">
+                                      <block type="read_ohlc" id="b5{u+I!K.2[{bI`M`{:,">
+                                        <field name="OHLCFIELD_LIST">close</field>
+                                        <field name="CANDLEINTERVAL_LIST">300</field>
+                                        <value name="CANDLEINDEX">
+                                          <shadow type="math_number" id="#N@]0,k!25gc1CgZyvSw">
+                                            <field name="NUM">1</field>
+                                          </shadow>
+                                        </value>
+                                      </block>
+                                    </value>
+                                    <value name="B">
+                                      <block type="read_ohlc" id="W/O3o:3nywqj!lB99-wf">
+                                        <field name="OHLCFIELD_LIST">open</field>
+                                        <field name="CANDLEINTERVAL_LIST">300</field>
+                                        <value name="CANDLEINDEX">
+                                          <shadow type="math_number" id="`Q?HC9]:hi(cFB2VmH1u">
+                                            <field name="NUM">1</field>
+                                          </shadow>
+                                        </value>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                                <statement name="DO1">
+                                  <block type="variables_set" id="ui`FYX]K!UmB=6|/DPG)">
+                                    <field name="VAR" id="#6d+9eET=$*J~.bYNA#/" variabletype="">Candle 5mins</field>
+                                    <value name="VALUE">
+                                      <block type="text" id="FxK?dLKdj.m1y7W$E.6X">
+                                        <field name="TEXT">RED</field>
+                                      </block>
+                                    </value>
+                                    <next>
+                                      <block type="math_change" id="O`U7yV9y_w+uQ!bht[dA">
+                                        <field name="VAR" id="W(LOSnoQzjO6`Ml=3HZQ" variabletype="">Candle 5mins RED Count</field>
+                                        <value name="DELTA">
+                                          <shadow type="math_number" id="=VW[6[rq^z2!QziuAQYo">
+                                            <field name="NUM">1</field>
+                                          </shadow>
+                                        </value>
+                                        <next>
+                                          <block type="variables_set" id="Xm@9|O@~Q*Z|+%:*c,2=">
+                                            <field name="VAR" id="|@{-X9vkUFzXPYBL-W@S" variabletype="">Candle 5mins GREEN Count</field>
+                                            <value name="VALUE">
+                                              <block type="math_number" id="Rey3(ua(kH^Nxnfe@YLp">
+                                                <field name="NUM">0</field>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </statement>
+                                <next>
+                                  <block type="controls_if" id="f8ls$zT6Yfv{D!*+?xar">
+                                    <mutation elseif="1"></mutation>
+                                    <value name="IF0">
+                                      <block type="logic_compare" id="T}2/Zf95]|E;hfSPLqK)" inline="false">
+                                        <field name="OP">GT</field>
+                                        <value name="A">
+                                          <block type="read_ohlc" id="hk214p%*Yws_h#~Vn0u`">
+                                            <field name="OHLCFIELD_LIST">close</field>
+                                            <field name="CANDLEINTERVAL_LIST">180</field>
+                                            <value name="CANDLEINDEX">
+                                              <shadow type="math_number" id="*euloI!g9)RIMf`AsH2H">
+                                                <field name="NUM">1</field>
+                                              </shadow>
+                                            </value>
+                                          </block>
+                                        </value>
+                                        <value name="B">
+                                          <block type="read_ohlc" id=":A=}*/thbs-67kv}(,E|">
+                                            <field name="OHLCFIELD_LIST">open</field>
+                                            <field name="CANDLEINTERVAL_LIST">180</field>
+                                            <value name="CANDLEINDEX">
+                                              <shadow type="math_number" id="3)6o=hAMVXR]@}?Gc4VW">
+                                                <field name="NUM">1</field>
+                                              </shadow>
+                                            </value>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </value>
+                                    <statement name="DO0">
+                                      <block type="variables_set" id="C5+k^gl!jOGBp$C`r1b:">
+                                        <field name="VAR" id="m$8dynrR=@ZH*@`3X[yh" variabletype="">Candle 3mins</field>
+                                        <value name="VALUE">
+                                          <block type="text" id="%cr$_8:9qnCXlPB6kQ7C">
+                                            <field name="TEXT">GREEN</field>
+                                          </block>
+                                        </value>
+                                        <next>
+                                          <block type="math_change" id=":7`(U|PSCx=}s?XZSrvM">
+                                            <field name="VAR" id="rxQcU(GkgrBk/t`%GU*z" variabletype="">Candle 3mins GREEN Count</field>
+                                            <value name="DELTA">
+                                              <shadow type="math_number" id="r5DEnj|wZY(.%t-N$izX">
+                                                <field name="NUM">1</field>
+                                              </shadow>
+                                            </value>
+                                            <next>
+                                              <block type="variables_set" id="?,*(l6/wW6^G3C2Y~*01">
+                                                <field name="VAR" id="m7L+|67qnc?#CRR`#-qK" variabletype="">Candle 3mins RED Count</field>
+                                                <value name="VALUE">
+                                                  <block type="math_number" id="8Ux3g-6+gT]X8X:k~7ok">
+                                                    <field name="NUM">0</field>
+                                                  </block>
+                                                </value>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </statement>
+                                    <value name="IF1">
+                                      <block type="logic_compare" id="/JZ4s_,AS%egFJ(wZ|Kd" inline="false">
+                                        <field name="OP">LT</field>
+                                        <value name="A">
+                                          <block type="read_ohlc" id="~HVLY_1v[1ahK2#q4T^U">
+                                            <field name="OHLCFIELD_LIST">close</field>
+                                            <field name="CANDLEINTERVAL_LIST">180</field>
+                                            <value name="CANDLEINDEX">
+                                              <shadow type="math_number" id="1D=`gk.V:Q}cHzoj=)/0">
+                                                <field name="NUM">1</field>
+                                              </shadow>
+                                            </value>
+                                          </block>
+                                        </value>
+                                        <value name="B">
+                                          <block type="read_ohlc" id=")kP4f6WTor=@QuEO,*C9">
+                                            <field name="OHLCFIELD_LIST">open</field>
+                                            <field name="CANDLEINTERVAL_LIST">180</field>
+                                            <value name="CANDLEINDEX">
+                                              <shadow type="math_number" id="9Lv3XiJ-ZGk{6HxW3u?c">
+                                                <field name="NUM">1</field>
+                                              </shadow>
+                                            </value>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </value>
+                                    <statement name="DO1">
+                                      <block type="variables_set" id="a++oP]A-B^Z%1=|5]GAl">
+                                        <field name="VAR" id="m$8dynrR=@ZH*@`3X[yh" variabletype="">Candle 3mins</field>
+                                        <value name="VALUE">
+                                          <block type="text" id="v5NIq]T;@nKJlb=4[0SW">
+                                            <field name="TEXT">RED</field>
+                                          </block>
+                                        </value>
+                                        <next>
+                                          <block type="math_change" id="r{/tlAIaG$5-`AJBbx=r">
+                                            <field name="VAR" id="m7L+|67qnc?#CRR`#-qK" variabletype="">Candle 3mins RED Count</field>
+                                            <value name="DELTA">
+                                              <shadow type="math_number" id="Am:A}N;XL9Y`-aG$|OnU">
+                                                <field name="NUM">1</field>
+                                              </shadow>
+                                            </value>
+                                            <next>
+                                              <block type="variables_set" id="to?IMkrSk#I3,]u}VYg7">
+                                                <field name="VAR" id="m7L+|67qnc?#CRR`#-qK" variabletype="">Candle 3mins RED Count</field>
+                                                <value name="VALUE">
+                                                  <block type="math_number" id="UGGE(?]_qyac]Uy@P3+}">
+                                                    <field name="NUM">0</field>
+                                                  </block>
+                                                </value>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </statement>
+                                    <next>
+                                      <block type="controls_if" id="N?dwj/{RHElpicCnnTi_">
+                                        <mutation elseif="1"></mutation>
+                                        <value name="IF0">
+                                          <block type="logic_compare" id="uyl{|nrVs5G,F.[t%{cd" inline="false">
+                                            <field name="OP">GT</field>
+                                            <value name="A">
+                                              <block type="read_ohlc" id="{}JQxEx2e3hM2Gl/GEw:">
+                                                <field name="OHLCFIELD_LIST">close</field>
+                                                <field name="CANDLEINTERVAL_LIST">60</field>
+                                                <value name="CANDLEINDEX">
+                                                  <shadow type="math_number" id="LRP-Q,K|X4+~nfs:7P!=">
+                                                    <field name="NUM">1</field>
+                                                  </shadow>
+                                                </value>
+                                              </block>
+                                            </value>
+                                            <value name="B">
+                                              <block type="read_ohlc" id="t.P6ZFYEFvz*22f23:s4">
+                                                <field name="OHLCFIELD_LIST">open</field>
+                                                <field name="CANDLEINTERVAL_LIST">60</field>
+                                                <value name="CANDLEINDEX">
+                                                  <shadow type="math_number" id="Sznfyc6u+:t%,*2/zXRp">
+                                                    <field name="NUM">1</field>
+                                                  </shadow>
+                                                </value>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </value>
+                                        <statement name="DO0">
+                                          <block type="variables_set" id="7!gHeS47Gn}C)#{tS#x9">
+                                            <field name="VAR" id="~8j^Mji$Djp0h_9th]y(" variabletype="">Candle 1min</field>
+                                            <value name="VALUE">
+                                              <block type="text" id="%zYQ`.~,moh#W+Y/oxg.">
+                                                <field name="TEXT">GREEN</field>
+                                              </block>
+                                            </value>
+                                            <next>
+                                              <block type="math_change" id="r!VL{:o1cj0qakv3p]D,">
+                                                <field name="VAR" id="msIQ`W%!u7J$Ho(EtZw=" variabletype="">Candle 1min GREEN Count</field>
+                                                <value name="DELTA">
+                                                  <shadow type="math_number" id="wdqXkYk7Z#K}[,Y+?bgR">
+                                                    <field name="NUM">1</field>
+                                                  </shadow>
+                                                </value>
+                                                <next>
+                                                  <block type="variables_set" id="_JQsQ!9#t/vJ3-EiD%Oj">
+                                                    <field name="VAR" id="[{1KN?B2mn^]vC0p5y1M" variabletype="">Candle 1min RED Count</field>
+                                                    <value name="VALUE">
+                                                      <block type="math_number" id="/9+K/VlLH?7WdX|6Cqw9">
+                                                        <field name="NUM">0</field>
+                                                      </block>
+                                                    </value>
+                                                  </block>
+                                                </next>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </statement>
+                                        <value name="IF1">
+                                          <block type="logic_compare" id="tlVL|jEzu_=Ejf-?cuX}" inline="false">
+                                            <field name="OP">LT</field>
+                                            <value name="A">
+                                              <block type="read_ohlc" id="SDmZ2[o.L,VUFY!y).rf">
+                                                <field name="OHLCFIELD_LIST">close</field>
+                                                <field name="CANDLEINTERVAL_LIST">60</field>
+                                                <value name="CANDLEINDEX">
+                                                  <shadow type="math_number" id="[_zLTLIQR:X.5D.7Aa[l">
+                                                    <field name="NUM">1</field>
+                                                  </shadow>
+                                                </value>
+                                              </block>
+                                            </value>
+                                            <value name="B">
+                                              <block type="read_ohlc" id="-`kCb=!tsW#:CVnu0a-6">
+                                                <field name="OHLCFIELD_LIST">open</field>
+                                                <field name="CANDLEINTERVAL_LIST">60</field>
+                                                <value name="CANDLEINDEX">
+                                                  <shadow type="math_number" id="2E|fYyPC_4(L|k|Z5PgO">
+                                                    <field name="NUM">1</field>
+                                                  </shadow>
+                                                </value>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </value>
+                                        <statement name="DO1">
+                                          <block type="variables_set" id="d=wn|(ag4en__VCj+ker">
+                                            <field name="VAR" id="~8j^Mji$Djp0h_9th]y(" variabletype="">Candle 1min</field>
+                                            <value name="VALUE">
+                                              <block type="text" id="6G8*{5-wsKskT.qi/BfN">
+                                                <field name="TEXT">RED</field>
+                                              </block>
+                                            </value>
+                                            <next>
+                                              <block type="math_change" id="D%t7$$+Nl9)a`,VWK9%4">
+                                                <field name="VAR" id="[{1KN?B2mn^]vC0p5y1M" variabletype="">Candle 1min RED Count</field>
+                                                <value name="DELTA">
+                                                  <shadow type="math_number" id="dx6maK~$^i=L?~g1Ml4C">
+                                                    <field name="NUM">1</field>
+                                                  </shadow>
+                                                </value>
+                                                <next>
+                                                  <block type="variables_set" id="uJJnaONnZJ4g8s,pE/P4">
+                                                    <field name="VAR" id="msIQ`W%!u7J$Ho(EtZw=" variabletype="">Candle 1min GREEN Count</field>
+                                                    <value name="VALUE">
+                                                      <block type="math_number" id="KJ%qWGo2ib04dN?1;:th">
+                                                        <field name="NUM">0</field>
+                                                      </block>
+                                                    </value>
+                                                  </block>
+                                                </next>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </statement>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+</xml>

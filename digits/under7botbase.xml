@@ -1,0 +1,207 @@
+<xml xmlns="http://www.w3.org/1999/xhtml" collection="false">
+  <variables></variables>
+  <block type="trade" id="xgH69|xFn9=70w.*3Vo@" collapsed="true" x="0" y="0">
+    <field name="MARKET_LIST">synthetic_index</field>
+    <field name="SUBMARKET_LIST">random_index</field>
+    <field name="SYMBOL_LIST">R_100</field>
+    <field name="TRADETYPECAT_LIST">digits</field>
+    <field name="TRADETYPE_LIST">overunder</field>
+    <field name="TYPE_LIST">both</field>
+    <field name="CANDLEINTERVAL_LIST">60</field>
+    <field name="TIME_MACHINE_ENABLED">FALSE</field>
+    <field name="RESTARTONERROR">TRUE</field>
+    <statement name="SUBMARKET">
+      <block type="tradeOptions" id="x=V33~4Lb|(sLv`J[:Eb">
+        <field name="DURATIONTYPE_LIST">t</field>
+        <field name="CURRENCY_LIST">USD</field>
+        <field name="BARRIEROFFSETTYPE_LIST">+</field>
+        <field name="SECONDBARRIEROFFSETTYPE_LIST">-</field>
+        <value name="DURATION">
+          <shadow type="math_number" id="i;|it2SU1=LOhDLQVSg]">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+        <value name="AMOUNT">
+          <shadow type="math_number" id="ml)25~7^q}3I9}vjf:%K">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+        <value name="PREDICTION">
+          <shadow type="math_number" id="F}NgP2=^K[gCtkePP-=.">
+            <field name="NUM">4</field>
+          </shadow>
+        </value>
+      </block>
+    </statement>
+  </block>
+  <block type="before_purchase" id="i-CIx.(Onm4?ihxzA}Y]" collapsed="true" x="0" y="53">
+    <statement name="BEFOREPURCHASE_STACK">
+      <block type="controls_if" id="nE0eFt+4*gQDEl{9[*#J">
+        <mutation else="1"></mutation>
+        <value name="IF0">
+          <block type="logic_compare" id="^#1CJimYMKH=;rF_+/IX">
+            <field name="OP">LTE</field>
+            <value name="A">
+              <block type="last_digit" id="MZl.*tRL;;W+j}3q?Nj#"></block>
+            </value>
+            <value name="B">
+              <block type="math_number" id="/(]h-dmoN~W`32KB.+=F">
+                <field name="NUM">4</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="notify" id="Grqom~$,78nC#7QkX:Pl" collapsed="true">
+            <field name="NOTIFICATION_TYPE">info</field>
+            <field name="NOTIFICATION_SOUND">silent</field>
+            <value name="MESSAGE">
+              <shadow type="text" id="8#T#%.9oB]XQ}zv?dh=E">
+                <field name="TEXT">abc</field>
+              </shadow>
+              <block type="text_join" id="M3j.(Z{boL2lqx)vC6nX">
+                <mutation items="2"></mutation>
+                <value name="ADD0">
+                  <block type="text" id="y{.zHcv4`Jg[gjV~,8Gw">
+                    <field name="TEXT">LAST DIGIT= </field>
+                  </block>
+                </value>
+                <value name="ADD1">
+                  <block type="last_digit" id="C6olFC+XIZdjapS]D}(l"></block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="notify" id="NpV/l{X-Xkz#qq0m@a0~" collapsed="true">
+                <field name="NOTIFICATION_TYPE">info</field>
+                <field name="NOTIFICATION_SOUND">silent</field>
+                <value name="MESSAGE">
+                  <shadow type="text" id="oR?2xvL+@DG8V9%U_!}Z">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text_join" id="yj2du]Qe2FaRj-dUwx3q">
+                    <mutation items="2"></mutation>
+                    <value name="ADD0">
+                      <block type="text" id="Fxg8[Oj[.@r~%/u!V}A`">
+                        <field name="TEXT">LAST TICK= </field>
+                      </block>
+                    </value>
+                    <value name="ADD1">
+                      <block type="tick" id="ULeEbk%=(t)e4^i:eFxs"></block>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="purchase" id="W6q#Z-I3q3d[d3-`S[dS">
+                    <field name="PURCHASE_LIST">DIGITOVER</field>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <statement name="ELSE">
+          <block type="notify" id="tcefWr}-#*}7XB#gW:fN" collapsed="true">
+            <field name="NOTIFICATION_TYPE">info</field>
+            <field name="NOTIFICATION_SOUND">silent</field>
+            <value name="MESSAGE">
+              <shadow type="text" id="8#T#%.9oB]XQ}zv?dh=E">
+                <field name="TEXT">abc</field>
+              </shadow>
+              <block type="text_join" id="{l-.#WCUq(AnzLzPOB1$">
+                <mutation items="2"></mutation>
+                <value name="ADD0">
+                  <block type="text" id="unS$Q8xm.Jbc2MI#zd(-">
+                    <field name="TEXT">LAST DIGIT= </field>
+                  </block>
+                </value>
+                <value name="ADD1">
+                  <block type="last_digit" id="r2I:da^!([p{bLKNnl)z"></block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="notify" id="j^|BzVYal^hm=H)}Eo`Z" collapsed="true">
+                <field name="NOTIFICATION_TYPE">info</field>
+                <field name="NOTIFICATION_SOUND">silent</field>
+                <value name="MESSAGE">
+                  <shadow type="text" id="oR?2xvL+@DG8V9%U_!}Z">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text_join" id="fCxeb3A:e[@n*L{vy[E+">
+                    <mutation items="2"></mutation>
+                    <value name="ADD0">
+                      <block type="text" id="^T,ST*Vx3#zA)ujKQ+K^">
+                        <field name="TEXT">LAST TICK= </field>
+                      </block>
+                    </value>
+                    <value name="ADD1">
+                      <block type="tick" id="EMtt:;FGvrZZ/4=L{kkm"></block>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="purchase" id="RBOh+u(l+~f,X%c`SSOq">
+                    <field name="PURCHASE_LIST">DIGITUNDER</field>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+  <block type="during_purchase" id="(4;NieXd}j|Bn!c-YiC|" collapsed="true" x="0" y="106">
+    <statement name="DURING_PURCHASE_STACK">
+      <block type="controls_if" id="8?eYKAW%VczmRXQ-ou3r">
+        <value name="IF0">
+          <block type="check_sell" id="M=:_KpEeRAJY_}XTU^8~"></block>
+        </value>
+      </block>
+    </statement>
+  </block>
+  <block type="after_purchase" id="D^Jz1^n=2vtZku1vBN@;" collapsed="true" x="0" y="159">
+    <statement name="AFTERPURCHASE_STACK">
+      <block type="controls_if" id="plCX@hJkr-p;%:Dc;nsx" collapsed="true">
+        <mutation else="1"></mutation>
+        <value name="IF0">
+          <block type="contract_check_result" id="-oU}%@V`ymIIa.Wc2n1y">
+            <field name="CHECK_RESULT">win</field>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="notify" id="ke6.qf75Ue.8aAjPk_bl">
+            <field name="NOTIFICATION_TYPE">success</field>
+            <field name="NOTIFICATION_SOUND">earned-money</field>
+            <value name="MESSAGE">
+              <shadow type="text" id="!Pt}|l8re_#BfuVlIU`F">
+                <field name="TEXT">abc</field>
+              </shadow>
+              <block type="text" id="m$Q3S#Do4kq|ndZvTY:B">
+                <field name="TEXT">WON</field>
+              </block>
+            </value>
+          </block>
+        </statement>
+        <statement name="ELSE">
+          <block type="notify" id="JvN=rC2YZ@2``SQTC6+:">
+            <field name="NOTIFICATION_TYPE">error</field>
+            <field name="NOTIFICATION_SOUND">announcement</field>
+            <value name="MESSAGE">
+              <shadow type="text" id="!Pt}|l8re_#BfuVlIU`F">
+                <field name="TEXT">abc</field>
+              </shadow>
+              <block type="text" id="]V%:(Wa%CQ?tUAkCi/Zq">
+                <field name="TEXT">LOST</field>
+              </block>
+            </value>
+          </block>
+        </statement>
+        <next>
+          <block type="trade_again" id="c)S|KjoQdXc8l#J@5z3P"></block>
+        </next>
+      </block>
+    </statement>
+  </block>
+</xml>
