@@ -1,6 +1,6 @@
 # Biggest Bots Repository
 
-Welcome to the largest repository of Trading Bots powered by Deriv! Our goal is to share knowledge and learn from one another.
+Welcome to the largest repository of Trading Bots! Our goal is to share knowledge and learn from one another.
 
 Our bots are specifically designed to work on Deriv's DBot platform, which you can access by [creating an account](https://track.deriv.com/_h1BT0Uryldi34Ib7uprVbWNd7ZgqdRLk/1/) or by [becoming a partner](https://track.deriv.com/_h1BT0Uryldilxv1B6h4gZ2Nd7ZgqdRLk/1/). Remember, "Game theory rules everything. Come to the game."
 
