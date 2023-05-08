@@ -17,6 +17,8 @@ Our tools are available to support your goals and encourage learning. Follow the
 5. Upload the bot you want to use in Dbot
 6. Click "Run" to get started
 
+All are welcome to [read and comment on our articles](https://github.com/alanvito1/superfree-binary-bot/discussions). Please give us a star and like the article to help us grow and reach more people.
+
 We also invite you to [join our Telegram group](https://t.me/superbinarybots) to connect with other enthusiasts and share your progress.
 
 Best regards,
