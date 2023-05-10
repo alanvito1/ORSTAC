@@ -168,21 +168,21 @@
         <field name="MULTIPLIERTYPE_LIST">150</field>
         <value name="AMOUNT">
           <shadow type="math_number_positive" id="f:Qdl%!0V,rUv*RGjPNC">
-            <field name="NUM">21</field>
+            <field name="NUM">10</field>
           </shadow>
         </value>
         <statement name="MULTIPLIER_PARAMS">
           <block type="multiplier_take_profit" id="F^7fD_U!vgSzPg4}Z[(~">
             <value name="AMOUNT">
               <shadow type="math_number_positive" id="E8(C*deF3%9F)1U_zt2j">
-                <field name="NUM">1.8</field>
+                <field name="NUM">0.27</field>
               </shadow>
             </value>
             <next>
               <block type="multiplier_stop_loss" id="wA,@w|;|*~I?!#u-)=#_">
                 <value name="AMOUNT">
                   <shadow type="math_number_positive" id="l7GQOoW%`vrI{zp1*$36">
-                    <field name="NUM">1.2</field>
+                    <field name="NUM">0.24</field>
                   </shadow>
                 </value>
               </block>
@@ -375,7 +375,7 @@
               <block type="period" id="(9R~Vu$lR#78v{f3KIU{" deletable="false" movable="false">
                 <value name="PERIOD">
                   <shadow type="math_number" id="dL}l!~WNy/|]zHv5y%+Y">
-                    <field name="NUM">20</field>
+                    <field name="NUM">9</field>
                   </shadow>
                 </value>
               </block>
@@ -385,14 +385,32 @@
         <next>
           <block type="controls_if" id="QW~H^(MhwaGHF2[u/D|1">
             <value name="IF0">
-              <block type="logic_compare" id="|whObKGA6Md!o~!%8zh(">
-                <field name="OP">GT</field>
+              <block type="logic_operation" id="e2x_z|z-crCd~h-^b0^e">
+                <field name="OP">AND</field>
                 <value name="A">
-                  <block type="tick" id="(Xiv.s2QBx}mz}?Fs?b_"></block>
+                  <block type="logic_compare" id="|whObKGA6Md!o~!%8zh(">
+                    <field name="OP">GT</field>
+                    <value name="A">
+                      <block type="tick" id="(Xiv.s2QBx}mz}?Fs?b_"></block>
+                    </value>
+                    <value name="B">
+                      <block type="variables_get" id="am*[_`*H1su}vh~+EO32">
+                        <field name="VAR" id="2^SMH62uFYpf9_.p-bb;" variabletype="">sma-fast</field>
+                      </block>
+                    </value>
+                  </block>
                 </value>
                 <value name="B">
-                  <block type="variables_get" id="am*[_`*H1su}vh~+EO32">
-                    <field name="VAR" id="2^SMH62uFYpf9_.p-bb;" variabletype="">sma-fast</field>
+                  <block type="logic_compare" id="8CecXrq=po@_gBHpEb~s">
+                    <field name="OP">GT</field>
+                    <value name="A">
+                      <block type="tick" id="aDM@2Vl-gwK6o|4W~1qk"></block>
+                    </value>
+                    <value name="B">
+                      <block type="variables_get" id="y|0ltK[A7[I)6+/bg(A0">
+                        <field name="VAR" id="rk7iHm)*aCD+Q6)U(I:d" variabletype="">sma-slow</field>
+                      </block>
+                    </value>
                   </block>
                 </value>
               </block>
@@ -414,7 +432,7 @@
                       <block type="period" id="JExz2fr.{Oa)WfhCfSE/" deletable="false" movable="false">
                         <value name="PERIOD">
                           <shadow type="math_number" id="b*nDD(##%ifjyv*6N)MS">
-                            <field name="NUM">50</field>
+                            <field name="NUM">20</field>
                           </shadow>
                         </value>
                       </block>
@@ -424,14 +442,32 @@
                 <next>
                   <block type="controls_if" id="Rt!:#2aRq|5HJ]qngzEl">
                     <value name="IF0">
-                      <block type="logic_compare" id="GI#lk~gg8Pjf{lRvK1B{">
-                        <field name="OP">LT</field>
+                      <block type="logic_operation" id="#j*5f+W(*jP7D(Cj(FcD">
+                        <field name="OP">AND</field>
                         <value name="A">
-                          <block type="tick" id="SM_Mgexca6*|]w]1XH*9"></block>
+                          <block type="logic_compare" id="XiwwA.NLTj-3j@7XxGoZ">
+                            <field name="OP">LT</field>
+                            <value name="A">
+                              <block type="tick" id="C)7Z9FSxsc|7:Xq.c,=B"></block>
+                            </value>
+                            <value name="B">
+                              <block type="variables_get" id="`_.Lr_~-mP3?ltvFIIQ#">
+                                <field name="VAR" id="2^SMH62uFYpf9_.p-bb;" variabletype="">sma-fast</field>
+                              </block>
+                            </value>
+                          </block>
                         </value>
                         <value name="B">
-                          <block type="variables_get" id="{BRfi;{:#A-QCoqv`kH=">
-                            <field name="VAR" id="rk7iHm)*aCD+Q6)U(I:d" variabletype="">sma-slow</field>
+                          <block type="logic_compare" id="N#M6./qeFb5CO_33``5r">
+                            <field name="OP">LT</field>
+                            <value name="A">
+                              <block type="tick" id="KoV}i(rK$O[;m8]=8g(_"></block>
+                            </value>
+                            <value name="B">
+                              <block type="variables_get" id="Rv*9nNyT2sOOwXN%ID~C">
+                                <field name="VAR" id="rk7iHm)*aCD+Q6)U(I:d" variabletype="">sma-slow</field>
+                              </block>
+                            </value>
                           </block>
                         </value>
                       </block>
