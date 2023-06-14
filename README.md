@@ -21,5 +21,7 @@ All are welcome to [read and comment on our articles](https://github.com/alanvit
 
 We also invite you to [join our Telegram group](https://t.me/superbinarybots) to connect with other enthusiasts and share your progress.
 
+Then read our article: [Embrace the Power of Knowledge: Thriving in Today's Highly Volatile Market](https://www.dinheiroedestinos.com.br/2023/06/embrace-power-of-knowledge-thriving-in.html)
+
 Best regards,
 Alan Victor
