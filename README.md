@@ -17,7 +17,7 @@ Our tools are available to support your goals and encourage learning. Follow the
 5. Upload the bot you want to use in Dbot
 6. Click "Run" to get started
 
-# To copy BTC trades from my account, follow the steps below:
+# To copy trades from my account, follow the steps below:
 1. [Create Your BingX Account here](https://bingx.com/invite/TLU7DW)
 2. [Follow and start copying me here](https://bingx.com/int/1nJVy8)
 3. Enjoy!
