@@ -17,6 +17,11 @@ Our tools are available to support your goals and encourage learning. Follow the
 5. Upload the bot you want to use in Dbot
 6. Click "Run" to get started
 
+# To copy BTC trades from my account, follow the steps below:
+1. [Create Your BingX Account here](https://bingx.com/invite/TLU7DW)
+2. [Follow and start copying me here](https://bingx.com/int/1nJVy8)
+3. Enjoy!
+
 All are welcome to [read and comment on our articles](https://github.com/alanvito1/superfree-binary-bot/discussions). Please give us a star and like the article to help us grow and reach more people.
 
 We also invite you to [join our Telegram group](https://t.me/superbinarybots) to connect with other enthusiasts and share your progress.
