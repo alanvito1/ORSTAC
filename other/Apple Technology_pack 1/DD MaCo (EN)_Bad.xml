@@ -1,0 +1,128 @@
+﻿var stake, op=0, cnt, LDP=0, jml_profit=0;
+var panjang, buff, buffpo, profit, po, jmlwin=0, jmlloss=0;
+
+pesan = ">> DD MaCo <<\n";
+iimDisplay(pesan);
+
+var stakeawal = Number(prompt("Start Stake (Min. 1) :",1));
+var TP = Number(prompt("Target Profit :",5));
+var SL = Number(prompt("Stop Loss :",10));
+var marti = Number(prompt("Martingale Multiple :",11));
+var compound = Number(prompt("Use Compound?\n0 = NO\n1 = YES",1));
+
+stake=stakeawal;
+hasil=null;
+
+for (i=1; ;i++) 
+{
+	//macro = "CODE:";
+	//macro += "WAIT SECONDS=2.5\n";
+	//iimPlay(macro);
+		
+	op++;
+
+	pesan = ">> DD MaCo <<\n";
+	pesan += "Purchase Count : " + op + " | Stake $" +stake.toFixed(2) + " | LDP : " + LDP + "\n";
+	pesan += "WIN : " + jmlwin + "x | LOSS : " + jmlloss + "x\n";
+	pesan += "Purchasing.....\n";
+	pesan += "RESULT : $" + jml_profit.toFixed(2) + "\n";
+	iimDisplay(pesan);
+			
+	macro = "CODE:";
+	//macro += "TAG POS=1 TYPE=SELECT FORM=ID:websocket_form ATTR=ID:duration_units CONTENT=%t\n";
+	//macro += "TAG POS=1 TYPE=INPUT:NUMBER FORM=ID:websocket_form ATTR=ID:duration_amount CONTENT=5\n";	
+	macro += "TAG POS=1 TYPE=SELECT FORM=ID:websocket_form ATTR=ID:prediction CONTENT=%"+LDP+"\n";
+	macro += "TAG POS=1 TYPE=SELECT FORM=ID:websocket_form ATTR=ID:amount_type CONTENT=%stake\n";
+	macro += "TAG POS=1 TYPE=INPUT:TEXT FORM=ID:websocket_form ATTR=ID:amount CONTENT="+stake;
+	macro += "\nWait seconds=3\n";
+	macro += "TAG POS=1 TYPE=SPAN ATTR=ID:purchase_button_bottom\n";
+	macro += "Wait seconds=11\n";
+	iimPlay(macro);
+			
+	macro = "CODE:";
+	macro += "TAG POS=1 TYPE=DIV ATTR=ID:contract_purchase_cost extract=txt\n";
+	iimPlay(macro);
+	buffpo = iimGetLastExtract(1);
+	
+	i = 0;
+	panjang = 0;
+	while (buffpo[i] != null)
+	{
+		panjang++;
+		i++;
+	}
+	
+	buff="";
+	
+	if(buffpo[0]=="F")
+	{
+		for(i=33;i<panjang;i++)
+		{
+			if(buffpo[i]!=","){
+			buff += buffpo[i];
+			profit=buff;
+			}
+		}
+		po=Number(profit);
+	}
+	
+	if(po>0)
+	{
+		jml_profit = jml_profit + (po-stake);
+		jmlwin++;
+		//stake += Number(profit);
+			
+		if(compound == 1){
+		stake = stakeawal+jml_profit;}
+		else if(compound == 0){
+		stake=stakeawal;}
+		
+		pesan = ">> DD MaCo <<\n";
+		pesan += "Purchase Count : " + op + " | Stake $" +stake.toFixed(2) + " | LDP : " + LDP + "\n";
+		pesan += "WIN : " + jmlwin + "x | LOSS : " + jmlloss + "x\n";
+		pesan += "----- WIN -----\n";
+		pesan += "RESULT : $" + jml_profit.toFixed(2) + "\n";
+		iimDisplay(pesan);
+	}
+	else
+	{
+		jml_profit -= stake;
+		stake*=marti;
+		jmlloss++;
+		
+		if(LDP==9)
+		{LDP=0;}
+		else
+		{LDP++;}
+		
+		pesan = ">> DD MaCo <<\n";
+		pesan += "Purchase Count : " + op + " | Stake $" +stake.toFixed(2) + " | LDP : " + LDP + "\n";
+		pesan += "WIN : " + jmlwin + "x | LOSS : " + jmlloss + "x\n";
+		pesan += "----- LOSS -----\n";
+		pesan += "RESULT : $" + jml_profit.toFixed(2) + "\n";
+		iimDisplay(pesan);
+	}
+	
+	if((jml_profit>=TP)||(jml_profit<=(-SL))){
+	break;
+	}
+}
+	
+
+
+if (jml_profit > 0) {
+pesan = ">> DD MaCo <<\n";
+pesan += "Purchase Count : " + op + "\n";
+pesan += "WIN : " + jmlwin + "x | LOSS : " + jmlloss + "x\n";
+pesan += "FINAL RESULT : $" + jml_profit.toFixed(2) + " (PROFIT)\n";
+iimDisplay(pesan);
+}
+else {
+pesan = ">> DD MaCo <<\n";
+pesan += "Purchase Count : " + op + "\n";
+pesan += "WIN : " + jmlwin + "x | LOSS : " + jmlloss + "x\n";
+pesan += "FINAL RESULT : $" + jml_profit.toFixed(2) + " (LOSS)\n";
+pesan += "\nPLEASE STOP TRADING A WHILE, UNTIL NEXT SESSION...";
+iimDisplay(pesan);
+}
+

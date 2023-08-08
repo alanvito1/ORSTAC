@@ -1,0 +1,358 @@
+﻿<xml xmlns="http://www.w3.org/1999/xhtml" collection="false">
+  <block type="trade" id="xgH69|xFn9=70w.*3Vo@" x="0" y="0">
+    <field name="MARKET_LIST">volidx</field>
+    <field name="SUBMARKET_LIST">random_index</field>
+    <field name="SYMBOL_LIST">R_100</field>
+    <field name="TRADETYPECAT_LIST">callput</field>
+    <field name="TRADETYPE_LIST">risefall</field>
+    <field name="TYPE_LIST">both</field>
+    <field name="CANDLEINTERVAL_LIST">60</field>
+    <field name="TIME_MACHINE_ENABLED">FALSE</field>
+    <field name="RESTARTONERROR">TRUE</field>
+    <statement name="SUBMARKET">
+      <block type="tradeOptions" id="x=V33~4Lb|(sLv`J[:Eb">
+        <field name="DURATIONTYPE_LIST">t</field>
+        <field name="CURRENCY_LIST">USD</field>
+        <value name="DURATION">
+          <shadow type="math_number" id="O*@58sDc=!cOO}*b2vf9">
+            <field name="NUM">5</field>
+          </shadow>
+        </value>
+        <value name="AMOUNT">
+          <shadow type="math_number" id="ml)25~7^q}3I9}vjf:%K">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+      </block>
+    </statement>
+  </block>
+  <block type="procedures_defreturn" id="hcRWvSc!m/i;M(45bv0I" x="628" y="30">
+    <mutation>
+      <arg name="candles"></arg>
+      <arg name="ignore_actual_candle(true/false)"></arg>
+      <arg name="sequence(number)"></arg>
+      <arg name="color(green/red)"></arg>
+    </mutation>
+    <field name="NAME">Last X Candles</field>
+    <comment pinned="false" h="80" w="160">Describe this function...</comment>
+    <statement name="STACK">
+      <block type="variables_set" id="XRy3yRLC/b=$3URTsWc8">
+        <field name="VAR">pattern</field>
+        <value name="VALUE">
+          <block type="lists_create_with" id=",^:snLk+%;j3xh-Bc[tE">
+            <mutation items="0"></mutation>
+          </block>
+        </value>
+        <next>
+          <block type="controls_for" id="o[K30wTY@y!s$jG]K-pg" inline="false">
+            <field name="VAR">i</field>
+            <value name="FROM">
+              <block type="math_number" id="tOx-_cJDuSK^.z9aMcjb">
+                <field name="NUM">1</field>
+              </block>
+            </value>
+            <value name="TO">
+              <block type="variables_get" id="TTw62(q_mIjh^.Qw}@,l">
+                <field name="VAR">sequence(number)</field>
+              </block>
+            </value>
+            <value name="BY">
+              <block type="math_number" id="f]|mjS1SwXME`8,nYOK}">
+                <field name="NUM">1</field>
+              </block>
+            </value>
+            <statement name="DO">
+              <block type="controls_if" id=";-AAELl*A%5NuoI#wZs#">
+                <mutation else="1"></mutation>
+                <value name="IF0">
+                  <block type="is_candle_black" id="KjKfa7[tvMeEF9^]zoi=">
+                    <value name="OHLCOBJ">
+                      <block type="lists_getIndex" id="XX[uwM}?/WJ7tdqR#Rs?" inline="false">
+                        <mutation statement="false" at="true"></mutation>
+                        <field name="MODE">GET</field>
+                        <field name="WHERE">FROM_END</field>
+                        <value name="VALUE">
+                          <block type="variables_get" id="W;VzPSootFD^i[ydVF`G">
+                            <field name="VAR">candles</field>
+                          </block>
+                        </value>
+                        <value name="AT">
+                          <block type="logic_ternary" id="?Xsb1FR_3uR[?@ulQ?uN">
+                            <value name="IF">
+                              <block type="variables_get" id="OLUS]),I_s6ove^?f8G*">
+                                <field name="VAR">ignore_actual_candle(true/false)</field>
+                              </block>
+                            </value>
+                            <value name="THEN">
+                              <block type="math_arithmetic" id="2]#{@*=Nn/l#aD)HTRr^">
+                                <field name="OP">ADD</field>
+                                <value name="A">
+                                  <shadow type="math_number" id=",F[=[(]ECMg.l{/M1,~4">
+                                    <field name="NUM">1</field>
+                                  </shadow>
+                                  <block type="variables_get" id="[}wu]zhAVLd40dV0Szp3">
+                                    <field name="VAR">i</field>
+                                  </block>
+                                </value>
+                                <value name="B">
+                                  <shadow type="math_number" id="iI}RKpfrAs9o5Km`2EW$">
+                                    <field name="NUM">1</field>
+                                  </shadow>
+                                </value>
+                              </block>
+                            </value>
+                            <value name="ELSE">
+                              <block type="variables_get" id="QVRwU(~?.Q3]|Q3)|G-7">
+                                <field name="VAR">i</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <statement name="DO0">
+                  <block type="lists_setIndex" id="]_t^vtlqO~l.v.OXx)dL">
+                    <mutation at="false"></mutation>
+                    <field name="MODE">INSERT</field>
+                    <field name="WHERE">FIRST</field>
+                    <value name="LIST">
+                      <block type="variables_get" id=",c~S0f%c48Z0Vg*~]_1%">
+                        <field name="VAR">pattern</field>
+                      </block>
+                    </value>
+                    <value name="TO">
+                      <block type="text" id=":diFdjSB@Gln.$ONOMBl">
+                        <field name="TEXT">R</field>
+                      </block>
+                    </value>
+                  </block>
+                </statement>
+                <statement name="ELSE">
+                  <block type="lists_setIndex" id="YBW/y5fx7Fb}BAGIfu.Y">
+                    <mutation at="false"></mutation>
+                    <field name="MODE">INSERT</field>
+                    <field name="WHERE">FIRST</field>
+                    <value name="LIST">
+                      <block type="variables_get" id="XPTL-^Xs1BD%pyjoO+S5">
+                        <field name="VAR">pattern</field>
+                      </block>
+                    </value>
+                    <value name="TO">
+                      <block type="text" id="@T2=|-LBz%#$%;2NLZE+">
+                        <field name="TEXT">G</field>
+                      </block>
+                    </value>
+                  </block>
+                </statement>
+              </block>
+            </statement>
+            <next>
+              <block type="variables_set" id="MvJ?Tt(yVD$)i?-L;*cG">
+                <field name="VAR">pattern</field>
+                <value name="VALUE">
+                  <block type="lists_split" id="fLZN1NL4]:@5!Lv`fV`-">
+                    <mutation mode="JOIN"></mutation>
+                    <field name="MODE">JOIN</field>
+                    <value name="INPUT">
+                      <block type="variables_get" id="?~B40xR-t7VT,;m?qLmI">
+                        <field name="VAR">pattern</field>
+                      </block>
+                    </value>
+                    <value name="DELIM">
+                      <shadow type="text" id="$U#[nG6UA-!c@)4N[L{=">
+                        <field name="TEXT">,</field>
+                      </shadow>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="notify" id="-*79?ueti1]|*{SnTvb!">
+                    <field name="NOTIFICATION_TYPE">success</field>
+                    <field name="NOTIFICATION_SOUND">silent</field>
+                    <value name="MESSAGE">
+                      <shadow type="text" id="#*qNhJ[9RcoJ.a^1FJ*u">
+                        <field name="TEXT">abc</field>
+                      </shadow>
+                      <block type="text_join" id="QpT,c2eOKoP)su+JTG6#">
+                        <mutation items="2"></mutation>
+                        <value name="ADD0">
+                          <block type="text" id="pO!XZ6iy**`+=]HsAsYG">
+                            <field name="TEXT">Candle Pattern: </field>
+                          </block>
+                        </value>
+                        <value name="ADD1">
+                          <block type="variables_get" id="xDj92Ce|l),7.):?AWfB">
+                            <field name="VAR">pattern</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="RETURN">
+      <block type="logic_operation" id="L.3fcGWTqGryD~%}()IH" inline="false">
+        <field name="OP">OR</field>
+        <value name="A">
+          <block type="logic_operation" id="UXb~zrE]Y68l.k.|jhDy" inline="false">
+            <field name="OP">AND</field>
+            <value name="A">
+              <block type="logic_compare" id="l%@1aLI9/wr:12i[sHn2" inline="false">
+                <field name="OP">EQ</field>
+                <value name="A">
+                  <block type="variables_get" id="*NpKoIa}OI`rsR^:[i=|">
+                    <field name="VAR">color(green/red)</field>
+                  </block>
+                </value>
+                <value name="B">
+                  <block type="text" id="z+|6@My_r(h|eBkNr?{U">
+                    <field name="TEXT">red</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <value name="B">
+              <block type="logic_compare" id="xx%QJ=*U(CAdERd[bu=?" inline="false">
+                <field name="OP">EQ</field>
+                <value name="A">
+                  <block type="variables_get" id="qVrT@XvFVCQo_hc$CbmD">
+                    <field name="VAR">pattern</field>
+                  </block>
+                </value>
+                <value name="B">
+                  <block type="text" id="sY8K1?+Te4[q~;JbK6[$">
+                    <field name="TEXT">R,R,R</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </value>
+        <value name="B">
+          <block type="logic_operation" id="RBwC9x=2KG9i-#We.%1F" inline="false">
+            <field name="OP">AND</field>
+            <value name="A">
+              <block type="logic_compare" id="^JvQw)c|+Cf@*8bu3$3M" inline="false">
+                <field name="OP">EQ</field>
+                <value name="A">
+                  <block type="variables_get" id="dK-#7$HI,F0-8-8^9sd?">
+                    <field name="VAR">color(green/red)</field>
+                  </block>
+                </value>
+                <value name="B">
+                  <block type="text" id=",*@4!.V}0+i3-cf+kL*x">
+                    <field name="TEXT">green</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <value name="B">
+              <block type="logic_compare" id="#WD.[R+bkQYakk=LJjQd" inline="false">
+                <field name="OP">EQ</field>
+                <value name="A">
+                  <block type="variables_get" id="x//6gAFJE;I:YUe)VuWI">
+                    <field name="VAR">pattern</field>
+                  </block>
+                </value>
+                <value name="B">
+                  <block type="text" id="h59c_=GD03zzfk^irF49">
+                    <field name="TEXT">G,G,G</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </value>
+      </block>
+    </value>
+  </block>
+  <block type="before_purchase" id="i-CIx.(Onm4?ihxzA}Y]" x="0" y="301">
+    <statement name="BEFOREPURCHASE_STACK">
+      <block type="controls_if" id="9=GHt+yWT*Qs=T+Ma]E0">
+        <mutation elseif="1"></mutation>
+        <value name="IF0">
+          <block type="procedures_callreturn" id="Qn*Cxu(2bTrBY3w^32hA">
+            <mutation name="Last X Candles">
+              <arg name="candles"></arg>
+              <arg name="ignore_actual_candle(true/false)"></arg>
+              <arg name="sequence(number)"></arg>
+              <arg name="color(green/red)"></arg>
+            </mutation>
+            <value name="ARG0">
+              <block type="ohlc" id="b4:o)hag|d4-L*9xsyfn">
+                <field name="CANDLEINTERVAL_LIST">default</field>
+              </block>
+            </value>
+            <value name="ARG1">
+              <block type="logic_boolean" id="x4.$Or}yM,_lA:C;pHYN">
+                <field name="BOOL">TRUE</field>
+              </block>
+            </value>
+            <value name="ARG2">
+              <block type="math_number" id="_ZM{X0?560rv`-WN!D*I">
+                <field name="NUM">3</field>
+              </block>
+            </value>
+            <value name="ARG3">
+              <block type="text" id="dO)r%?h(U%,t0]Y0M^Bp">
+                <field name="TEXT">green</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="purchase" id="W6q#Z-I3q3d[d3-`S[dS">
+            <field name="PURCHASE_LIST">CALL</field>
+          </block>
+        </statement>
+        <value name="IF1">
+          <block type="procedures_callreturn" id="2UgGhOY7jEn*bO-KxU!h">
+            <mutation name="Last X Candles">
+              <arg name="candles"></arg>
+              <arg name="ignore_actual_candle(true/false)"></arg>
+              <arg name="sequence(number)"></arg>
+              <arg name="color(green/red)"></arg>
+            </mutation>
+            <value name="ARG0">
+              <block type="ohlc" id="4(?MGObQV%|QqUad7h)d">
+                <field name="CANDLEINTERVAL_LIST">default</field>
+              </block>
+            </value>
+            <value name="ARG1">
+              <block type="logic_boolean" id="nUJ2R1SV,qyK_VK.H?HC">
+                <field name="BOOL">TRUE</field>
+              </block>
+            </value>
+            <value name="ARG2">
+              <block type="math_number" id="M^3_zE$~e.2r;yZr?q[`">
+                <field name="NUM">3</field>
+              </block>
+            </value>
+            <value name="ARG3">
+              <block type="text" id="Qn5%,`EcZ;BG?ON%jgT;">
+                <field name="TEXT">red</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO1">
+          <block type="purchase" id=":CbhPbCjC:/NI.,S{$Oa">
+            <field name="PURCHASE_LIST">PUT</field>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+  <block type="after_purchase" id="D^Jz1^n=2vtZku1vBN@;" x="1" y="689">
+    <statement name="AFTERPURCHASE_STACK">
+      <block type="trade_again" id="c)S|KjoQdXc8l#J@5z3P"></block>
+    </statement>
+  </block>
+</xml>

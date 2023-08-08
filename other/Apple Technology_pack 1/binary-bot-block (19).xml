@@ -1,0 +1,238 @@
+<xml xmlns="http://www.w3.org/1999/xhtml" collection="true">
+  <block type="variables_set" id=",k3e|97Q#zy~St|},FIw">
+    <field name="VAR" id="WuqZ(;^TtAw=X%TxBc~A" variabletype="">RSI</field>
+    <value name="VALUE">
+      <block type="rsi" id="L`@9^C8dP8t_eY~kc`z@">
+        <value name="INPUT">
+          <block type="ticks" id="e_~L}YnK/hM,^s,0#.S_" disabled="true"></block>
+        </value>
+        <value name="PERIOD">
+          <block type="math_number" id="M`iwUevPD`7AM;@a_lxL">
+            <field name="NUM">14</field>
+          </block>
+        </value>
+      </block>
+    </value>
+    <next>
+      <block type="notify" id="d6hoYghe$|5gGM!Uw4^E">
+        <field name="NOTIFICATION_TYPE">success</field>
+        <field name="NOTIFICATION_SOUND">silent</field>
+        <value name="MESSAGE">
+          <block type="text_join" id="0}QaY20UMMh`;6uUyJJV">
+            <mutation items="2"></mutation>
+            <value name="ADD0">
+              <block type="text" id="rycoAM.70-1g2W0KNs9N">
+                <field name="TEXT">RSI: </field>
+              </block>
+            </value>
+            <value name="ADD1">
+              <block type="variables_get" id="@6r^:%J(M%u/C:m.1,np">
+                <field name="VAR" id="WuqZ(;^TtAw=X%TxBc~A" variabletype="">RSI</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="variables_set" id="|O~uOx%R7xcXppR?f`0b">
+            <field name="VAR" id="lzx0~Gt[).=D3HH-:@Hq" variabletype="">STOCH-30</field>
+            <value name="VALUE">
+              <block type="sma" id="SVtn?+`LI=VF}/:;4Xi~">
+                <value name="INPUT">
+                  <block type="ticks" id="{vkLe{6=5y[lg-e78du-" disabled="true"></block>
+                </value>
+                <value name="PERIOD">
+                  <block type="math_number" id="miPlsN(tNs-gs02@5b,V">
+                    <field name="NUM">30</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="variables_set" id="x^dKV).m-X,_`wO3_P|B">
+                <field name="VAR" id="^Jm)?(EFDhSb/ZPPiU8@" variabletype="">STOCH-70</field>
+                <value name="VALUE">
+                  <block type="sma" id="|k/rV=Y_hp}=_`lXTrP~">
+                    <value name="INPUT">
+                      <block type="ticks" id="acMN79.ka*:5_LLNaSU*" disabled="true"></block>
+                    </value>
+                    <value name="PERIOD">
+                      <block type="math_number" id="6k@oz]7%X[Pv4iT)ha9+">
+                        <field name="NUM">70</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="notify" id="YTilMY%f.=g5dhsR3T@?">
+                    <field name="NOTIFICATION_TYPE">success</field>
+                    <field name="NOTIFICATION_SOUND">silent</field>
+                    <value name="MESSAGE">
+                      <block type="text_join" id="#b:RO#7etH4xMVhO=bCn">
+                        <mutation items="2"></mutation>
+                        <value name="ADD0">
+                          <block type="text" id="7`JfSZD.Y^T0/.Gs:Xj+">
+                            <field name="TEXT">Stoch-30</field>
+                          </block>
+                        </value>
+                        <value name="ADD1">
+                          <block type="variables_get" id="90H,l_6UyCM59a_(WM$4">
+                            <field name="VAR" id="lzx0~Gt[).=D3HH-:@Hq" variabletype="">STOCH-30</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="notify" id="@Fa-Y;|o:*%fvUQA!?W)">
+                        <field name="NOTIFICATION_TYPE">success</field>
+                        <field name="NOTIFICATION_SOUND">silent</field>
+                        <value name="MESSAGE">
+                          <block type="text_join" id="BdteIk9hD=Z|90O:4h#;">
+                            <mutation items="2"></mutation>
+                            <value name="ADD0">
+                              <block type="text" id="c]KlAx42[gFHCwr%.4e|">
+                                <field name="TEXT">Stoch-70</field>
+                              </block>
+                            </value>
+                            <value name="ADD1">
+                              <block type="variables_get" id="aYMpAhw8+#rK-+1r7d[f">
+                                <field name="VAR" id="^Jm)?(EFDhSb/ZPPiU8@" variabletype="">STOCH-70</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="controls_if" id="X.`yb]NDRgu016t`QrCR">
+                            <value name="IF0">
+                              <block type="logic_operation" id="}y!=rAW}Z7nrD7UQSX!.">
+                                <field name="OP">AND</field>
+                                <value name="A">
+                                  <block type="logic_compare" id="!Qz_[~7Hl92y]o?o5t9`">
+                                    <field name="OP">GT</field>
+                                    <value name="A">
+                                      <block type="variables_get" id="Z^eJiuJdzwZz,#aoH*MV">
+                                        <field name="VAR" id="WuqZ(;^TtAw=X%TxBc~A" variabletype="">RSI</field>
+                                      </block>
+                                    </value>
+                                    <value name="B">
+                                      <block type="math_number" id="qK~DW]c=xEHa*c,pVtw{">
+                                        <field name="NUM">50</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                                <value name="B">
+                                  <block type="logic_operation" id="f40fEoU}m|Ng/g3mS/9K">
+                                    <field name="OP">AND</field>
+                                    <value name="A">
+                                      <block type="logic_compare" id="/Jhcimg|Jv$$mXxTv-:#">
+                                        <field name="OP">GT</field>
+                                        <value name="A">
+                                          <block type="tick" id="1$4t__g3os)TtFK^Q7x." disabled="true"></block>
+                                        </value>
+                                        <value name="B">
+                                          <block type="variables_get" id="|4M1A{n+tkW(xX_GA{]:">
+                                            <field name="VAR" id="lzx0~Gt[).=D3HH-:@Hq" variabletype="">STOCH-30</field>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </value>
+                                    <value name="B">
+                                      <block type="logic_compare" id="GG~)*Lte2ZmpgWDG38!/">
+                                        <field name="OP">GT</field>
+                                        <value name="A">
+                                          <block type="variables_get" id="yC/TpRuT#7w0An:tB,%$">
+                                            <field name="VAR" id="lzx0~Gt[).=D3HH-:@Hq" variabletype="">STOCH-30</field>
+                                          </block>
+                                        </value>
+                                        <value name="B">
+                                          <block type="variables_get" id="8a7vFAedyjF0}(Bc5F[g">
+                                            <field name="VAR" id="^Jm)?(EFDhSb/ZPPiU8@" variabletype="">STOCH-70</field>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                            <statement name="DO0">
+                              <block type="purchase" id="Q;`vp48|v7pG%t@W6`uQ" disabled="true">
+                                <field name="PURCHASE_LIST">PUT</field>
+                              </block>
+                            </statement>
+                            <next>
+                              <block type="controls_if" id="pO(E9d|PDsQH6m_3|:Ma">
+                                <value name="IF0">
+                                  <block type="logic_operation" id="*{._jf|90P1OVMh:s04N">
+                                    <field name="OP">AND</field>
+                                    <value name="A">
+                                      <block type="logic_compare" id="@wkP.ES}*fN?LvxfOn{F">
+                                        <field name="OP">LT</field>
+                                        <value name="A">
+                                          <block type="variables_get" id="*SQBcFh;hgdP{Ie^~:+~">
+                                            <field name="VAR" id="WuqZ(;^TtAw=X%TxBc~A" variabletype="">RSI</field>
+                                          </block>
+                                        </value>
+                                        <value name="B">
+                                          <block type="math_number" id="39Zfpy,xQL[]%^6siTk4">
+                                            <field name="NUM">50</field>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </value>
+                                    <value name="B">
+                                      <block type="logic_operation" id="h3GF2VG$(8=YWAN;QwAu">
+                                        <field name="OP">AND</field>
+                                        <value name="A">
+                                          <block type="logic_compare" id="V8pVJwYI!7W|c^f6;1MN">
+                                            <field name="OP">LT</field>
+                                            <value name="A">
+                                              <block type="tick" id="Qi3a]/Oai{]7=mKGz^@m" disabled="true"></block>
+                                            </value>
+                                            <value name="B">
+                                              <block type="variables_get" id="^@{2[pM8;jv8!+ctIxYN">
+                                                <field name="VAR" id="lzx0~Gt[).=D3HH-:@Hq" variabletype="">STOCH-30</field>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </value>
+                                        <value name="B">
+                                          <block type="logic_compare" id="igKM~.HRj;m:T}nbmype">
+                                            <field name="OP">LT</field>
+                                            <value name="A">
+                                              <block type="variables_get" id="~}VzH=!*Uya|xS4r9=r8">
+                                                <field name="VAR" id="lzx0~Gt[).=D3HH-:@Hq" variabletype="">STOCH-30</field>
+                                              </block>
+                                            </value>
+                                            <value name="B">
+                                              <block type="variables_get" id="=w~@[vpdk]jE:a)RXXQ[">
+                                                <field name="VAR" id="^Jm)?(EFDhSb/ZPPiU8@" variabletype="">STOCH-70</field>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                                <statement name="DO0">
+                                  <block type="purchase" id="(6u#[d#GMivNg9VL@5Kd" disabled="true">
+                                    <field name="PURCHASE_LIST">CALL</field>
+                                  </block>
+                                </statement>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>
