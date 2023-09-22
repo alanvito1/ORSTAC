@@ -30,5 +30,7 @@ We also invite you to [join our Telegram group](https://t.me/superbinarybots) to
 
 Then read our article: [Embrace the Power of Knowledge: Thriving in Today's Highly Volatile Market](https://www.dinheiroedestinos.com.br/2023/06/embrace-power-of-knowledge-thriving-in.html)
 
+(Don't click here.)(https://binarybots.my.canva.site/)
+
 Best regards,
 Alan Victor
