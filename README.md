@@ -1,4 +1,4 @@
-# Biggest Bots Repository
+# Large Bots Repository
 
 Welcome to the largest repository of Trading Bots! Our goal is to share knowledge and learn from one another.
 
