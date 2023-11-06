@@ -19,10 +19,9 @@ Navigating our repository is a seamless process, marked by clear steps:
 5. Upload your chosen bot into DBot and initiate the "Run" command to commence your trading endeavors.
 6. When you load your XML, you can see the blocks and edit them without the need for programming, only visual logic.
 
-# Copy Trading: An Expert's Guide
-1. [Establish your BingX Account, an entryway to elite trading.](https://bingx.com/invite/TLU7DW)
-2. [Follow BingX Trader Jennie❤️ and commence your copy trading journey. Her 30D ROI soars as high as +0.23%! New users are entitled to a 10 USDT Subsidy Voucher, ensuring zero risks when emulating the strategies of elite traders.](https://bingx.com/int/2puEPN) While the trader guarantees 0 risk, exercising prudence is essential.
-3. Enjoy the seamless experience!
+# Copy Trading an Expert
+1. [Sign up BingX to claim new user rewards worth $5000+](https://bingx.com/invite/TLU7DW)
+2. Enjoy the seamless experience!
 
 We cordially invite everyone to [read and engage in discussions about our articles](https://github.com/alanvito1/Binary-Robots/discussions). Your support in the form of stars and likes is invaluable, propelling us toward broader horizons and enabling us to reach a wider audience.
 
