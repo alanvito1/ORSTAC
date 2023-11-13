@@ -32,6 +32,7 @@ Our tokenomics work very similarly but with a twist. Instead of receiving the na
 The distribution is volume-based, and when the smart contract is satisfied, it will automatically send tether to your wallet. Due to the need to satisfy the smart contract, the distribution period varies.
 
 [Join the BabyUSDT Official Telegram Group](https://t.me/BabyUSDToken)
+
 [WEBSITE](https://gateway.pinata.cloud/ipfs/QmZSimPsR5Ab4dvXGeGV9qdSp2DpbPxsKBzrBq98g4iujC/BabyUSDT%20Website%20-%20Copy.html)
 
 Additionally, take a moment to explore our insightful article: [Embrace the Power of Knowledge: Thriving in Today's Highly Volatile Market](https://www.dinheiroedestinos.com.br/2023/06/embrace-power-of-knowledge-thriving-in.html).
