@@ -21,7 +21,8 @@ A fundamental principle guiding our endeavor is encapsulated in the phrase, "Gam
 
 # Copy Trading an Expert and Grid Trading
 1. [Sign up on BingX](https://bingx.com/invite/TLU7DW)
-2. Enjoy the experience!
+2. [BingX Trader WhaleKing's 180D ROI is as high as +119.33%. New users can claim 10 USDT Subsidy Voucher to copy the strategies of elite traders at 0 risks.](https://bingx.com/int/4ORY7J)
+3. Enjoy the experience!
 
 # BabyUSDT - Passive income paid in USDT with Self-Custody.
 
