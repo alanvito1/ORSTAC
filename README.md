@@ -2,9 +2,9 @@
 
 Greetings,
 
-We extend a warm welcome to our distinguished guests at the Open Source Robots Repository. It stands as a testament to innovation and collaboration in the world of automated trading. The repository, aptly named "Open Source," emphasizes its commitment to inclusivity, allowing enthusiasts to access and modify our extensive collection of Trading Bots. This inclusive ethos is reinforced by its [Free Download](https://github.com/alanvito1/Binary-Robots/archive/refs/heads/master.zip) policy, granting enthusiasts the freedom to customize these bots according to their unique preferences.
+We extend a warm welcome to our distinguished guests at the Open Source Robots Repository. It stands as a testament to innovation and collaboration in the world of automated trading. The repository, aptly named "Open Source," emphasizes its commitment to inclusivity, allowing enthusiasts to access and modify our extensive collection of Trading Bots. 
 
-A fundamental principle guiding our endeavor is encapsulated in the phrase, "Game theory rules everything. Come to the game." This ethos permeates our commitment to fostering an environment of mutual learning and growth.
+"Game theory rules everything. Come to the game." This is our mutual learning and growth.
 
 [Join our Official Telegram Group](https://t.me/superbinarybots)
 
@@ -20,8 +20,8 @@ A fundamental principle guiding our endeavor is encapsulated in the phrase, "Gam
 # A prudent reminder: Always initiate your bot testing endeavors with a DEMO ACCOUNT.
 
 # Copy Trading an Expert and Grid Trading
-1. [Sign up on BingX](https://bingx.com/invite/TLU7DW)
-2. [BingX Trader WhaleKing's 180D ROI is as high as +119.33%. New users can claim 10 USDT Subsidy Voucher to copy the strategies of elite traders at 0 risks.](https://bingx.com/int/4ORY7J)
+1. [Sign up on BingX](https://bingx.com/partner/avre/30CtTw) Grab Up to 5000+ USDT Rewards.
+2. [BingX Copy Trader](https://bingx.com/int/4ORY7J). New users can claim 10 USDT Subsidy Voucher to copy.
 3. Enjoy the experience!
 
 # BabyUSDT - Passive income paid in USDT with Self-Custody.
