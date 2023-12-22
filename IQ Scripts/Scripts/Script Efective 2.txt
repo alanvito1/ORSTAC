@@ -1,0 +1,67 @@
+instrument {overlay = true,
+            name = 'Fluxo 6.0',
+            short_name = 'FLUXO',
+            icon="indicators:ADX"}
+
+input_group { "OTC - UP COLOR", call_color = input { default="#1191ad", type = input.color } }
+input_group { "OTC - DOWN COLOR", put_color = input { default="#cf1b06", type = input.color } }
+
+ 
+if ((close > close[2]) and (close[2] > open[2]) and (close[4] > close[8])) then
+
+    plot_shape(1,
+            'Bull_OTC',
+            shape_style.triangleup,
+            shape_size.huge,
+            call_color,
+            shape_location.belowbar,
+            0,
+            "ENTRA",
+            "#fcfc03"
+                      ) 
+else
+    if ((close < close[2]) and (close[2] < open[2]) and (close[4] < close[8])) then
+
+    plot_shape(1,
+            'Bear_OTC',
+            shape_style.triangledown,
+            shape_size.huge,
+            put_color,
+            shape_location.abovebar,
+            0,
+            "ENTRA",
+            "#fcfc03"
+                      ) 
+    end
+end
+
+instrument { name = "Efectiv V2 H", overlay = true, icon="indicators:ATR" }
+period = input (13, "front.period", input.integer, 1   )
+multiplier  = input (2, "front.newind.multiplier", input.double, 1   )
+high_low = input (false, "HighLow", input.boolean)
+input_group {
+    "front.newind.colors",
+    up   = input { default = "#1191ad", type = input.color },
+    down = input { default = "#cf1b06", type = input.color },
+    width = input { default = 4, type = input.line_width }
+}
+atr = rma (tr, period) * multiplier
+h = iff (high_low, high, close)
+l = iff (high_low, low, close)
+atr_ts = iff(close > nz(atr_ts[1], 0) and close[1] > nz(atr_ts[1], 0), max(nz(atr_ts[1]), h - atr),
+iff(close < nz(atr_ts[1], 0) and close[1] < nz(atr_ts[1], 0), min(nz(atr_ts[1]), l + atr),
+iff(close > nz(atr_ts[1], 0), h - atr, l + atr)))
+pos = iff(close[1] < nz(atr_ts[1], 0) and close > nz(atr_ts[1], 0), 1,
+iff(close[1] > nz(atr_ts[1], 0) and close < nz(atr_ts[1], 0), -1, nz(pos[1], 0)))
+plot (atr_ts, "", pos < 0 and down or up , width)
+--[[
+short = (pos[1] != pos[0]) and (pos[0] == -1) ? true : false
+long = (pos[1] != pos[0]) and (pos[0] == 1) ? true : false
+plotshape(long, style=shape.triangleup, location=location.belowbar, color=green, size=size.tiny)
+plotshape(short, style=shape.triangledown, location=location.abovebar, color=red, size=size.tiny)
+]]
+
+ha_op = (open[1]+close[1]) / 2
+ha_cl = (open + high +low + close) / 4
+ha_hg = high
+ha_lw = low

@@ -1,0 +1,301 @@
+instrument {
+    name = 'COMPRA E VENDA BLESSED',
+    short_name = 'SMA-ENG',
+    icon = 'https://static-media.hotmart.com/_RzXn_gjzCtDhK4_c3z4Gz11R6k=/300x300/smart/filters:format(webp):background_color(white)/hotmart/product_contents/de045e58-ebbd-4f33-ade2-4733f54b3182/mmmm.jpg',
+    overlay = true
+}
+Exibir_tracamento= input(1,"Programacao feita por equipe Blessed. att: Blessed e auxiliares de progamacao")
+Exibir= input(1,"Sempre observar atentamente a tendencia macro e micro se estao apontando para mesma direcao ,catalogue os sinais passados e se estiver respeitando e um otimo sinal para operar. OBS:se quiser ser mais assetivo operar em M5, Evitar sempre a abertura e o fechamento do mercado equipe!")
+Exibir= input(1,"BONS LUCROS BLESSEDS!")
+input_group {"EMA", ema_color= input {default= 'invisible', type= input.color}}
+input_group {"BANDA SUPERIOR", bbsup_color= input{ default= "#DA4933", type= input.color}}
+input_group {"BANDA INFERIOR", bbinf_color= input{ default= "#22D34F", type= input.color}}
+input_group {"CALL", call_color= input{ default= "blue", type= input.color}}
+input_group {"PUT", put_color= input{ default= "blue", type= input.color}}
+
+
+smaa= sma(close, '40')
+upper_band= smaa + (stdev(close,40) * 2.5)
+lower_band= smaa - (stdev(close,40) * 2.5)
+emaa= ema(close, '100')
+
+if Exibir_tracamento == 1 then
+plot(emaa, "SMA", ema_color)
+plot(upper_band, "UPPER_BAND", bbsup_color)
+plot(lower_band, "LOWER_BAND", bbinf_color)
+end
+
+plot_shape((high >= upper_band and emaa > upper_band),
+"PUT",
+shape_style.arrowdown,
+shape_size.huge,
+put_color,
+shape_location.abovebar,
+0,
+"PUT BOLLINGER PROX BLESSED",
+put_color)
+
+plot_shape((low <= lower_band and emaa < lower_band),
+"CALL",
+shape_style.arrowup,
+shape_size.huge,
+call_color,
+shape_location.belowbar,
+0,
+"CALL BOLLINGER PROX BLESSED",
+call_color)
+
+
+
+MaFast_period = input(3,"Ma Fast period",input.integer,1,1000,1)
+MaFast_average = input(4,"Ma Fast average", input.string_selection,averages.titles)
+MaFast_title = input(1,"Ma Fast title", input.string_selection,inputs.titles)
+
+MaSlow_period = input(50,"Ma Slow period",input.integer,1,1000,1)
+MaSlow_average = input(4,"Ma Slow average", input.string_selection,averages.titles)
+MaSlow_title = input(1,"Ma Slow title", input.string_selection,inputs.titles)
+
+MaTrend_period = input(100,"Ma Trend period",input.integer,1,1000,5)
+MaTrend_average = input(2,"Ma Trend average", input.string_selection,averages.titles)
+MaTrend_title = input(1,"Ma Trend title", input.string_selection,inputs.titles)
+
+
+
+
+input_group {
+    "Ma Fast Line",
+    colorFast = input { default = "invisible", type = input.color },
+    widthFast = input { default = 1, type = input.line_width},
+    visibleFast = input { default = true, type = input.plot_visibility }
+}
+
+input_group {
+    "Ma Slow Line",
+    colorSlow = input { default = "invisible", type = input.color },
+    widthSlow = input { default = 2, type = input.line_width},
+    visibleSlow = input { default = true, type = input.plot_visibility }
+}
+
+
+
+input_group {
+    "Buy Outside Bar",
+    colorBuy2 = input { default = "white", type = input.color }, 
+    visibleBuy2 = input { default = true, type = input.plot_visibility }
+}
+
+input_group {
+    "Sell Outside Bar",
+    colorSell2 = input { default = "white", type = input.color },
+    visibleSell2 = input { default = true, type = input.plot_visibility }
+}
+
+local avgFast = averages[MaFast_average]
+local titleFast = inputs[MaFast_title]
+
+local avgSlow = averages[MaSlow_average]
+local titleSlow = inputs[MaSlow_title]
+
+local avgTrend = averages[MaTrend_average]
+local titleTrend = inputs[MaTrend_title]
+
+if visibleFast == true then
+    plot(avgFast(titleFast,MaFast_period),"Ma Fast",colorFast,widthFast)
+end
+
+if visibleSlow == true then
+    plot(avgSlow(titleSlow,MaSlow_period),"Ma Slow",colorSlow,widthSlow)
+end
+
+if visibleTrend == true then
+    plot(avgTrend(titleTrend,MaTrend_period),"Ma Trend",colorTrend,widthTrend)
+end
+
+candle_time = {"1s", "5s", "10s", "15s", "30s", "1m", "2m", "5m", "10m", "15m", "30m", "1H", "2H", "4H", "8H", "12H", "1D", "1W", "1M", "1Y"}
+candle_time_res = input(6,"Candle check resolution",input.string_selection,candle_time)
+
+sec = security (current_ticker_id, candle_time[candle_time_res])
+
+filter_source = {"1s", "5s", "10s", "15s", "30s", "1m", "2m", "5m", "10m", "15m", "30m", "1H", "2H", "4H", "8H", "12H", "1D", "1W", "1M", "1Y"}
+filter_pa_index = input(8,"Candle check resolution",input.string_selection,filter_source)
+
+filter_pa = security (current_ticker_id, filter_source[filter_pa_index])
+
+--print(filter_source[filter_pa_index])
+
+if (sec ~= nil) then
+    
+    MaFast0 = avgFast(titleFast,MaFast_period) --Ma Fast bar 0
+    MaFast1 = MaFast0[1]                       --Ma Fast bar 1
+    
+    MaSlow0 = avgSlow(titleSlow,MaSlow_period) --Ma Slow bar 0
+    MaSlow1 = MaSlow0[1]
+    
+    MaTrend0 = avgTrend(titleTrend,MaTrend_period)
+    MaTrend1 = MaTrend0[1]
+    
+    if(visibleBuy == true) then
+        plot_shape((close > open and close[1] < open[1] and close > MaFast0 and MaFast0 > MaSlow0 and MaSlow0 > MaTrend0 and close > open[1] and open <= close[1] and abs(close-open) > abs(close[1]-open[1])),
+            "Call",
+            shape_style.arrowup,
+            shape_size.huge,
+            colorBuy,
+            shape_location.belowbar,
+            0,
+            "CALL PROX VELA BLESSED",
+            colorBuy  
+           ) 
+    end
+    
+    if (visibleSell == true) then
+        plot_shape((close < open and close[1] > open[1] and close < MaFast0 and MaFast0 < MaSlow0 and MaSlow0 < MaTrend0 and close < open[1] and open >= close[1] and abs(close-open) > abs(close[1]-open[1])),
+            "Put",
+            shape_style.arrowdown,
+            shape_size.huge,
+            colorSell,
+            shape_location.abovebar,
+            0,
+            "PUT PROX VELA BLESSED",
+            colorSell
+        )
+    end
+
+
+    if(visibleBuy1 == true) then 
+        if(filter_pa.close[1] > filter_pa.open[1] and filter_pa.close[2] < filter_pa.open[2] and filter_pa.close[1] > filter_pa.open[2] and filter_pa.open[1] <= filter_pa.close[2] and abs(filter_pa.close[1]-filter_pa.open[1]) > abs(filter_pa.close[2]-filter_pa.open[2]) ) then                                 
+            plot_shape((close > open and close[1] < open[1] and close > open[1] and open <= close[1] and abs(close-open) > abs(close[1]-open[1])),
+                "Call1",
+                shape_style.arrowup,
+                shape_size.huge,
+                colorBuy1,
+                shape_location.belowbar,
+                0,
+                "CALL - FRACO",
+                colorBuy1  
+               ) 
+    end
+    end
+    
+    if (visibleSell1 == true) then
+        if(filter_pa.close[1] < filter_pa.open[1] and filter_pa.close[2] > filter_pa.open[2] and filter_pa.close[1] < filter_pa.open[2] and filter_pa.open[1] >= filter_pa.close[2] and abs(filter_pa.close[1]-filter_pa.open[1]) > abs(filter_pa.close[2]-filter_pa.open[2]) ) then                                 
+            plot_shape((close < open and close[1] > open[1] and close < open[1] and open >= close[1] and abs(close-open) > abs(close[1]-open[1])),
+                "Put1",
+                shape_style.arrowdown,
+                shape_size.huge,
+                colorSell1,
+                shape_location.abovebar,
+                0,
+                "PUT - FRACO",
+                colorSell1
+            )
+        end
+    end
+
+
+     if(visibleBuy2 == true) then 
+        --if(filter_pa.close[1] > filter_pa.open[1] and filter_pa.close[2] < filter_pa.open[2] and filter_pa.close[1] > filter_pa.open[2] and filter_pa.open[1] <= filter_pa.close[2] and abs(filter_pa.close[1]-filter_pa.open[1]) > abs(filter_pa.close[2]-filter_pa.open[2]) ) then                                 
+            plot_shape((open[3] < close[3] and open[2] < close[2] and open[1] > close[1] and close[1] > open[2] and open[1] > open[2] and open < close),
+                "BLESSEDS-CALL2",
+                shape_style.arrowup,
+                shape_size.huge,
+                colorBuy2,
+                shape_location.belowbar,
+                0,
+                "COMPRA PROX (FLUXO) BLESSED",
+                colorBuy2  
+               ) 
+    --end
+    end
+
+    if (visibleSell2 == true) then
+        --if(filter_pa.close[1] < filter_pa.open[1] and filter_pa.close[2] > filter_pa.open[2] and filter_pa.close[1] < filter_pa.open[2] and filter_pa.open[1] >= filter_pa.close[2] and abs(filter_pa.close[1]-filter_pa.open[1]) > abs(filter_pa.close[2]-filter_pa.open[2]) ) then                                 
+           plot_shape((open[3] > close[3] and open[2] > close[2] and open[1] < close[1] and close[1] < open[2] and open[1] < open[2] and open > close),
+                "VENDA PROXIMA VELA BLESSEDS-PUT2",
+                shape_style.arrowdown,
+                shape_size.huge,
+                colorSell2,
+                shape_location.abovebar,
+                0,
+                "VENDA PROX (FLUXO) BLESSEDS",
+                colorSell2
+            )
+        --end
+    end
+
+
+
+
+    if (visibleArea == true) then
+        fill(MaFast0,MaSlow0,"Area", MaFast0 > MaSlow0 and colorAreaUp or MaFast0 < MaSlow0 and colorAreaDown )
+    
+   end
+
+
+end
+
+MaFast_period = input(3,"Ma Fast period",input.integer,1,1000,1)
+MaFast_average = input(4,"Ma Fast average", input.string_selection,averages.titles)
+MaFast_title = input(1,"Ma Fast title", input.string_selection,inputs.titles)
+
+MaSlow_period = input(50,"Ma Slow period",input.integer,1,1000,1)
+MaSlow_average = input(4,"Ma Slow average", input.string_selection,averages.titles)
+MaSlow_title = input(1,"Ma Slow title", input.string_selection,inputs.titles)
+
+MaTrend_period = input(200,"Ma Trend period",input.integer,1,1000,5)
+MaTrend_average = input(2,"Ma Trend average", input.string_selection,averages.titles)
+MaTrend_title = input(1,"Ma Trend title", input.string_selection,inputs.titles)
+ 
+
+ 
+input_group {
+    "Buy Arrow",
+    colorBuy = input { default = "green", type = input.color },
+    visibleBuy = input { default = true, type = input.plot_visibility }
+}
+
+input_group {
+    "Sell Arrow",
+    colorSell = input { default = "red", type = input.color },
+    visibleSell = input { default = true, type = input.plot_visibility }
+}
+
+local avgFast = averages[MaFast_average]
+local titleFast = inputs[MaFast_title]
+
+local avgSlow = averages[MaSlow_average]
+local titleSlow = inputs[MaSlow_title]
+
+local avgTrend = averages[MaTrend_average]
+local titleTrend = inputs[MaTrend_title]
+
+if visibleFast == true then
+    plot(avgFast(titleFast,MaFast_period),"Ma Fast",colorFast,widthFast)
+end
+
+if visibleSlow == true then
+    plot(avgSlow(titleSlow,MaSlow_period),"Ma Slow",colorSlow,widthSlow)
+end
+
+if visibleTrend == true then
+    plot(avgTrend(titleTrend,MaTrend_period),"Ma Trend",colorTrend,widthTrend)
+end
+
+candle_time = {"1s", "5s", "10s", "15s", "30s", "1m", "2m", "5m", "10m", "15m", "30m", "1H", "2H", "4H", "8H", "12H", "1D", "1W", "1M", "1Y"}
+candle_time_res = input(6,"Candle check resolution",input.string_selection,candle_time)
+
+sec = security (current_ticker_id, candle_time[candle_time_res])
+
+if (sec ~= nil) and (sec.open_time == open_time) then
+    
+    Mafast0 = avgFast(titleFast,MaFast_period) --Ma Fast bar 0
+    Mafast1 = Mafast0[1]                       --Ma Fast bar 1
+    
+    MaSlow0 = avgSlow(titleSlow,MaSlow_period) --Ma Slow bar 0
+    MaSlow1 = MaSlow0[1]
+    
+    MaTrend0 = avgTrend(titleTrend,MaTrend_period)
+    Matrend1 = MaTrend0[1]
+    
+   
+
+end

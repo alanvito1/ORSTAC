@@ -1,0 +1,115 @@
+
+instrument {
+    name = ' TENDENCIA ',
+    short_name = 'SMA-ENG',
+    icon = 'indicators:BB',
+    overlay = true
+}
+
+MaFast_period = input(12,"Ma Fast period",input.integer,1,1000,1)
+MaFast_average = input(2,"Ma Fast average", input.string_selection,averages.titles)
+MaFast_title = input(1,"Ma Fast title", input.string_selection,inputs.titles)
+
+MaSlow_period = input(26,"Ma Slow period",input.integer,1,1000,1)
+MaSlow_average = input(2,"Ma Slow average", input.string_selection,averages.titles)
+MaSlow_title = input(1,"Ma Slow title", input.string_selection,inputs.titles)
+
+MaTrend_period = input(200,"Ma Trend period",input.integer,1,1000,5)
+MaTrend_average = input(2,"Ma Trend average", input.string_selection,averages.titles)
+MaTrend_title = input(1,"Ma Trend title", input.string_selection,inputs.titles)
+
+input_group {
+    "Ma Fast Line",
+    colorFast = input { default = "#ff56e8", type = input.color },
+    widthFast = input { default = 1, type = input.line_width},
+    visibleFast = input { default = true, type = input.plot_visibility }
+}
+
+input_group {
+    "Ma Slow Line",
+    colorSlow = input { default = "#2d2af7", type = input.color },
+    widthSlow = input { default = 2, type = input.line_width},
+    visibleSlow = input { default = true, type = input.plot_visibility }
+}
+
+input_group {
+    "Ma Trend Line",
+    colorTrend = input { default = "#f74200", type = input.color },
+    widthTrend = input { default = 3, type = input.line_width},
+    visibleTrend = input { default = true, type = input.plot_visibility }
+}
+
+input_group {
+    "Buy Arrow",
+    colorBuy = input { default = "green", type = input.color },
+    visibleBuy = input { default = true, type = input.plot_visibility }
+}
+
+input_group {
+    "Sell Arrow",
+    colorSell = input { default = "red", type = input.color },
+    visibleSell = input { default = true, type = input.plot_visibility }
+}
+
+local avgFast = averages[MaFast_average]
+local titleFast = inputs[MaFast_title]
+
+local avgSlow = averages[MaSlow_average]
+local titleSlow = inputs[MaSlow_title]
+
+local avgTrend = averages[MaTrend_average]
+local titleTrend = inputs[MaTrend_title]
+
+if visibleFast == true then
+    plot(avgFast(titleFast,MaFast_period),"Ma Fast",colorFast,widthFast)
+end
+
+if visibleSlow == true then
+    plot(avgSlow(titleSlow,MaSlow_period),"Ma Slow",colorSlow,widthSlow)
+end
+
+if visibleTrend == true then
+    plot(avgTrend(titleTrend,MaTrend_period),"Ma Trend",colorTrend,widthTrend)
+end
+
+candle_time = {"1s", "5s", "10s", "15s", "30s", "1m", "2m", "5m", "10m", "15m", "30m", "1H", "2H", "4H", "8H", "12H", "1D", "1W", "1M", "1Y"}
+candle_time_res = input(6,"Candle check resolution",input.string_selection,candle_time)
+
+sec = security (current_ticker_id, candle_time[candle_time_res])
+
+if (sec ~= nil) and (sec.open_time == open_time) then
+    
+    Mafast0 = avgFast(titleFast,MaFast_period) --Ma Fast bar 0
+    Mafast1 = Mafast0[1]                       --Ma Fast bar 1
+    
+    MaSlow0 = avgSlow(titleSlow,MaSlow_period) --Ma Slow bar 0
+    MaSlow1 = MaSlow0[1]
+    
+    MaTrend0 = avgTrend(titleTrend,MaTrend_period)
+    Matrend1 = MaTrend0[1]
+    
+    plot_shape((close > open and close[1] < open[1] and close > Mafast0 and close > MaSlow0 and close > MaTrend0 and close > open[1] and open <= close[1] and abs(close-open) > abs(close[1]-open[1])),
+        "Call",
+        shape_style.arrowup,
+        shape_size.huge,
+        colorBuy,
+        shape_location.belowbar,
+        0,
+        "COMPRA",
+        colorBuy  
+       ) 
+    
+    plot_shape((close < open and close[1] > open[1] and close < Mafast0 and close < MaSlow0 and close < MaTrend0 and close < open[1] and open >= close[1] and abs(close-open) > abs(close[1]-open[1])),
+        "Put",
+        shape_style.arrowdown,
+        shape_size.huge,
+        colorSell,
+        shape_location.abovebar,
+        0,
+        "VENDA",
+        colorSell
+    )
+    
+
+
+end

@@ -1,0 +1,68 @@
+instrument {
+    name = 'PROXIMA VELA',
+    short_name = 'PROXIMA VELA',
+    icon = 'file:///C:/Users/Usuario(a)/Downloads/WhatsApp-Image-2022-07-31-at-21.18.07.png',
+    overlay = true
+}
+
+EMA_PERIOD = input(7,"EMA Period",input.integer,1,1000,1)
+CANDLE_VALUE = input(1,"Candle Value", input.string_selection,inputs.titles)
+
+SMA_AUX_PERIOD = input(9,"SMA Aux Period",input.integer,1,1000,1)
+
+input_group {
+    "Compra",
+    colorBuy = input { default = "green", type = input.color }, 
+    visibleBuy = input { default = true, type = input.plot_visibility }
+}
+
+input_group {
+    "Venda",
+    colorSell = input { default = "red", type = input.color },
+    visibleSell = input { default = true, type = input.plot_visibility }
+}
+
+local candleValue = inputs[CANDLE_VALUE]
+
+-- Moving Average EMA
+emaValue = ema(candleValue, EMA_PERIOD)
+input_group {
+    "front.middle line",
+    middle_line_visible = input { default = true, type = input.plot_visibility },
+    middle_line_color   = input { default = "orange", type = input.color },
+    middle_line_width   = input { default = 1, type = input.line_width }
+}
+
+-- Moving Average SMA aux
+smaValueAux = sma(candleValue, SMA_AUX_PERIOD)
+
+plot (emaValue, "Middle", middle_line_color, middle_line_width)
+plot(smaValueAux, "Middle", middle_line_color, middle_line_width)
+
+
+BUY_CONDITION = conditional((emaValue > smaValueAux and emaValue > smaValueAux[1]) and  (emaValue[1] < smaValueAux and emaValue[1] < smaValueAux[1]))
+SELL_CONDITION = conditional((emaValue < smaValueAux and emaValue < smaValueAux[1]) and (emaValue[1] > smaValueAux and emaValue[1] > smaValueAux[1])) 
+
+            plot_shape(
+                (BUY_CONDITION),
+                "COMPRA",
+                shape_style.triangleup,
+                shape_size.auto,
+                colorBuy,
+                shape_location.belowbar,
+                0,
+                "PODE COMPRA PROXIMA VELA",
+                "green"
+               ) 
+
+          plot_shape(
+              (SELL_CONDITION),
+                "VENDA",
+                shape_style.triangledown,
+                shape_size.auto,
+                colorSell,
+                shape_location.abovebar,
+                0,
+                "PODE VENDER PROXIMA VELA",
+                "red"
+          )
