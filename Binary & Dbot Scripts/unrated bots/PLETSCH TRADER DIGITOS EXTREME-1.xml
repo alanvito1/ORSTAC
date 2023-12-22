@@ -1,0 +1,3495 @@
+<xml xmlns="http://www.w3.org/1999/xhtml" collection="false">
+  <variables>
+    <variable type="" id="pO[m@P}e6QS^G|2d~cW%">Limite de Perda</variable>
+    <variable type="" id="il$NJ(_V-OT:YZ).{54f">Expectativa de Lucro</variable>
+    <variable type="" id="Ay,z)+OmKIP_BE[oaL{~">Aposta Inicial</variable>
+    <variable type="" id="J[A)Vzjm)5YLd+W;z1F/">PASSWORD</variable>
+    <variable type="" id="=iuIh3(U3|];EjDXbsqU">Aposta ao Vencer</variable>
+  </variables>
+  <block type="trade" id="trade" x="-209" y="-55">
+    <field name="MARKET_LIST">volidx</field>
+    <field name="SUBMARKET_LIST">random_index</field>
+    <field name="SYMBOL_LIST">R_50</field>
+    <field name="TRADETYPECAT_LIST">digits</field>
+    <field name="TRADETYPE_LIST">matchesdiffers</field>
+    <field name="TYPE_LIST">DIGITDIFF</field>
+    <field name="CANDLEINTERVAL_LIST">60</field>
+    <field name="TIME_MACHINE_ENABLED">FALSE</field>
+    <field name="RESTARTONERROR">TRUE</field>
+    <statement name="INITIALIZATION">
+      <block type="variables_set" id="IpH/OKA3R.E;dEgGMbf,">
+        <field name="VAR" id="pO[m@P}e6QS^G|2d~cW%" variabletype="">Limite de Perda</field>
+        <value name="VALUE">
+          <block type="math_number" id="=XFKCMq#6s#Mo6`~.@`0">
+            <field name="NUM">100</field>
+          </block>
+        </value>
+        <next>
+          <block type="variables_set" id="{_clcmJ(*gEi!Br8c}kM">
+            <field name="VAR" id="il$NJ(_V-OT:YZ).{54f" variabletype="">Expectativa de Lucro</field>
+            <value name="VALUE">
+              <block type="math_number" id="q}((XO%dDMm1RXxPNqt#">
+                <field name="NUM">5</field>
+              </block>
+            </value>
+            <next>
+              <block type="variables_set" id=")ZZGf^cT0rOqa/Ma%NC]">
+                <field name="VAR" id="Ay,z)+OmKIP_BE[oaL{~" variabletype="">Aposta Inicial</field>
+                <value name="VALUE">
+                  <block type="math_number" id="YHAI}G~p-MzbG{Q#}HYP">
+                    <field name="NUM">5</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="variables_set" id="su0Gc91D[(`K},Nk5p|N">
+                    <field name="VAR" id="=iuIh3(U3|];EjDXbsqU" variabletype="">Aposta ao Vencer</field>
+                    <value name="VALUE">
+                      <block type="math_number" id="MFliyze83ZUSaeqHp]Qd">
+                        <field name="NUM">5</field>
+                      </block>
+                    </value>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <statement name="SUBMARKET">
+      <block type="tradeOptions" id="mA!w:s`[d$xnjf)!6TTT">
+        <field name="DURATIONTYPE_LIST">t</field>
+        <field name="CURRENCY_LIST">USD</field>
+        <field name="BARRIEROFFSETTYPE_LIST">+</field>
+        <field name="SECONDBARRIEROFFSETTYPE_LIST">-</field>
+        <value name="DURATION">
+          <block type="math_number" id="~G^:]=.b`!T9.Il_vkLS">
+            <field name="NUM">1</field>
+          </block>
+        </value>
+        <value name="AMOUNT">
+          <block type="variables_get" id="U7j6VStMd;ipx]Ouc..l">
+            <field name="VAR" id="Ay,z)+OmKIP_BE[oaL{~" variabletype="">Aposta Inicial</field>
+          </block>
+        </value>
+        <value name="PREDICTION">
+          <block type="math_number" id=".hpr=cakk2US8ZnFrtO6">
+            <field name="NUM">7</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+  </block>
+  <block type="during_purchase" id="4/HZDK).D8=^Cv4C^vT4" x="-213" y="434"></block>
+  <block type="after_purchase" id="finish" collapsed="true" x="-99" y="520">
+    <statement name="AFTERPURCHASE_STACK">
+      <block type="controls_if" id="a!_WKGNJh,yQ}tk|:`NI">
+        <mutation else="1"></mutation>
+        <value name="IF0">
+          <block type="contract_check_result" id="O1ON.Ffb1!6t,P`iFZ]!">
+            <field name="CHECK_RESULT">win</field>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="notify" id="zw:P~.RrRR4@/[ZDu;Cc">
+            <field name="NOTIFICATION_TYPE">success</field>
+            <field name="NOTIFICATION_SOUND">silent</field>
+            <value name="MESSAGE">
+              <block type="text_join" id="6v3if%7]E52#?`jFIB!f">
+                <mutation items="2"></mutation>
+                <value name="ADD0">
+                  <block type="text" id="ODDvC.!;oC7lFi#W0*kB">
+                    <field name="TEXT">Ganhou: </field>
+                  </block>
+                </value>
+                <value name="ADD1">
+                  <block type="read_details" id="KzeETsb#x.wDkbkAPd=}">
+                    <field name="DETAIL_INDEX">4</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="variables_set" id="=*k@},WThq4c@/K_{kF%">
+                <field name="VAR" id="Ay,z)+OmKIP_BE[oaL{~" variabletype="">Aposta Inicial</field>
+                <value name="VALUE">
+                  <block type="variables_get" id="zaeP]S1q0DLSb08yz]+4">
+                    <field name="VAR" id="=iuIh3(U3|];EjDXbsqU" variabletype="">Aposta ao Vencer</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <statement name="ELSE">
+          <block type="notify" id="%oq)w)m2-uXUJwDkEX3r">
+            <field name="NOTIFICATION_TYPE">warn</field>
+            <field name="NOTIFICATION_SOUND">silent</field>
+            <value name="MESSAGE">
+              <block type="text_join" id="kRD-eN4Qav7`u.gQ(tkn">
+                <mutation items="2"></mutation>
+                <value name="ADD0">
+                  <block type="text" id="_u}p#WG2-0R,3wmR::e7">
+                    <field name="TEXT">Perdeu: </field>
+                  </block>
+                </value>
+                <value name="ADD1">
+                  <block type="math_single" id="WC8^:q6MT;.=}juq3~w+">
+                    <field name="OP">ABS</field>
+                    <value name="NUM">
+                      <shadow type="math_number" id="GleSn`9j7Cm7/dqg}FIA">
+                        <field name="NUM">9</field>
+                      </shadow>
+                      <block type="read_details" id="[6yQUMvdZh#*SBr)o1Lf">
+                        <field name="DETAIL_INDEX">4</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="math_change" id="szxi%pOMsEZiNe!@=`z_">
+                <field name="VAR" id="Ay,z)+OmKIP_BE[oaL{~" variabletype="">Aposta Inicial</field>
+                <value name="DELTA">
+                  <shadow type="math_number" id="N=Vo^MVz~/^(xt7Ag@8E">
+                    <field name="NUM">1</field>
+                  </shadow>
+                  <block type="math_arithmetic" id="L|Yp}u1YlBQ9k78`pWjV">
+                    <field name="OP">MULTIPLY</field>
+                    <value name="A">
+                      <shadow type="math_number" id="ka8n8|Dugz,q5FkUjs`7">
+                        <field name="NUM">1</field>
+                      </shadow>
+                      <block type="math_single" id="FX_=g~%((pbM8DTsJlMU">
+                        <field name="OP">ABS</field>
+                        <value name="NUM">
+                          <shadow type="math_number" id="GleSn`9j7Cm7/dqg}FIA">
+                            <field name="NUM">9</field>
+                          </shadow>
+                          <block type="read_details" id="E^S1f%ov/wT*)f}Q2!SK">
+                            <field name="DETAIL_INDEX">4</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <value name="B">
+                      <shadow type="math_number" id="{JXdZCp2%s=sfO@yN:n}">
+                        <field name="NUM">1</field>
+                      </shadow>
+                      <block type="math_number" id="`QKav=/U4)}^__0!o_(c">
+                        <field name="NUM">10.041</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="controls_if" id="mu#-HM%oPx={kJ=fV8=|">
+                    <value name="IF0">
+                      <block type="logic_compare" id="dNs]t(GyzgglM,XMTDvb">
+                        <field name="OP">GTE</field>
+                        <value name="A">
+                          <block type="math_single" id="a0@ts-ulSz~m0[mw87ir">
+                            <field name="OP">ABS</field>
+                            <value name="NUM">
+                              <shadow type="math_number" id="ft^DVzOH^GlSjzUC}@3c">
+                                <field name="NUM">9</field>
+                              </shadow>
+                              <block type="read_details" id="A/Hs,Vny^(7-mM{:InU[">
+                                <field name="DETAIL_INDEX">4</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <value name="B">
+                          <block type="variables_get" id="HeD6}Fq/mG)kOI1]*44[">
+                            <field name="VAR" id="pO[m@P}e6QS^G|2d~cW%" variabletype="">Limite de Perda</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <statement name="DO0">
+                      <block type="variables_set" id="u:oJzS]FEYpy9ypI3bD*">
+                        <field name="VAR" id="Ay,z)+OmKIP_BE[oaL{~" variabletype="">Aposta Inicial</field>
+                        <value name="VALUE">
+                          <block type="variables_get" id="),(#N=,PVUQl!wgt-~4i">
+                            <field name="VAR" id="=iuIh3(U3|];EjDXbsqU" variabletype="">Aposta ao Vencer</field>
+                          </block>
+                        </value>
+                      </block>
+                    </statement>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <next>
+          <block type="notify" id="]fc2SUtM2UzE|=Tzpy}S">
+            <field name="NOTIFICATION_TYPE">info</field>
+            <field name="NOTIFICATION_SOUND">silent</field>
+            <value name="MESSAGE">
+              <block type="text_join" id="*!(=c%67H[//(y{YBgZy">
+                <mutation items="2"></mutation>
+                <value name="ADD0">
+                  <block type="text" id="[69Ue}W}MaCF*BU#294_">
+                    <field name="TEXT">Lucro Total: </field>
+                  </block>
+                </value>
+                <value name="ADD1">
+                  <block type="total_profit" id="}*H,Z~xMxuNBTwVTv4*{"></block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="controls_if" id="Su2G{`dLNbP}g7q=]!p)">
+                <mutation else="1"></mutation>
+                <value name="IF0">
+                  <block type="logic_compare" id="N^U?{:24gAXhqr=~#}={">
+                    <field name="OP">LT</field>
+                    <value name="A">
+                      <block type="total_profit" id="%wR%e|eExAHt5W:,kAsm"></block>
+                    </value>
+                    <value name="B">
+                      <block type="variables_get" id=",F_S*,CaK.}p}MS{#)eG">
+                        <field name="VAR" id="il$NJ(_V-OT:YZ).{54f" variabletype="">Expectativa de Lucro</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <statement name="DO0">
+                  <block type="trade_again" id="WlL(Yr4%r-~ea4QwP#Nm"></block>
+                </statement>
+                <statement name="ELSE">
+                  <block type="text_print" id="Flww-KT}T1+c~bF:^cMb">
+                    <value name="TEXT">
+                      <shadow type="text" id="kqlrIk.GO.^}hI,PoUV)">
+                        <field name="TEXT">abc</field>
+                      </shadow>
+                      <block type="text_join" id="_3~!q2F=HY|q(Kdb^m9l">
+                        <mutation items="2"></mutation>
+                        <value name="ADD0">
+                          <block type="text" id="Gg@4VoMw!c3UbQ[:@PB.">
+                            <field name="TEXT">Concluido! Lucro Total : </field>
+                          </block>
+                        </value>
+                        <value name="ADD1">
+                          <block type="total_profit" id="O:MYUukPm?_m(w65eRd?"></block>
+                        </value>
+                      </block>
+                    </value>
+                  </block>
+                </statement>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <block type="before_purchase" id="strategy" collapsed="true" x="-137" y="993">
+    <statement name="BEFOREPURCHASE_STACK">
+      <block type="purchase" id="ZVP}e)NE+mzs2cOebw5Y">
+        <field name="PURCHASE_LIST">DIGITDIFF</field>
+      </block>
+    </statement>
+  </block>
+  <block type="tick_analysis" id="lNB=8W8;l+)Z{Zl/C=DW" collapsed="true" x="6281" y="4129">
+    <statement name="TICKANALYSIS_STACK">
+      <block type="controls_if" id="1gD/${~)]^l1To#{1Pc3">
+        <mutation elseif="1" else="1"></mutation>
+        <value name="IF0">
+          <block type="logic_compare" id="vl@!By8;5y:nUB*ZQPK=">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id=":Mlp1sK5{RR`sL1$acg:">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="logic_null" id="2#1D.Sdq/S@od9Law/s,"></block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="variables_set" id="bm-}Fu,{lMVkEj#vPF@!">
+            <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+            <value name="VALUE">
+              <block type="text_prompt_ext" id="2{Klr4u|$8sz4EY]X~D0">
+                <mutation type="TEXT"></mutation>
+                <field name="TYPE">TEXT</field>
+                <value name="TEXT">
+                  <shadow type="text" id="$.Lz;$EYCg=b^7}jZz~R">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="4bHfiAd2RGqvn;{Z%$5E">
+                    <field name="TEXT">BOT DISPONIBILIZADO PELO CANAL PLETSCH TRADER: DEIXE SEU LIKE NOS VÍDEOS BOTS DIÁRIOS 100% FREE</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </statement>
+        <value name="IF1">
+          <block type="logic_compare" id="oR#g*wH?%02Jlp/LnnG!">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="6_H[-pNMu7syMSEp?V$m">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="text" id="SWi2?~Q3$+2K%xO[h4@f">
+                <field name="TEXT">CANALPLETSCHTRADER</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="ELSE">
+          <block type="text_print" id="lhOBY8_WHIOIcU;.^,3U">
+            <value name="TEXT">
+              <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                <field name="TEXT">abc</field>
+              </shadow>
+              <block type="text" id="`5)YO%Q2M|[O;$00GLv2">
+                <field name="TEXT">SENHA INCORRETA</field>
+              </block>
+            </value>
+            <next>
+              <block type="text_print" id="P%;`bKcM`B[{to4.CLd`">
+                <value name="TEXT">
+                  <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="|oy.KD^ygSN}H}0#O)I)">
+                    <field name="TEXT">ENTRE EM CONTATO ATRAVÉS DO CANAL PLETSCH TRADER.</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+  <block type="tick_analysis" id="#?jI%2;7oZA?ki)|hOre" collapsed="true" x="6301" y="4168">
+    <statement name="TICKANALYSIS_STACK">
+      <block type="controls_if" id="]Lh/dNSI#0cSb_PtGHHR">
+        <mutation elseif="1" else="1"></mutation>
+        <value name="IF0">
+          <block type="logic_compare" id="aeOF^G%rqAOvbB}m36K]">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="-IH01,)QFBdw@u$1tW$U">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="logic_null" id="7S:I_(`*vhp`!Bzd68LM"></block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="variables_set" id="PLNIM6FCz0?k*Q{!iZ+q">
+            <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+            <value name="VALUE">
+              <block type="text_prompt_ext" id=")!ZyYBTK?xqf6LN2]%rF">
+                <mutation type="TEXT"></mutation>
+                <field name="TYPE">TEXT</field>
+                <value name="TEXT">
+                  <shadow type="text" id="$.Lz;$EYCg=b^7}jZz~R">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="?+^X.PGrW`0qew:z4S8|">
+                    <field name="TEXT">BOT DISPONIBILIZADO PELO CANAL PLETSCH TRADER: DEIXE SEU LIKE NOS VÍDEOS BOTS DIÁRIOS 100% FREE</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </statement>
+        <value name="IF1">
+          <block type="logic_compare" id="D;rPzzl{M2V_FAnvVVRq">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="M`$wAEG$Dkl+ow[G@G6R">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="text" id="B`;8ebX/`nNoU2]v0=uo">
+                <field name="TEXT">CANALPLETSCHTRADER</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="ELSE">
+          <block type="text_print" id="Y|!8E/i8F%yJUv$5g)tS">
+            <value name="TEXT">
+              <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                <field name="TEXT">abc</field>
+              </shadow>
+              <block type="text" id="EN@Y7bw{;Gt9y`Dpnmf4">
+                <field name="TEXT">SENHA INCORRETA</field>
+              </block>
+            </value>
+            <next>
+              <block type="text_print" id="hkR4gj-@:b7M|7^z]2#w">
+                <value name="TEXT">
+                  <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="pPWpMt)K=D!2xz^R5[]t">
+                    <field name="TEXT">ENTRE EM CONTATO ATRAVÉS DO CANAL PLETSCH TRADER.</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+  <block type="tick_analysis" id="NhcZ[txF}FAzDDV*}ct*" collapsed="true" x="6321" y="4208">
+    <statement name="TICKANALYSIS_STACK">
+      <block type="controls_if" id="NEox-{rgbG_`/Y$2TF3U">
+        <mutation elseif="1" else="1"></mutation>
+        <value name="IF0">
+          <block type="logic_compare" id="U~$0qH}%9hU]N)`R?A~6">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="000OdADC}g:{!;]Ec31g">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="logic_null" id="#U6)0BFp_CqmGJ|5nubK"></block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="variables_set" id="s}/vUQByMD%J*`W/kzQ.">
+            <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+            <value name="VALUE">
+              <block type="text_prompt_ext" id="=:BP91H,`fKTxFC(L+Tl">
+                <mutation type="TEXT"></mutation>
+                <field name="TYPE">TEXT</field>
+                <value name="TEXT">
+                  <shadow type="text" id="$.Lz;$EYCg=b^7}jZz~R">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="7o$3/2yy2^3Uy#ba%A^$">
+                    <field name="TEXT">BOT DISPONIBILIZADO PELO CANAL PLETSCH TRADER: DEIXE SEU LIKE NOS VÍDEOS BOTS DIÁRIOS 100% FREE</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </statement>
+        <value name="IF1">
+          <block type="logic_compare" id="zcT(uk=k(8:Qo|syGQ9P">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="t}SZ^JZHiUKt]e;F0f12">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="text" id="3%-=S;T[{qo}0SR!{cgP">
+                <field name="TEXT">CANALPLETSCHTRADER</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="ELSE">
+          <block type="text_print" id="r`YeGBkq5gJmI^$tNk{s">
+            <value name="TEXT">
+              <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                <field name="TEXT">abc</field>
+              </shadow>
+              <block type="text" id="csj^phMtXLcA-.;Re73v">
+                <field name="TEXT">SENHA INCORRETA</field>
+              </block>
+            </value>
+            <next>
+              <block type="text_print" id="i;#?o|3tm{hX`Yi*gi8P">
+                <value name="TEXT">
+                  <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="SHHTNjM9Ha/5(.@iQAo5">
+                    <field name="TEXT">ENTRE EM CONTATO ATRAVÉS DO CANAL PLETSCH TRADER.</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+  <block type="tick_analysis" id="c9I;[m0OgKD3u5eHaR^`" collapsed="true" x="6341" y="4248">
+    <statement name="TICKANALYSIS_STACK">
+      <block type="controls_if" id="4b$8~G73SNq@hQWXMq1[">
+        <mutation elseif="1" else="1"></mutation>
+        <value name="IF0">
+          <block type="logic_compare" id="5K7nzCMmC0#VAqoC[#x{">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="zsqloij%.8t::-8d4u;h">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="logic_null" id="hkYXhNGI@D^R+kD=$FT5"></block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="variables_set" id="*ZSJ4,(mD12JVL8rf0q7">
+            <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+            <value name="VALUE">
+              <block type="text_prompt_ext" id="{iv9:mrCs3A^(AA%IkDw">
+                <mutation type="TEXT"></mutation>
+                <field name="TYPE">TEXT</field>
+                <value name="TEXT">
+                  <shadow type="text" id="$.Lz;$EYCg=b^7}jZz~R">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="*i:J4w5#=;4=xQ^yeg]{">
+                    <field name="TEXT">BOT DISPONIBILIZADO PELO CANAL PLETSCH TRADER: DEIXE SEU LIKE NOS VÍDEOS BOTS DIÁRIOS 100% FREE</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </statement>
+        <value name="IF1">
+          <block type="logic_compare" id="HTuOj=]2abCaZJ1(y~#V">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="KFTEJ;sFiP:d)#pYQ4P1">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="text" id="ssmgwy[zf2ZxhWI/znIc">
+                <field name="TEXT">CANALPLETSCHTRADER</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="ELSE">
+          <block type="text_print" id="os?Wj%e;*M`V`39]SWP3">
+            <value name="TEXT">
+              <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                <field name="TEXT">abc</field>
+              </shadow>
+              <block type="text" id="xDERvW~%FbUkj#9M;Fx%">
+                <field name="TEXT">SENHA INCORRETA</field>
+              </block>
+            </value>
+            <next>
+              <block type="text_print" id="+A4w8d*E2kY]_v$A/%X%">
+                <value name="TEXT">
+                  <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="Y+rdyUh_zj{UO*u~R_Zz">
+                    <field name="TEXT">ENTRE EM CONTATO ATRAVÉS DO CANAL PLETSCH TRADER.</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+  <block type="tick_analysis" id="9%+^2k9^B$=7j2oO!ZQx" collapsed="true" x="6361" y="4288">
+    <statement name="TICKANALYSIS_STACK">
+      <block type="controls_if" id="J+qX%p8$#M=^`#Kw{$CL">
+        <mutation elseif="1" else="1"></mutation>
+        <value name="IF0">
+          <block type="logic_compare" id="4`TJ*7-z#ourYGLDpQw/">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="=5_)podwoO)`Sho-}kPk">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="logic_null" id="Ng2=ofuvGni}o%*i*_q8"></block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="variables_set" id="z|!f203jQ5J5uza[2_Zr">
+            <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+            <value name="VALUE">
+              <block type="text_prompt_ext" id="W]5Y!fx~5x@9f95w8NG9">
+                <mutation type="TEXT"></mutation>
+                <field name="TYPE">TEXT</field>
+                <value name="TEXT">
+                  <shadow type="text" id="$.Lz;$EYCg=b^7}jZz~R">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="3$+kUM`:K;)^~5^0@K:u">
+                    <field name="TEXT">BOT DISPONIBILIZADO PELO CANAL PLETSCH TRADER: DEIXE SEU LIKE NOS VÍDEOS BOTS DIÁRIOS 100% FREE</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </statement>
+        <value name="IF1">
+          <block type="logic_compare" id=";ghKY{`]yvZs8HQ/UA]/">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="MN:WGxiL)!]dD*g5!i/K">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="text" id="sTq:$7{;rRC}wokmZ%Wv">
+                <field name="TEXT">CANALPLETSCHTRADER</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="ELSE">
+          <block type="text_print" id="/nS{q|OrNiJ5iEGt/Bs4">
+            <value name="TEXT">
+              <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                <field name="TEXT">abc</field>
+              </shadow>
+              <block type="text" id="Jc1^RdxBBFPU:$_ezb{w">
+                <field name="TEXT">SENHA INCORRETA</field>
+              </block>
+            </value>
+            <next>
+              <block type="text_print" id="Xc+MysJrtl3r)owmQrpE">
+                <value name="TEXT">
+                  <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="E}OL@66|e3izH()%epfF">
+                    <field name="TEXT">ENTRE EM CONTATO ATRAVÉS DO CANAL PLETSCH TRADER.</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+  <block type="tick_analysis" id="]aV7u;B,drAx^t[I#(RU" collapsed="true" x="6381" y="4328">
+    <statement name="TICKANALYSIS_STACK">
+      <block type="controls_if" id="CE!q,WZR,tJ:XolL|z./">
+        <mutation elseif="1" else="1"></mutation>
+        <value name="IF0">
+          <block type="logic_compare" id="gagl=GSW[0|bh#g];vEM">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="vwAN#b2@(yx?(dFKQxc:">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="logic_null" id="o;1~$Z8ET%~GY)g0Z0G:"></block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="variables_set" id="4;H/v^1YWN6CItVJnKO`">
+            <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+            <value name="VALUE">
+              <block type="text_prompt_ext" id="*^IH)19:[i0]eQrMAls~">
+                <mutation type="TEXT"></mutation>
+                <field name="TYPE">TEXT</field>
+                <value name="TEXT">
+                  <shadow type="text" id="$.Lz;$EYCg=b^7}jZz~R">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="t!GM.-zpO25b^t@`p|zD">
+                    <field name="TEXT">BOT DISPONIBILIZADO PELO CANAL PLETSCH TRADER: DEIXE SEU LIKE NOS VÍDEOS BOTS DIÁRIOS 100% FREE</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </statement>
+        <value name="IF1">
+          <block type="logic_compare" id="qo[[/Gh_Ql9~pp]vNb$k">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="+i]/G~Oj8kBFp*HOM.X9">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="text" id="$y]_*0h3luw1]q6nq`gZ">
+                <field name="TEXT">CANALPLETSCHTRADER</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="ELSE">
+          <block type="text_print" id="_ubG]6,0LJ{-Kc^b7ALu">
+            <value name="TEXT">
+              <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                <field name="TEXT">abc</field>
+              </shadow>
+              <block type="text" id=":%QmiHX]DlsO-$eGE-kl">
+                <field name="TEXT">SENHA INCORRETA</field>
+              </block>
+            </value>
+            <next>
+              <block type="text_print" id="[vs7itVV:ocZxH4W=k9U">
+                <value name="TEXT">
+                  <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="B__;@5.Z[r@Mwt4U~y,{">
+                    <field name="TEXT">ENTRE EM CONTATO ATRAVÉS DO CANAL PLETSCH TRADER.</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+  <block type="tick_analysis" id="F%WFPD%9X{Zm|$po*S[+" collapsed="true" x="6401" y="4368">
+    <statement name="TICKANALYSIS_STACK">
+      <block type="controls_if" id="uysZ)yH0PE?DaydE+`D%">
+        <mutation elseif="1" else="1"></mutation>
+        <value name="IF0">
+          <block type="logic_compare" id="-|@%R0!o!wB8rqpTdE;q">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="_/dSfB0TtXfjvGc?a1zV">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="logic_null" id="wt|VQPPL#(e!pC~hVi?2"></block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="variables_set" id="~Yuaj+`X)plEG1t.[:M-">
+            <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+            <value name="VALUE">
+              <block type="text_prompt_ext" id="A%lfB]:Om-R$KthQxZ)5">
+                <mutation type="TEXT"></mutation>
+                <field name="TYPE">TEXT</field>
+                <value name="TEXT">
+                  <shadow type="text" id="$.Lz;$EYCg=b^7}jZz~R">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id=".Tj%WY$m.-+R~^_:m]CR">
+                    <field name="TEXT">BOT DISPONIBILIZADO PELO CANAL PLETSCH TRADER: DEIXE SEU LIKE NOS VÍDEOS BOTS DIÁRIOS 100% FREE</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </statement>
+        <value name="IF1">
+          <block type="logic_compare" id="$U*Olx;O?|RgTiIXQZ0j">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="@{R=i0uo4E^yyADmMj4d">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="text" id="{;dp`x6~tcOO^8+tOl0J">
+                <field name="TEXT">CANALPLETSCHTRADER</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="ELSE">
+          <block type="text_print" id="eKlOPP1{#%Ve_|l!b,R!">
+            <value name="TEXT">
+              <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                <field name="TEXT">abc</field>
+              </shadow>
+              <block type="text" id="]OChIVtxXj(RwLNR_P,q">
+                <field name="TEXT">SENHA INCORRETA</field>
+              </block>
+            </value>
+            <next>
+              <block type="text_print" id="!I(~!MGa%rn1=/r3j.?S">
+                <value name="TEXT">
+                  <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="2oC*nB6[DNjRa}eG,l#{">
+                    <field name="TEXT">ENTRE EM CONTATO ATRAVÉS DO CANAL PLETSCH TRADER.</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+  <block type="tick_analysis" id="c+z+y.x2a%/F}cCUKRdx" collapsed="true" x="6421" y="4408">
+    <statement name="TICKANALYSIS_STACK">
+      <block type="controls_if" id="lV85i4y?OQ=otO)fN?[:">
+        <mutation elseif="1" else="1"></mutation>
+        <value name="IF0">
+          <block type="logic_compare" id="qxkXepS%Eq5,lT%IbeF0">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="hCk1zgIz+!Vo8]7Xo!*~">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="logic_null" id="~,i`k~uxg7j@UuBY{/)0"></block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="variables_set" id="33;]t?aB})BxKMjed=bR">
+            <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+            <value name="VALUE">
+              <block type="text_prompt_ext" id="I`Lwwx%{K~h#1SaNO^qU">
+                <mutation type="TEXT"></mutation>
+                <field name="TYPE">TEXT</field>
+                <value name="TEXT">
+                  <shadow type="text" id="$.Lz;$EYCg=b^7}jZz~R">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="*/54C.ol1$j[TLs:n$E+">
+                    <field name="TEXT">BOT DISPONIBILIZADO PELO CANAL PLETSCH TRADER: DEIXE SEU LIKE NOS VÍDEOS BOTS DIÁRIOS 100% FREE</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </statement>
+        <value name="IF1">
+          <block type="logic_compare" id="gO4$BC_2lZ*9sQUJj8pD">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="J(M=,S$m.f(4P)W[8T$4">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="text" id="pG5pq+[M+1#JGEc/9#DO">
+                <field name="TEXT">CANALPLETSCHTRADER</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="ELSE">
+          <block type="text_print" id="WCzlUqyvO7}5w^%7v_=E">
+            <value name="TEXT">
+              <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                <field name="TEXT">abc</field>
+              </shadow>
+              <block type="text" id="CbPNMF3hDit]Gd*n)t(P">
+                <field name="TEXT">SENHA INCORRETA</field>
+              </block>
+            </value>
+            <next>
+              <block type="text_print" id="]b`V;;i@`o_8$80VpJ{9">
+                <value name="TEXT">
+                  <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="Y|Ewpfbd~1Um.)9`G=|6">
+                    <field name="TEXT">ENTRE EM CONTATO ATRAVÉS DO CANAL PLETSCH TRADER.</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+  <block type="tick_analysis" id="GOx)j.JFXGv3As{%mX*+" collapsed="true" x="6441" y="4448">
+    <statement name="TICKANALYSIS_STACK">
+      <block type="controls_if" id="W^3-K^-{4Ur77zL**5TM">
+        <mutation elseif="1" else="1"></mutation>
+        <value name="IF0">
+          <block type="logic_compare" id="ZDwC}UFREBMy?]j_[9OE">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="e7:m.;c@F,-sHD[U51b?">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="logic_null" id="No{AxBg_fW;RZX}5])^t"></block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="variables_set" id="~%D~W8yeRz{7A)fayC@M">
+            <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+            <value name="VALUE">
+              <block type="text_prompt_ext" id="uth37:QdY2l;lth;+g93">
+                <mutation type="TEXT"></mutation>
+                <field name="TYPE">TEXT</field>
+                <value name="TEXT">
+                  <shadow type="text" id="$.Lz;$EYCg=b^7}jZz~R">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="PykXcb4Vg-w.OHG7w.]8">
+                    <field name="TEXT">BOT DISPONIBILIZADO PELO CANAL PLETSCH TRADER: DEIXE SEU LIKE NOS VÍDEOS BOTS DIÁRIOS 100% FREE</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </statement>
+        <value name="IF1">
+          <block type="logic_compare" id="Y-0vok4Dak%MDQtFN?IJ">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="1N2#8`l:r.1aCMt`++1t">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="text" id="7Hw?._x+7@LxCif].$(u">
+                <field name="TEXT">CANALPLETSCHTRADER</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="ELSE">
+          <block type="text_print" id="@3a9[!kD(CuDJ_-[)gVL">
+            <value name="TEXT">
+              <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                <field name="TEXT">abc</field>
+              </shadow>
+              <block type="text" id="QEIJvXU3M78;;d5aa~!j">
+                <field name="TEXT">SENHA INCORRETA</field>
+              </block>
+            </value>
+            <next>
+              <block type="text_print" id="{QLlp6wJ*${x@]3-+!|v">
+                <value name="TEXT">
+                  <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id=".!E}!}}7`1L8m9Ivp:*Q">
+                    <field name="TEXT">ENTRE EM CONTATO ATRAVÉS DO CANAL PLETSCH TRADER.</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+  <block type="tick_analysis" id="-sB`^)ehR#gdm?$#]oDR" collapsed="true" x="6461" y="4488">
+    <statement name="TICKANALYSIS_STACK">
+      <block type="controls_if" id="Gu@GJj@%M^2a~X.~_q+:">
+        <mutation elseif="1" else="1"></mutation>
+        <value name="IF0">
+          <block type="logic_compare" id="AGEN*v2kuTyb2a?MPYq@">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="mYsv91YQNJL=FSdATk_?">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="logic_null" id="!SG6qCj(9W#%?BpV{Nw)"></block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="variables_set" id="QCB`0pD.pvsA4m$~cN,:">
+            <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+            <value name="VALUE">
+              <block type="text_prompt_ext" id="/8XMVav#x13e,rM%2L5`">
+                <mutation type="TEXT"></mutation>
+                <field name="TYPE">TEXT</field>
+                <value name="TEXT">
+                  <shadow type="text" id="$.Lz;$EYCg=b^7}jZz~R">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="qwvZ=7cSKTGg*1O8VI88">
+                    <field name="TEXT">BOT DISPONIBILIZADO PELO CANAL PLETSCH TRADER: DEIXE SEU LIKE NOS VÍDEOS BOTS DIÁRIOS 100% FREE</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </statement>
+        <value name="IF1">
+          <block type="logic_compare" id="8q@=#O+rf|MzyXEimo.g">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="d#Rn~YyM-2DeV?IQJN|C">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="text" id=":ih6uF=!IE0njpS]9QUM">
+                <field name="TEXT">CANALPLETSCHTRADER</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="ELSE">
+          <block type="text_print" id="hy@}`e/H`TQmUVA@ndB%">
+            <value name="TEXT">
+              <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                <field name="TEXT">abc</field>
+              </shadow>
+              <block type="text" id="|W=%op(|#ZAxuDr.T|3?">
+                <field name="TEXT">SENHA INCORRETA</field>
+              </block>
+            </value>
+            <next>
+              <block type="text_print" id="7;(K}E{*:rmucJW2FX69">
+                <value name="TEXT">
+                  <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="]!K=u0Sf|3t}8_;XRf6L">
+                    <field name="TEXT">ENTRE EM CONTATO ATRAVÉS DO CANAL PLETSCH TRADER.</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+  <block type="tick_analysis" id="@Vi$V3h-gCeq^+7]mW#`" collapsed="true" x="6481" y="4528">
+    <statement name="TICKANALYSIS_STACK">
+      <block type="controls_if" id="]}A:32C-yctxV[n~h.~/">
+        <mutation elseif="1" else="1"></mutation>
+        <value name="IF0">
+          <block type="logic_compare" id="tRS[2eeG=}ahFQW;`SB`">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id=",M~^Q:f2{:kTKu,$7}p`">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="logic_null" id="a^=W}vNBM`$|hPy(PD=p"></block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="variables_set" id="jk|/;5a.,rlAd@Y?w~(?">
+            <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+            <value name="VALUE">
+              <block type="text_prompt_ext" id="1=MI{atlyD^[Yq4#u6Jq">
+                <mutation type="TEXT"></mutation>
+                <field name="TYPE">TEXT</field>
+                <value name="TEXT">
+                  <shadow type="text" id="$.Lz;$EYCg=b^7}jZz~R">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="}pa{UZyE5s[(0@b:Whjs">
+                    <field name="TEXT">BOT DISPONIBILIZADO PELO CANAL PLETSCH TRADER: DEIXE SEU LIKE NOS VÍDEOS BOTS DIÁRIOS 100% FREE</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </statement>
+        <value name="IF1">
+          <block type="logic_compare" id="PVX;r|rMpVJ~9C0nHupM">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="pt]L.+sDkKKgQczi4rBy">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="text" id="~Qg76vu/-O9-KNTSosb;">
+                <field name="TEXT">CANALPLETSCHTRADER</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="ELSE">
+          <block type="text_print" id="NrTX/i[5Zzx?a[[;vUa.">
+            <value name="TEXT">
+              <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                <field name="TEXT">abc</field>
+              </shadow>
+              <block type="text" id=":VzHW`RH?|E]oLY;4{t?">
+                <field name="TEXT">SENHA INCORRETA</field>
+              </block>
+            </value>
+            <next>
+              <block type="text_print" id="@Or~|A!%fz^DNHF6iqB)">
+                <value name="TEXT">
+                  <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="G}GlJbd53-F`[i?I1wdx">
+                    <field name="TEXT">ENTRE EM CONTATO ATRAVÉS DO CANAL PLETSCH TRADER.</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+  <block type="tick_analysis" id="4;~}j26}E=p*3)@g[rg5" collapsed="true" x="6501" y="4568">
+    <statement name="TICKANALYSIS_STACK">
+      <block type="controls_if" id="=NnuKw^21%4X}hXum1r}">
+        <mutation elseif="1" else="1"></mutation>
+        <value name="IF0">
+          <block type="logic_compare" id="?Xb+@l7wwYewp%Z4=3yr">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="gQ0P9omSZqDxgy$7rFKj">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="logic_null" id="!y(qj/=.)pzxqz?GEsXe"></block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="variables_set" id=",5Okw]`DbpC.Vo%^TmQ/">
+            <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+            <value name="VALUE">
+              <block type="text_prompt_ext" id="FJoW2xI#cq0l(mkfMG7/">
+                <mutation type="TEXT"></mutation>
+                <field name="TYPE">TEXT</field>
+                <value name="TEXT">
+                  <shadow type="text" id="$.Lz;$EYCg=b^7}jZz~R">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="33pz|`UYGq`?I#l=Sv?o">
+                    <field name="TEXT">BOT DISPONIBILIZADO PELO CANAL PLETSCH TRADER: DEIXE SEU LIKE NOS VÍDEOS BOTS DIÁRIOS 100% FREE</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </statement>
+        <value name="IF1">
+          <block type="logic_compare" id="x[$(cO(6i%gl.Y1$vrfw">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="jNk9K(hnav=;N}#|C!Je">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="text" id="Y?5grVo;1K2$Qm{*Nl]5">
+                <field name="TEXT">CANALPLETSCHTRADER</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="ELSE">
+          <block type="text_print" id="Gs_e?G_(^WmF|Y)dAImB">
+            <value name="TEXT">
+              <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                <field name="TEXT">abc</field>
+              </shadow>
+              <block type="text" id="[#%LN,l;dP+tEJ_f|0!?">
+                <field name="TEXT">SENHA INCORRETA</field>
+              </block>
+            </value>
+            <next>
+              <block type="text_print" id="r1mh)kP(]%oC?g^=U!-?">
+                <value name="TEXT">
+                  <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="U#E++#rU.EJ]d?XxeY|s">
+                    <field name="TEXT">ENTRE EM CONTATO ATRAVÉS DO CANAL PLETSCH TRADER.</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+  <block type="tick_analysis" id="k]xLjcpxfaojfX3^Gg_J" collapsed="true" x="6521" y="4608">
+    <statement name="TICKANALYSIS_STACK">
+      <block type="controls_if" id="GIba@Q$}Hax6vOXZnhU?">
+        <mutation elseif="1" else="1"></mutation>
+        <value name="IF0">
+          <block type="logic_compare" id="Mw4a.8x*BB7q9kb[F,:P">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="$[vfD^nSn]t6uW0xk}.g">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="logic_null" id="TlP4qXJAfuyFOt[@lLY$"></block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="variables_set" id="Zt|?C+dabPP5mC=_DIR~">
+            <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+            <value name="VALUE">
+              <block type="text_prompt_ext" id="`Oc+tF#J,L9|pI1Ywu|F">
+                <mutation type="TEXT"></mutation>
+                <field name="TYPE">TEXT</field>
+                <value name="TEXT">
+                  <shadow type="text" id="$.Lz;$EYCg=b^7}jZz~R">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="2l23Squoo`sw}rWl2BEo">
+                    <field name="TEXT">BOT DISPONIBILIZADO PELO CANAL PLETSCH TRADER: DEIXE SEU LIKE NOS VÍDEOS BOTS DIÁRIOS 100% FREE</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </statement>
+        <value name="IF1">
+          <block type="logic_compare" id="ht$fqlod:MkDI?7;=Q8{">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="W~6J}),q#%A#6U{|5Tx{">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="text" id="OJY$!-|iPy|vsK1c#vPz">
+                <field name="TEXT">CANALPLETSCHTRADER</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="ELSE">
+          <block type="text_print" id=";lkt$,JOU(.e[4,:X^gB">
+            <value name="TEXT">
+              <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                <field name="TEXT">abc</field>
+              </shadow>
+              <block type="text" id="DCeeXZiuxOZWrID.![W:">
+                <field name="TEXT">SENHA INCORRETA</field>
+              </block>
+            </value>
+            <next>
+              <block type="text_print" id=",CTx1`v3JbI@=/Ig]Mpk">
+                <value name="TEXT">
+                  <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="1[#HnYD9^|I[y`5k$+v!">
+                    <field name="TEXT">ENTRE EM CONTATO ATRAVÉS DO CANAL PLETSCH TRADER.</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+  <block type="tick_analysis" id="zq%^kYpzg2nGwM]ni]=P" collapsed="true" x="6541" y="4648">
+    <statement name="TICKANALYSIS_STACK">
+      <block type="controls_if" id="p.`(Cvd_Ac!vkXKRsRYg">
+        <mutation elseif="1" else="1"></mutation>
+        <value name="IF0">
+          <block type="logic_compare" id="2~lxPZ*c$S,*OEes3N(K">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="9KG.2x.S#1Ha@F,}8]GY">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="logic_null" id="q^N*C7Ql13YI[3)[Tb10"></block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="variables_set" id="r]k+{:%Ep(oXnn((XMX;">
+            <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+            <value name="VALUE">
+              <block type="text_prompt_ext" id=",+B%$Nb$BY+Y3,IOEP8X">
+                <mutation type="TEXT"></mutation>
+                <field name="TYPE">TEXT</field>
+                <value name="TEXT">
+                  <shadow type="text" id="$.Lz;$EYCg=b^7}jZz~R">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="Tpza]27r78xoWyf)-+xX">
+                    <field name="TEXT">BOT DISPONIBILIZADO PELO CANAL PLETSCH TRADER: DEIXE SEU LIKE NOS VÍDEOS BOTS DIÁRIOS 100% FREE</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </statement>
+        <value name="IF1">
+          <block type="logic_compare" id="GkNwEHw+cw0d2i$ZH@3e">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="Dqakt]?~LLH,/#=mCC7+">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="text" id="lz4_SvKf?Ez|5d!txK7p">
+                <field name="TEXT">CANALPLETSCHTRADER</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="ELSE">
+          <block type="text_print" id="`{X:*koA.CF,`),K=[H!">
+            <value name="TEXT">
+              <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                <field name="TEXT">abc</field>
+              </shadow>
+              <block type="text" id="Ie]ApSm[z)x|,G(X(L(r">
+                <field name="TEXT">SENHA INCORRETA</field>
+              </block>
+            </value>
+            <next>
+              <block type="text_print" id="B2DdhqiI*@DUrhnR7lfM">
+                <value name="TEXT">
+                  <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="2N*X}$dg/6DSgb`9]l:U">
+                    <field name="TEXT">ENTRE EM CONTATO ATRAVÉS DO CANAL PLETSCH TRADER.</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+  <block type="tick_analysis" id="Rj!?TWvvd41IOc^@q|!S" collapsed="true" x="6561" y="4688">
+    <statement name="TICKANALYSIS_STACK">
+      <block type="controls_if" id="pCzg#GKm3|!~*{Hci0[r">
+        <mutation elseif="1" else="1"></mutation>
+        <value name="IF0">
+          <block type="logic_compare" id="wITf;k%D$4pr0l9}-dW)">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="}~47f3he4JL:q9sL/:YG">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="logic_null" id="vcP#.VI~__lt0|nPQ-iQ"></block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="variables_set" id="9w=_m9(rPCP8cIGR)np9">
+            <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+            <value name="VALUE">
+              <block type="text_prompt_ext" id="ysf%Jcq~^+vsY@(2+xMh">
+                <mutation type="TEXT"></mutation>
+                <field name="TYPE">TEXT</field>
+                <value name="TEXT">
+                  <shadow type="text" id="$.Lz;$EYCg=b^7}jZz~R">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="o%SGTCD9~l0}LX*tBP|5">
+                    <field name="TEXT">BOT DISPONIBILIZADO PELO CANAL PLETSCH TRADER: DEIXE SEU LIKE NOS VÍDEOS BOTS DIÁRIOS 100% FREE</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </statement>
+        <value name="IF1">
+          <block type="logic_compare" id="YFUuKgc2y5%O.p7:el:D">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="|}AOIxyHP_;Pa9{h:rF|">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="text" id="H_iwl78I@#pm]$+$YS+U">
+                <field name="TEXT">CANALPLETSCHTRADER</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="ELSE">
+          <block type="text_print" id="msktP2pNf#:Cw-#5$`,i">
+            <value name="TEXT">
+              <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                <field name="TEXT">abc</field>
+              </shadow>
+              <block type="text" id="1VBvz(R|c^;2y7KZ40$O">
+                <field name="TEXT">SENHA INCORRETA</field>
+              </block>
+            </value>
+            <next>
+              <block type="text_print" id="e-B2SPM_omhSjPoVgMfD">
+                <value name="TEXT">
+                  <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="]T?u2P?!^L)Nl@tAxj7^">
+                    <field name="TEXT">ENTRE EM CONTATO ATRAVÉS DO CANAL PLETSCH TRADER.</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+  <block type="tick_analysis" id="]Q3$gQXi%`K0U@Sws%r=" collapsed="true" x="6581" y="4728">
+    <statement name="TICKANALYSIS_STACK">
+      <block type="controls_if" id="akP]nC0IKvr$Ey83$@`E">
+        <mutation elseif="1" else="1"></mutation>
+        <value name="IF0">
+          <block type="logic_compare" id="(4aY85sz*/([vuxTM2Yr">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="furLDQYR`Jm]WHm=j~dG">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="logic_null" id="^#4+H-Z(mq^I.!DOFqly"></block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="variables_set" id="LRCfpE~LtKiBUNL/t*$l">
+            <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+            <value name="VALUE">
+              <block type="text_prompt_ext" id="5fV6YeT]lm%/fhFq;WYv">
+                <mutation type="TEXT"></mutation>
+                <field name="TYPE">TEXT</field>
+                <value name="TEXT">
+                  <shadow type="text" id="$.Lz;$EYCg=b^7}jZz~R">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="E?aik9l-4khJgK%+|S,~">
+                    <field name="TEXT">BOT DISPONIBILIZADO PELO CANAL PLETSCH TRADER: DEIXE SEU LIKE NOS VÍDEOS BOTS DIÁRIOS 100% FREE</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </statement>
+        <value name="IF1">
+          <block type="logic_compare" id="AvWWgPcdiYF*BWzRr+?%">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="Ty@lL%PN)a8JtZ=wQn1w">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="text" id="G)Udj1]}elF}PyO[,e?~">
+                <field name="TEXT">CANALPLETSCHTRADER</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="ELSE">
+          <block type="text_print" id="W^^W}a8$+m/Mf_|Rw|){">
+            <value name="TEXT">
+              <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                <field name="TEXT">abc</field>
+              </shadow>
+              <block type="text" id="3L47q#H{aO*7{m6@37To">
+                <field name="TEXT">SENHA INCORRETA</field>
+              </block>
+            </value>
+            <next>
+              <block type="text_print" id="L3lypoRh|_Qa`Z$e?50T">
+                <value name="TEXT">
+                  <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="mr/VZ{8HSDr)TE%,n!f9">
+                    <field name="TEXT">ENTRE EM CONTATO ATRAVÉS DO CANAL PLETSCH TRADER.</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+  <block type="tick_analysis" id=",,,rxq(VkT(+/a}cf99D" collapsed="true" x="6601" y="4768">
+    <statement name="TICKANALYSIS_STACK">
+      <block type="controls_if" id="y$IqR3mjUzW=~6K0I:CL">
+        <mutation elseif="1" else="1"></mutation>
+        <value name="IF0">
+          <block type="logic_compare" id="J-UQ^;bllEAbalfG;/JE">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="O]Bhy({C5@Ga?PW1).:D">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="logic_null" id="2E^V6~?p(LcGFv9f%f27"></block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="variables_set" id="X~#8(dlyYfojbFFi1hcx">
+            <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+            <value name="VALUE">
+              <block type="text_prompt_ext" id="}2F~(45usPR6A@*{10KH">
+                <mutation type="TEXT"></mutation>
+                <field name="TYPE">TEXT</field>
+                <value name="TEXT">
+                  <shadow type="text" id="$.Lz;$EYCg=b^7}jZz~R">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="wc8C^pHJB%uhy1fzmom$">
+                    <field name="TEXT">BOT DISPONIBILIZADO PELO CANAL PLETSCH TRADER: DEIXE SEU LIKE NOS VÍDEOS BOTS DIÁRIOS 100% FREE</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </statement>
+        <value name="IF1">
+          <block type="logic_compare" id="d3DJ`-;ne@!(#3q~s^H.">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="G(Gw=s-G`@[l$CD]Of!I">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="text" id="/O*7~kysx-CA~xjNEZgA">
+                <field name="TEXT">CANALPLETSCHTRADER</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="ELSE">
+          <block type="text_print" id="DOq+^mW30{E:VRL]X`SY">
+            <value name="TEXT">
+              <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                <field name="TEXT">abc</field>
+              </shadow>
+              <block type="text" id="fzTl6|U85pi3A]yOrPvG">
+                <field name="TEXT">SENHA INCORRETA</field>
+              </block>
+            </value>
+            <next>
+              <block type="text_print" id="|ZP)CATH|}FR`:a)%nxr">
+                <value name="TEXT">
+                  <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id=";]T:(CtvUFSkn{o-DG8e">
+                    <field name="TEXT">ENTRE EM CONTATO ATRAVÉS DO CANAL PLETSCH TRADER.</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+  <block type="tick_analysis" id="x/]%p%B9;@G=SvH*,Gh$" collapsed="true" x="6621" y="4808">
+    <statement name="TICKANALYSIS_STACK">
+      <block type="controls_if" id="M-gpY]B8d/*pCRC96;5B">
+        <mutation elseif="1" else="1"></mutation>
+        <value name="IF0">
+          <block type="logic_compare" id="DTI-1mxk5/L9_GI@j6xW">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="|.M{2}3^p?5uBadbi40z">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="logic_null" id="x~mQ5(iBqL;/b%VcZHKH"></block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="variables_set" id="x`uhUX~7,;iuN`LzaP)i">
+            <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+            <value name="VALUE">
+              <block type="text_prompt_ext" id="dMeD?xtA-R72(cDY2Loz">
+                <mutation type="TEXT"></mutation>
+                <field name="TYPE">TEXT</field>
+                <value name="TEXT">
+                  <shadow type="text" id="$.Lz;$EYCg=b^7}jZz~R">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="y!ko`.TWzw9`g+%F7V;b">
+                    <field name="TEXT">BOT DISPONIBILIZADO PELO CANAL PLETSCH TRADER: DEIXE SEU LIKE NOS VÍDEOS BOTS DIÁRIOS 100% FREE</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </statement>
+        <value name="IF1">
+          <block type="logic_compare" id="X~kvGa6Q]!9SM/W`LgAd">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="pXz})zj`[aw@33(9t`zC">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="text" id="2o;%K^S}oOWSP.;NpG4J">
+                <field name="TEXT">CANALPLETSCHTRADER</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="ELSE">
+          <block type="text_print" id="Mj2`aGSL,w.At4Sj-%3%">
+            <value name="TEXT">
+              <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                <field name="TEXT">abc</field>
+              </shadow>
+              <block type="text" id="[PWx6}OR1J,-gQh}#w6.">
+                <field name="TEXT">SENHA INCORRETA</field>
+              </block>
+            </value>
+            <next>
+              <block type="text_print" id="lK)Oo/XC)WDGZMLwdQab">
+                <value name="TEXT">
+                  <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="t=eR%2s`[v#`f~%5N{pE">
+                    <field name="TEXT">ENTRE EM CONTATO ATRAVÉS DO CANAL PLETSCH TRADER.</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+  <block type="tick_analysis" id="Yq]XD/wWeq$T!]n1B3!I" collapsed="true" x="6641" y="4848">
+    <statement name="TICKANALYSIS_STACK">
+      <block type="controls_if" id="}}AO/`YN-0hyHX_2RnZ5">
+        <mutation elseif="1" else="1"></mutation>
+        <value name="IF0">
+          <block type="logic_compare" id="d5q[yE~v2/|)2}yQ!yuy">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="+CPWC!LEnwM{kk!GF[FT">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="logic_null" id="XrA?%59%|e~[IG09{$%Z"></block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="variables_set" id="-4``1q)WaSH;e/+:u@=S">
+            <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+            <value name="VALUE">
+              <block type="text_prompt_ext" id="I@j@QmuX}dA)|lSybtz(">
+                <mutation type="TEXT"></mutation>
+                <field name="TYPE">TEXT</field>
+                <value name="TEXT">
+                  <shadow type="text" id="$.Lz;$EYCg=b^7}jZz~R">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="wK:z`{+;+KF7Sd%v,:xD">
+                    <field name="TEXT">BOT DISPONIBILIZADO PELO CANAL PLETSCH TRADER: DEIXE SEU LIKE NOS VÍDEOS BOTS DIÁRIOS 100% FREE</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </statement>
+        <value name="IF1">
+          <block type="logic_compare" id="5bVZcmjKjmT=VG*vbO~=">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="-$mw)+)t]?dVV/lhb*8]">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="text" id="4axtv9?n-Wy{@)g)%?39">
+                <field name="TEXT">CANALPLETSCHTRADER</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="ELSE">
+          <block type="text_print" id="KxFmx5@B(VNHvgt[h@F7">
+            <value name="TEXT">
+              <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                <field name="TEXT">abc</field>
+              </shadow>
+              <block type="text" id="~gx:%JAftLCX;}%L(cQ9">
+                <field name="TEXT">SENHA INCORRETA</field>
+              </block>
+            </value>
+            <next>
+              <block type="text_print" id="mC[EE?]ZK;`d}e0/+{^/">
+                <value name="TEXT">
+                  <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="y@J[-bBacBr_Qq:v%H7!">
+                    <field name="TEXT">ENTRE EM CONTATO ATRAVÉS DO CANAL PLETSCH TRADER.</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+  <block type="tick_analysis" id="5uFY|Uirl[?K0-L/heF)" collapsed="true" x="6661" y="4888">
+    <statement name="TICKANALYSIS_STACK">
+      <block type="controls_if" id="U~1wE6mfpq]PwWxhH5$B">
+        <mutation elseif="1" else="1"></mutation>
+        <value name="IF0">
+          <block type="logic_compare" id="e[k!-MWeU0)4#`cr}A5c">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="_7Xyl_A:i^bzC|6S^gw/">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="logic_null" id="-aPc+_Xg^RaXw1BJ9|0u"></block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="variables_set" id="A+Pr6Hu9Qo_[=W2X_NY`">
+            <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+            <value name="VALUE">
+              <block type="text_prompt_ext" id="bU%Ng@Cr$Z)LIS*N=HCz">
+                <mutation type="TEXT"></mutation>
+                <field name="TYPE">TEXT</field>
+                <value name="TEXT">
+                  <shadow type="text" id="$.Lz;$EYCg=b^7}jZz~R">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="R*k-Tm,i?$E@.vjOwA9t">
+                    <field name="TEXT">BOT DISPONIBILIZADO PELO CANAL PLETSCH TRADER: DEIXE SEU LIKE NOS VÍDEOS BOTS DIÁRIOS 100% FREE</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </statement>
+        <value name="IF1">
+          <block type="logic_compare" id="!Y1o9~F4_r3O#LlOym(;">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="Z`f9~Jn`|21,0`FzMgy3">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="text" id="ag2,Lu;=4TJMn4fDys_$">
+                <field name="TEXT">CANALPLETSCHTRADER</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="ELSE">
+          <block type="text_print" id="-J8=olUzzcL_.QsrtKUA">
+            <value name="TEXT">
+              <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                <field name="TEXT">abc</field>
+              </shadow>
+              <block type="text" id="7]~d0`gsnuJAhqbhGU?;">
+                <field name="TEXT">SENHA INCORRETA</field>
+              </block>
+            </value>
+            <next>
+              <block type="text_print" id="/[8EvlY0!Ak~6?iYG[x0">
+                <value name="TEXT">
+                  <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="-{RC^[#hrx(C}fzWd9xU">
+                    <field name="TEXT">ENTRE EM CONTATO ATRAVÉS DO CANAL PLETSCH TRADER.</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+  <block type="tick_analysis" id="iAMC4/isD6oD/T%s2?-G" collapsed="true" x="6681" y="4928">
+    <statement name="TICKANALYSIS_STACK">
+      <block type="controls_if" id="AZNkAH^aCz=Zgab7ka.H">
+        <mutation elseif="1" else="1"></mutation>
+        <value name="IF0">
+          <block type="logic_compare" id=".+T3B.RDgeb*bjasHEKN">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="(w165jPgi+$w7LF$9`,X">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="logic_null" id=",eEfX}=jwPZ45CV!Eu,r"></block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="variables_set" id="eHL{z!#2!K.+U!14uO|h">
+            <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+            <value name="VALUE">
+              <block type="text_prompt_ext" id="0C7*;WE8:Z[-EB$yB89A">
+                <mutation type="TEXT"></mutation>
+                <field name="TYPE">TEXT</field>
+                <value name="TEXT">
+                  <shadow type="text" id="$.Lz;$EYCg=b^7}jZz~R">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="qdAVl,3hcNDer~B8tdO|">
+                    <field name="TEXT">BOT DISPONIBILIZADO PELO CANAL PLETSCH TRADER: DEIXE SEU LIKE NOS VÍDEOS BOTS DIÁRIOS 100% FREE</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </statement>
+        <value name="IF1">
+          <block type="logic_compare" id="mGfKa@Y4=VBjezGM4+^B">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="~]cnE:c$D,d.+^HfK*P.">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="text" id="7jmERL.ZL]Nm$9NOSzY,">
+                <field name="TEXT">CANALPLETSCHTRADER</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="ELSE">
+          <block type="text_print" id="X9U8):uoem|UMPBs9MOL">
+            <value name="TEXT">
+              <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                <field name="TEXT">abc</field>
+              </shadow>
+              <block type="text" id="M:6EF16FvGzpT[X}fa*v">
+                <field name="TEXT">SENHA INCORRETA</field>
+              </block>
+            </value>
+            <next>
+              <block type="text_print" id="3/4U}k%KYn#x{bd8{)RC">
+                <value name="TEXT">
+                  <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="WUQ|^jy0A84L00?u:8Jv">
+                    <field name="TEXT">ENTRE EM CONTATO ATRAVÉS DO CANAL PLETSCH TRADER.</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+  <block type="tick_analysis" id="T4n6izF3G^x7XA#D9^1V" collapsed="true" x="6701" y="4968">
+    <statement name="TICKANALYSIS_STACK">
+      <block type="controls_if" id="cslPB%,`vriRhf!_MKyS">
+        <mutation elseif="1" else="1"></mutation>
+        <value name="IF0">
+          <block type="logic_compare" id="y],VOKY^F;s+x[slJx?_">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="{NI[;vn!@c@xej.DhJ6g">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="logic_null" id="6KWf|GK%iw%P{pBvZ!^["></block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="variables_set" id="^/NQ#@Nnp~,5[)bqND]A">
+            <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+            <value name="VALUE">
+              <block type="text_prompt_ext" id="rk=T.Dm{O5G()gyKF%x=">
+                <mutation type="TEXT"></mutation>
+                <field name="TYPE">TEXT</field>
+                <value name="TEXT">
+                  <shadow type="text" id="$.Lz;$EYCg=b^7}jZz~R">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="]T6hZlqt)J3b,RC2(^]}">
+                    <field name="TEXT">BOT DISPONIBILIZADO PELO CANAL PLETSCH TRADER: DEIXE SEU LIKE NOS VÍDEOS BOTS DIÁRIOS 100% FREE</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </statement>
+        <value name="IF1">
+          <block type="logic_compare" id=":,q!,zR,@LfySch6LV`:">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="l*9=$U622fJYou7Y_)]/">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="text" id="Q#k,@hM1_0:xQy2c^*LO">
+                <field name="TEXT">CANALPLETSCHTRADER</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="ELSE">
+          <block type="text_print" id="_PT$0Fp98zgb2vCqql4a">
+            <value name="TEXT">
+              <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                <field name="TEXT">abc</field>
+              </shadow>
+              <block type="text" id="NsEn~q6=7p+BH,A[;oJK">
+                <field name="TEXT">SENHA INCORRETA</field>
+              </block>
+            </value>
+            <next>
+              <block type="text_print" id="sNLU$rtT!e^f{;o+FvFj">
+                <value name="TEXT">
+                  <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="G+!O[NJfd0*#h$+)DiC}">
+                    <field name="TEXT">ENTRE EM CONTATO ATRAVÉS DO CANAL PLETSCH TRADER.</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+  <block type="tick_analysis" id="Z?8=VL(sEi)nxh)R?p{z" collapsed="true" x="6721" y="5008">
+    <statement name="TICKANALYSIS_STACK">
+      <block type="controls_if" id="ztM5E+{Q_F@oZI};jp+*">
+        <mutation elseif="1" else="1"></mutation>
+        <value name="IF0">
+          <block type="logic_compare" id="b|CGEb*3Jz:s*K257W-_">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="eu}=`4baaiv:w5xla]b0">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="logic_null" id="25Awq(I*T8*D}g%Y~6#5"></block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="variables_set" id="-5rZLJP6Dt6|2v^U_!dK">
+            <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+            <value name="VALUE">
+              <block type="text_prompt_ext" id="3C7gO1*Or_mgB{P-4)*1">
+                <mutation type="TEXT"></mutation>
+                <field name="TYPE">TEXT</field>
+                <value name="TEXT">
+                  <shadow type="text" id="$.Lz;$EYCg=b^7}jZz~R">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="Q3F5K6xIP=`zI#3?f;-m">
+                    <field name="TEXT">BOT DISPONIBILIZADO PELO CANAL PLETSCH TRADER: DEIXE SEU LIKE NOS VÍDEOS BOTS DIÁRIOS 100% FREE</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </statement>
+        <value name="IF1">
+          <block type="logic_compare" id="i~:Twe[c?p/d40=xecq]">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="{.EltfjGVGtwUjZV.Gg4">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="text" id="`]nIT]U)_A`(9y#kS{9`">
+                <field name="TEXT">CANALPLETSCHTRADER</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="ELSE">
+          <block type="text_print" id=",#y*v20`%j}Vr96L]Mp=">
+            <value name="TEXT">
+              <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                <field name="TEXT">abc</field>
+              </shadow>
+              <block type="text" id="`8$|IIah6|1cxmi8W56L">
+                <field name="TEXT">SENHA INCORRETA</field>
+              </block>
+            </value>
+            <next>
+              <block type="text_print" id="v~/Y+2ZfJkkZqHC*$#b`">
+                <value name="TEXT">
+                  <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="q[*YM`h:?h7s[|02LzkS">
+                    <field name="TEXT">ENTRE EM CONTATO ATRAVÉS DO CANAL PLETSCH TRADER.</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+  <block type="tick_analysis" id="WYp=-uU{g{DqAv*~tx?U" collapsed="true" x="6741" y="5048">
+    <statement name="TICKANALYSIS_STACK">
+      <block type="controls_if" id="E##M$2Pzb67K?p^aTx-*">
+        <mutation elseif="1" else="1"></mutation>
+        <value name="IF0">
+          <block type="logic_compare" id="PxCRWIEw(b3|eUoo#;iW">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="gBH;ZtvLM_(_lbbV,_u7">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="logic_null" id="%jG.c[m|rN}1`JEhu;[o"></block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="variables_set" id="fk*5/(ez^{C!=wp(xi34">
+            <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+            <value name="VALUE">
+              <block type="text_prompt_ext" id="x}|.p[n*RE@Bw;g4Kjg^">
+                <mutation type="TEXT"></mutation>
+                <field name="TYPE">TEXT</field>
+                <value name="TEXT">
+                  <shadow type="text" id="$.Lz;$EYCg=b^7}jZz~R">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="Izi5peb#8,wz=w%t:F$5">
+                    <field name="TEXT">BOT DISPONIBILIZADO PELO CANAL PLETSCH TRADER: DEIXE SEU LIKE NOS VÍDEOS BOTS DIÁRIOS 100% FREE</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </statement>
+        <value name="IF1">
+          <block type="logic_compare" id="$36)4jF3EX2Cb)!BQMHq">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="Zd?F1$aL5qWzXKdA?mMX">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="text" id="rOt1O5sQF2B#@,C3W-8{">
+                <field name="TEXT">CANALPLETSCHTRADER</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="ELSE">
+          <block type="text_print" id="7?v3Zxqb`^`K}+N59)[E">
+            <value name="TEXT">
+              <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                <field name="TEXT">abc</field>
+              </shadow>
+              <block type="text" id="myh`XC=KKCi0@a8zTUE5">
+                <field name="TEXT">SENHA INCORRETA</field>
+              </block>
+            </value>
+            <next>
+              <block type="text_print" id="0s}Su`*t6m2!FVgnyqHF">
+                <value name="TEXT">
+                  <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id=";MJNN8F-@D+~LBWP0uaT">
+                    <field name="TEXT">ENTRE EM CONTATO ATRAVÉS DO CANAL PLETSCH TRADER.</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+  <block type="tick_analysis" id="#_#hm;I6]BCyc3iUgR9:" collapsed="true" x="6761" y="5088">
+    <statement name="TICKANALYSIS_STACK">
+      <block type="controls_if" id="B@E6Ky*4neT9*?H4:LgZ">
+        <mutation elseif="1" else="1"></mutation>
+        <value name="IF0">
+          <block type="logic_compare" id="p*x!g9~VGO;+[;:8uom;">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="z)su_mI?^:e6nM:bJ5RX">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="logic_null" id="n7jSZg2VGtbs]KK+s9;8"></block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="variables_set" id="xdpBw{~yn@]LiK]WK]as">
+            <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+            <value name="VALUE">
+              <block type="text_prompt_ext" id="f~tg(vAXNG^Pp=@adQ+l">
+                <mutation type="TEXT"></mutation>
+                <field name="TYPE">TEXT</field>
+                <value name="TEXT">
+                  <shadow type="text" id="$.Lz;$EYCg=b^7}jZz~R">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="GE_g@;shTo1`VMGihpF#">
+                    <field name="TEXT">BOT DISPONIBILIZADO PELO CANAL PLETSCH TRADER: DEIXE SEU LIKE NOS VÍDEOS BOTS DIÁRIOS 100% FREE</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </statement>
+        <value name="IF1">
+          <block type="logic_compare" id="2!JUD`5uaU!Z=^*d7}[P">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="J%LdJI4lEHCNVbI#*dU7">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="text" id="qZKr{zc6ly$[vUFx_|a,">
+                <field name="TEXT">CANALPLETSCHTRADER</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="ELSE">
+          <block type="text_print" id="cRv9O=Ge77lx]yu{g[*E">
+            <value name="TEXT">
+              <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                <field name="TEXT">abc</field>
+              </shadow>
+              <block type="text" id="rP(=[.w!z4`]S/N:~L1K">
+                <field name="TEXT">SENHA INCORRETA</field>
+              </block>
+            </value>
+            <next>
+              <block type="text_print" id="$pZUzVK#KO=x2z+}WPht">
+                <value name="TEXT">
+                  <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="}K0!A?`$C+b+?o.%5E0M">
+                    <field name="TEXT">ENTRE EM CONTATO ATRAVÉS DO CANAL PLETSCH TRADER.</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+  <block type="tick_analysis" id="b_saIuxbzfNVjk{s$H;M" collapsed="true" x="6781" y="5128">
+    <statement name="TICKANALYSIS_STACK">
+      <block type="controls_if" id="vO|~u}6!ABxyoiO}0$/l">
+        <mutation elseif="1" else="1"></mutation>
+        <value name="IF0">
+          <block type="logic_compare" id="J9_6PlA/o0I)]~LxT|a~">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="*5MZ9$T9Uln)If.}7nsD">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="logic_null" id="/S45vFE-9Pbnb1j!i-0g"></block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="variables_set" id="[blRzDS7Uk0wI8CHM?(2">
+            <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+            <value name="VALUE">
+              <block type="text_prompt_ext" id="+G/#mk5|[zhGRZwqC1Gi">
+                <mutation type="TEXT"></mutation>
+                <field name="TYPE">TEXT</field>
+                <value name="TEXT">
+                  <shadow type="text" id="$.Lz;$EYCg=b^7}jZz~R">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="bZ;Q_8HBFUD?%e~7C:YH">
+                    <field name="TEXT">BOT DISPONIBILIZADO PELO CANAL PLETSCH TRADER: DEIXE SEU LIKE NOS VÍDEOS BOTS DIÁRIOS 100% FREE</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </statement>
+        <value name="IF1">
+          <block type="logic_compare" id="V~ZnFD4nV6?RvYBKnlVb">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="6_4yD.vcP(vWDUQ!t}-B">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="text" id="O/sPm;$x1.QjFB6haf3%">
+                <field name="TEXT">CANALPLETSCHTRADER</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="ELSE">
+          <block type="text_print" id="mzp;#$(nx/x8|$2LMvfc">
+            <value name="TEXT">
+              <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                <field name="TEXT">abc</field>
+              </shadow>
+              <block type="text" id="[K1?,=+;Bj`yVx,$P0~T">
+                <field name="TEXT">SENHA INCORRETA</field>
+              </block>
+            </value>
+            <next>
+              <block type="text_print" id="@z:6}I=06c@s~MS%AS{/">
+                <value name="TEXT">
+                  <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="F9E?PQ[%k~YW6Ar%N=mH">
+                    <field name="TEXT">ENTRE EM CONTATO ATRAVÉS DO CANAL PLETSCH TRADER.</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+  <block type="tick_analysis" id="DjJa[?%eoIL7VD/)0p@P" collapsed="true" x="6801" y="5168">
+    <statement name="TICKANALYSIS_STACK">
+      <block type="controls_if" id="rN5sjh1j4yaWC-a2jbaN">
+        <mutation elseif="1" else="1"></mutation>
+        <value name="IF0">
+          <block type="logic_compare" id="{3?3Tn+c1slv7Z3b8:ER">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="Y*BWN9J)uw8e62~Z$D+7">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="logic_null" id="m)%V$H/RPG6ae,S4;ibq"></block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="variables_set" id="u!XbBJ[_~[Yk;6_76:6i">
+            <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+            <value name="VALUE">
+              <block type="text_prompt_ext" id="5TTM!*3P7mK~TtP}GHO~">
+                <mutation type="TEXT"></mutation>
+                <field name="TYPE">TEXT</field>
+                <value name="TEXT">
+                  <shadow type="text" id="$.Lz;$EYCg=b^7}jZz~R">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id=")CA.;z:wKxX9anj^}^My">
+                    <field name="TEXT">BOT DISPONIBILIZADO PELO CANAL PLETSCH TRADER: DEIXE SEU LIKE NOS VÍDEOS BOTS DIÁRIOS 100% FREE</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </statement>
+        <value name="IF1">
+          <block type="logic_compare" id=".z;.Z{++:|mA`j)^0FzP">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="X3UPh_|o7Xb,J7?+7nN?">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="text" id="h;:N#?BTltiRfRZH_N1.">
+                <field name="TEXT">CANALPLETSCHTRADER</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="ELSE">
+          <block type="text_print" id="1Lc7wq{9O))Xu8~e^ZLu">
+            <value name="TEXT">
+              <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                <field name="TEXT">abc</field>
+              </shadow>
+              <block type="text" id="`c#UrHeXSW2u1,axoZjS">
+                <field name="TEXT">SENHA INCORRETA</field>
+              </block>
+            </value>
+            <next>
+              <block type="text_print" id="~uz4|K]$/O{i3vs2wj:y">
+                <value name="TEXT">
+                  <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="+]84S+xROqso0(@:F_]8">
+                    <field name="TEXT">ENTRE EM CONTATO ATRAVÉS DO CANAL PLETSCH TRADER.</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+  <block type="tick_analysis" id=".1clF+;{K@op7=RDt#58" collapsed="true" x="6821" y="5208">
+    <statement name="TICKANALYSIS_STACK">
+      <block type="controls_if" id="h]FaDeb#4QqWYpFOk:,|">
+        <mutation elseif="1" else="1"></mutation>
+        <value name="IF0">
+          <block type="logic_compare" id="%gaK8Y-,B;3~;[!Jr-4R">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="9.)ve:x1owE]zMlepZX_">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="logic_null" id="0{x/3vWD^tA/Mk=pE%[j"></block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="variables_set" id="YbAQzB8L@qi,`p]=YP7?">
+            <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+            <value name="VALUE">
+              <block type="text_prompt_ext" id="U#744?A#},^g~ih`$*O{">
+                <mutation type="TEXT"></mutation>
+                <field name="TYPE">TEXT</field>
+                <value name="TEXT">
+                  <shadow type="text" id="$.Lz;$EYCg=b^7}jZz~R">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="QCKSIvo6k6o}Yg4$zBHO">
+                    <field name="TEXT">BOT DISPONIBILIZADO PELO CANAL PLETSCH TRADER: DEIXE SEU LIKE NOS VÍDEOS BOTS DIÁRIOS 100% FREE</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </statement>
+        <value name="IF1">
+          <block type="logic_compare" id="cP5)D][B}O8j:WL#)=e.">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="Q6bT=(Y~@OCZ+:%J?vU;">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="text" id="$+:=uU^C!xEU#P~03!y~">
+                <field name="TEXT">CANALPLETSCHTRADER</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="ELSE">
+          <block type="text_print" id="rb/gD/jSclumAZ3O?-Ih">
+            <value name="TEXT">
+              <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                <field name="TEXT">abc</field>
+              </shadow>
+              <block type="text" id=",^Vuo39`/8L|0{5Hoj^8">
+                <field name="TEXT">SENHA INCORRETA</field>
+              </block>
+            </value>
+            <next>
+              <block type="text_print" id="!9n_t([TE;mI}u)yt5IA">
+                <value name="TEXT">
+                  <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="gh9:x-L;.k3_I-pE%{y@">
+                    <field name="TEXT">ENTRE EM CONTATO ATRAVÉS DO CANAL PLETSCH TRADER.</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+  <block type="tick_analysis" id="qd1NS*T|~e(S4Y8+!6s?" collapsed="true" x="6841" y="5248">
+    <statement name="TICKANALYSIS_STACK">
+      <block type="controls_if" id="Eben;-[|gRTl)8fe,ra7">
+        <mutation elseif="1" else="1"></mutation>
+        <value name="IF0">
+          <block type="logic_compare" id="bb5hTXePNbv(V0O2RGK@">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="q,PR_=OLwIE5Y/f[5v3X">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="logic_null" id="lzC6#D$gYfWG}eZ^@s[k"></block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="variables_set" id="*iQr#.ch6XJ+:g]bL(LQ">
+            <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+            <value name="VALUE">
+              <block type="text_prompt_ext" id="a%JOHFtjrcz#}!G+8moS">
+                <mutation type="TEXT"></mutation>
+                <field name="TYPE">TEXT</field>
+                <value name="TEXT">
+                  <shadow type="text" id="$.Lz;$EYCg=b^7}jZz~R">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="qB14n=8VX7sP{CcjPv0g">
+                    <field name="TEXT">BOT DISPONIBILIZADO PELO CANAL PLETSCH TRADER: DEIXE SEU LIKE NOS VÍDEOS BOTS DIÁRIOS 100% FREE</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </statement>
+        <value name="IF1">
+          <block type="logic_compare" id="ri)dQ*R+dM0h6OYO9?_V">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="@dw3D[IWYxW~9cT03d07">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="text" id="XJrGiKi$3rVJ-(y}C89Q">
+                <field name="TEXT">CANALPLETSCHTRADER</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="ELSE">
+          <block type="text_print" id="#w_9dyof/13;lRs(HU|M">
+            <value name="TEXT">
+              <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                <field name="TEXT">abc</field>
+              </shadow>
+              <block type="text" id="wd9itU/mBk1NCdXx[4}]">
+                <field name="TEXT">SENHA INCORRETA</field>
+              </block>
+            </value>
+            <next>
+              <block type="text_print" id="*|HU:L?M*pu^]T-raEuW">
+                <value name="TEXT">
+                  <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="i4i@O_r^|Uf7djteEQ5q">
+                    <field name="TEXT">ENTRE EM CONTATO ATRAVÉS DO CANAL PLETSCH TRADER.</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+  <block type="tick_analysis" id=",2v4pf,s2OTS,aAiyeQ{" collapsed="true" x="6861" y="5288">
+    <statement name="TICKANALYSIS_STACK">
+      <block type="controls_if" id="{}mGUuWv[b1e1m$6%!:H">
+        <mutation elseif="1" else="1"></mutation>
+        <value name="IF0">
+          <block type="logic_compare" id="!Pv/2OgU8Qx5KGoBj$AV">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="4fO*u,@s~_OyQx_Go$6R">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="logic_null" id="#d;h,bjSTJuRY9[f:vO}"></block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="variables_set" id="%Kr]K+EWu{PB[QN27gxf">
+            <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+            <value name="VALUE">
+              <block type="text_prompt_ext" id="y%mDI;ed8gA-^#QS@033">
+                <mutation type="TEXT"></mutation>
+                <field name="TYPE">TEXT</field>
+                <value name="TEXT">
+                  <shadow type="text" id="$.Lz;$EYCg=b^7}jZz~R">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="ax|bR7EcKJD`H)d@3f3~">
+                    <field name="TEXT">BOT DISPONIBILIZADO PELO CANAL PLETSCH TRADER: DEIXE SEU LIKE NOS VÍDEOS BOTS DIÁRIOS 100% FREE</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </statement>
+        <value name="IF1">
+          <block type="logic_compare" id="jxPG+b2Wyv6b6_v:Qb5v">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="PU(;^NK:Xgxmd%8gH:~}">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="text" id="7Yx3.8,2,wSzY^u8CUEB">
+                <field name="TEXT">CANALPLETSCHTRADER</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="ELSE">
+          <block type="text_print" id="~bwqcp(}3~}3_fJ-4bin">
+            <value name="TEXT">
+              <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                <field name="TEXT">abc</field>
+              </shadow>
+              <block type="text" id="g:9WRUV8^S!n?T5BthN$">
+                <field name="TEXT">SENHA INCORRETA</field>
+              </block>
+            </value>
+            <next>
+              <block type="text_print" id="b1-S/y*a9isK(L-Qg]5}">
+                <value name="TEXT">
+                  <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="trn3mvd^Mw@(A,$zXd5{">
+                    <field name="TEXT">ENTRE EM CONTATO ATRAVÉS DO CANAL PLETSCH TRADER.</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+  <block type="tick_analysis" id="8j{FpC(Vv/a#RfqH4XM-" collapsed="true" x="6881" y="5328">
+    <statement name="TICKANALYSIS_STACK">
+      <block type="controls_if" id="GeK=*pI.Y?=Rt}RO_(]s">
+        <mutation elseif="1" else="1"></mutation>
+        <value name="IF0">
+          <block type="logic_compare" id="psmU^T=xRJxWC*{=UCO0">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="qvLY[5@M?SPkYJ93^I(n">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="logic_null" id="o/(QFnCZ.p1VvZ=:nVt="></block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="variables_set" id="-#uFvk0Qn1~^0HQ2ffo@">
+            <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+            <value name="VALUE">
+              <block type="text_prompt_ext" id="Re|6??IG2c)!?hRFPkzd">
+                <mutation type="TEXT"></mutation>
+                <field name="TYPE">TEXT</field>
+                <value name="TEXT">
+                  <shadow type="text" id="$.Lz;$EYCg=b^7}jZz~R">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="Y40z)Hs3~0237zgl8$nR">
+                    <field name="TEXT">BOT DISPONIBILIZADO PELO CANAL PLETSCH TRADER: DEIXE SEU LIKE NOS VÍDEOS BOTS DIÁRIOS 100% FREE</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </statement>
+        <value name="IF1">
+          <block type="logic_compare" id="u9NyKMfKL7Sr#A6e$E:f">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="(3Y=7lZ6.hv.QOT$|x$}">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="text" id="~;*u6V}_3^2*2mCQnXkF">
+                <field name="TEXT">CANALPLETSCHTRADER</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="ELSE">
+          <block type="text_print" id="5|P*?hxe~M3$6|-LK`c5">
+            <value name="TEXT">
+              <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                <field name="TEXT">abc</field>
+              </shadow>
+              <block type="text" id="=(C{dEs/Hb2z4X%TdkIp">
+                <field name="TEXT">SENHA INCORRETA</field>
+              </block>
+            </value>
+            <next>
+              <block type="text_print" id="BEmoK/F}q|MARCg,U;ph">
+                <value name="TEXT">
+                  <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="J*fdI!#w@nItk|=*+gZ0">
+                    <field name="TEXT">ENTRE EM CONTATO ATRAVÉS DO CANAL PLETSCH TRADER.</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+  <block type="tick_analysis" id="H9oFlB*83DyhIr_U@k7n" collapsed="true" x="6901" y="5368">
+    <statement name="TICKANALYSIS_STACK">
+      <block type="controls_if" id="@=-K~jstFg/HCm^B_Srv">
+        <mutation elseif="1" else="1"></mutation>
+        <value name="IF0">
+          <block type="logic_compare" id="^X?B](rMx0;,cU9Ru:IQ">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="ycvX$^JH3y_wX1LQSNQt">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="logic_null" id="N,(i[?9Wazd1u$?Q/+#H"></block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="variables_set" id="qc#1kQkqu9;*1XB;xeV[">
+            <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+            <value name="VALUE">
+              <block type="text_prompt_ext" id="8h@.F@Chbi.5d6/HFbQK">
+                <mutation type="TEXT"></mutation>
+                <field name="TYPE">TEXT</field>
+                <value name="TEXT">
+                  <shadow type="text" id="$.Lz;$EYCg=b^7}jZz~R">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="`$9uTUX#*p9AZAE9-.C{">
+                    <field name="TEXT">BOT DISPONIBILIZADO PELO CANAL PLETSCH TRADER: DEIXE SEU LIKE NOS VÍDEOS BOTS DIÁRIOS 100% FREE</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </statement>
+        <value name="IF1">
+          <block type="logic_compare" id="c1QeUK21pl]Qn|]A3HYx">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="bXcGvXi}Yx[NVz{Zoh5c">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="text" id="{6w[Y{m;=HdxJ4liHdUq">
+                <field name="TEXT">CANALPLETSCHTRADER</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="ELSE">
+          <block type="text_print" id="C:CNS:o,0546=Me98.LI">
+            <value name="TEXT">
+              <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                <field name="TEXT">abc</field>
+              </shadow>
+              <block type="text" id="}=_*:]0fHhzfVMZ{mWcj">
+                <field name="TEXT">SENHA INCORRETA</field>
+              </block>
+            </value>
+            <next>
+              <block type="text_print" id="37fcSM{9{I#6-+7]A8Q.">
+                <value name="TEXT">
+                  <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="V5Imq#q/-7F7J8WX,AtP">
+                    <field name="TEXT">ENTRE EM CONTATO ATRAVÉS DO CANAL PLETSCH TRADER.</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+  <block type="tick_analysis" id="wCRl[b)o/7LzkT@PkE.j" collapsed="true" x="6921" y="5408">
+    <statement name="TICKANALYSIS_STACK">
+      <block type="controls_if" id="W0o~p-%SQA%%^aUp?x_O">
+        <mutation elseif="1" else="1"></mutation>
+        <value name="IF0">
+          <block type="logic_compare" id="1Nb=lnpEAoz:1UaUd,/p">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id=",JUnAt3HnJ_]9baSg)XP">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="logic_null" id="1.ns5qL,Xnvi.xL$%@Zn"></block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="variables_set" id="?*[b10psD;Lt6~QNh@o[">
+            <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+            <value name="VALUE">
+              <block type="text_prompt_ext" id="2{2Fd,5/1l)]:JwoG4fm">
+                <mutation type="TEXT"></mutation>
+                <field name="TYPE">TEXT</field>
+                <value name="TEXT">
+                  <shadow type="text" id="$.Lz;$EYCg=b^7}jZz~R">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="*U_hIYIa)1NXAwFT)Wz]">
+                    <field name="TEXT">BOT DISPONIBILIZADO PELO CANAL PLETSCH TRADER: DEIXE SEU LIKE NOS VÍDEOS BOTS DIÁRIOS 100% FREE</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </statement>
+        <value name="IF1">
+          <block type="logic_compare" id="ljf/PsyUaB={^7N1^g3^">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="Sa(XY]-hw/d4d7~=RC=M">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="text" id="(fd-wXhl/fx9{9a1l5]O">
+                <field name="TEXT">CANALPLETSCHTRADER</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="ELSE">
+          <block type="text_print" id="wO`1~)*m:GNL*jY=!M@+">
+            <value name="TEXT">
+              <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                <field name="TEXT">abc</field>
+              </shadow>
+              <block type="text" id="JX%)q7b`!VdUKyHi30d{">
+                <field name="TEXT">SENHA INCORRETA</field>
+              </block>
+            </value>
+            <next>
+              <block type="text_print" id="kJ(meZwr10gSZaFbg=,}">
+                <value name="TEXT">
+                  <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="|ZJabHjFZn2+S{pU?!=7">
+                    <field name="TEXT">ENTRE EM CONTATO ATRAVÉS DO CANAL PLETSCH TRADER.</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+  <block type="tick_analysis" id="+fJnm]+D]#$alq?../l|" collapsed="true" x="6941" y="5448">
+    <statement name="TICKANALYSIS_STACK">
+      <block type="controls_if" id="ptS#rL}`niKQO_XO`h[q">
+        <mutation elseif="1" else="1"></mutation>
+        <value name="IF0">
+          <block type="logic_compare" id="/{UEoR`$Q-0rHTGq[qE*">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="-.`dH(1a~[o(itD;4-zY">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="logic_null" id="$=T0x*74Fn.{wU353lz0"></block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="variables_set" id="9E/=auHGrNS/)`po2I#W">
+            <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+            <value name="VALUE">
+              <block type="text_prompt_ext" id="kgNU[5=,Fca:@_}=JkOh">
+                <mutation type="TEXT"></mutation>
+                <field name="TYPE">TEXT</field>
+                <value name="TEXT">
+                  <shadow type="text" id="$.Lz;$EYCg=b^7}jZz~R">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="QX6!-QDcio-U%@({HMZQ">
+                    <field name="TEXT">BOT DISPONIBILIZADO PELO CANAL PLETSCH TRADER: DEIXE SEU LIKE NOS VÍDEOS BOTS DIÁRIOS 100% FREE</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </statement>
+        <value name="IF1">
+          <block type="logic_compare" id="Ix_weij8T7YngyJ,g9xm">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="g@SV{@Il10[:_tS%Ke4/">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="text" id="=67zIm0Y];;naC5V/=J@">
+                <field name="TEXT">CANALPLETSCHTRADER</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="ELSE">
+          <block type="text_print" id="_S]%GX?0]k3Y8o9+oo,M">
+            <value name="TEXT">
+              <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                <field name="TEXT">abc</field>
+              </shadow>
+              <block type="text" id="e)5aW8TB{)he`=;rVp/k">
+                <field name="TEXT">SENHA INCORRETA</field>
+              </block>
+            </value>
+            <next>
+              <block type="text_print" id="o9qnulAQW~ez19.!?ax;">
+                <value name="TEXT">
+                  <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="54yU0y/y*;MxK:j7z8xw">
+                    <field name="TEXT">ENTRE EM CONTATO ATRAVÉS DO CANAL PLETSCH TRADER.</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+  <block type="tick_analysis" id="X~Gk6R+4VXJO8o:rE/oS" collapsed="true" x="6961" y="5488">
+    <statement name="TICKANALYSIS_STACK">
+      <block type="controls_if" id="tZ8Z9]gC`H,RW9fwNE3V">
+        <mutation elseif="1" else="1"></mutation>
+        <value name="IF0">
+          <block type="logic_compare" id=";1:#Jf$cJ_.BlGZ2HgGY">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id=";oUq@-af,vPlTRE}(uez">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="logic_null" id="M)RIT[]q}*Nsq=g/B/Sa"></block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="variables_set" id="[ABXj2}Rhp#}/ZOCF6,F">
+            <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+            <value name="VALUE">
+              <block type="text_prompt_ext" id="h[t?bsV_}.9VM:{nXnAS">
+                <mutation type="TEXT"></mutation>
+                <field name="TYPE">TEXT</field>
+                <value name="TEXT">
+                  <shadow type="text" id="$.Lz;$EYCg=b^7}jZz~R">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="cV|@M8}86J^A*#f`/.]o">
+                    <field name="TEXT">BOT DISPONIBILIZADO PELO CANAL PLETSCH TRADER: DEIXE SEU LIKE NOS VÍDEOS BOTS DIÁRIOS 100% FREE</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </statement>
+        <value name="IF1">
+          <block type="logic_compare" id="ALFgRX:p~XB5B[LY|~!d">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="JG{sY-PY89=wCUr2Yi7[">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="text" id="Kzu*8Sd[N{AR?D.AF#=%">
+                <field name="TEXT">CANALPLETSCHTRADER</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="ELSE">
+          <block type="text_print" id="d^cmTkT`:~dtDs{|L=84">
+            <value name="TEXT">
+              <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                <field name="TEXT">abc</field>
+              </shadow>
+              <block type="text" id="l-n)9ne0fe_s{jPNjEcQ">
+                <field name="TEXT">SENHA INCORRETA</field>
+              </block>
+            </value>
+            <next>
+              <block type="text_print" id="d/|^wR5wsCo~=[qrP5Lw">
+                <value name="TEXT">
+                  <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="da#qDqtw-V(3)iX_LF}9">
+                    <field name="TEXT">ENTRE EM CONTATO ATRAVÉS DO CANAL PLETSCH TRADER.</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+  <block type="tick_analysis" id="=zg7|FTsPU.N`!SB{`K=" collapsed="true" x="6981" y="5528">
+    <statement name="TICKANALYSIS_STACK">
+      <block type="controls_if" id="|s(eM,}#4Sv9Xk|KoI~*">
+        <mutation elseif="1" else="1"></mutation>
+        <value name="IF0">
+          <block type="logic_compare" id="Mv:vITsVF.#!yvc,#3)Q">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="ynw,Zve{@7v#AnS7{$|R">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="logic_null" id="$Mz!cWbefdw9d4L8TA0("></block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="variables_set" id="/H}ra?D:w`$Hlt~B]x[-">
+            <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+            <value name="VALUE">
+              <block type="text_prompt_ext" id="(gAst{COXlXWF]$ASSyZ">
+                <mutation type="TEXT"></mutation>
+                <field name="TYPE">TEXT</field>
+                <value name="TEXT">
+                  <shadow type="text" id="$.Lz;$EYCg=b^7}jZz~R">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="U89HfWspl`LAl(:u$Yz-">
+                    <field name="TEXT">BOT DISPONIBILIZADO PELO CANAL PLETSCH TRADER: DEIXE SEU LIKE NOS VÍDEOS BOTS DIÁRIOS 100% FREE</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </statement>
+        <value name="IF1">
+          <block type="logic_compare" id="SVw7#Fu^857Sb1rwY`*d">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="43(6T(M19jrg4lS.#Xxu">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="text" id="xegBY:w^S$ePF}[af@A=">
+                <field name="TEXT">CANALPLETSCHTRADER</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="ELSE">
+          <block type="text_print" id="TJ`EDgXA5bIsr@ySf;BL">
+            <value name="TEXT">
+              <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                <field name="TEXT">abc</field>
+              </shadow>
+              <block type="text" id="xx:WVlDMbQ71_vcTVAM#">
+                <field name="TEXT">SENHA INCORRETA</field>
+              </block>
+            </value>
+            <next>
+              <block type="text_print" id="S9RMU=87^!AI4zB=?eR(">
+                <value name="TEXT">
+                  <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="Vy04=alHnKL+=,In!`pc">
+                    <field name="TEXT">ENTRE EM CONTATO ATRAVÉS DO CANAL PLETSCH TRADER.</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+  <block type="tick_analysis" id="[ctwA]T1uLr);|?%58%R" collapsed="true" x="7001" y="5568">
+    <statement name="TICKANALYSIS_STACK">
+      <block type="controls_if" id="E=^KRYBxiPSNX4af(t0%">
+        <mutation elseif="1" else="1"></mutation>
+        <value name="IF0">
+          <block type="logic_compare" id="[ezRxWV=o^rdO4,6axkX">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="aRIMFlcoo5-Tvv9XaH3`">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="logic_null" id="mYl8ZV+QQ$F9g@$Td]$~"></block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="variables_set" id="@JQGtO-H}k2zi}ydr;W|">
+            <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+            <value name="VALUE">
+              <block type="text_prompt_ext" id="|ESIqo2}/~br1H[b[`$!">
+                <mutation type="TEXT"></mutation>
+                <field name="TYPE">TEXT</field>
+                <value name="TEXT">
+                  <shadow type="text" id="$.Lz;$EYCg=b^7}jZz~R">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="kaA!*L20@?J+uCh}-[Yw">
+                    <field name="TEXT">BOT DISPONIBILIZADO PELO CANAL PLETSCH TRADER: DEIXE SEU LIKE NOS VÍDEOS BOTS DIÁRIOS 100% FREE</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </statement>
+        <value name="IF1">
+          <block type="logic_compare" id="`!Bda!tQ|MxLI!}GDLX0">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="i2(g0jPMvPV7pT,$;YyD">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="text" id="A~TL*bOR*[^vG3F2OI=(">
+                <field name="TEXT">CANALPLETSCHTRADER</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="ELSE">
+          <block type="text_print" id="w3bS;(E:FPrO{!?_4||Z">
+            <value name="TEXT">
+              <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                <field name="TEXT">abc</field>
+              </shadow>
+              <block type="text" id="Kh9Giifo](29ny1=OH!0">
+                <field name="TEXT">SENHA INCORRETA</field>
+              </block>
+            </value>
+            <next>
+              <block type="text_print" id="*jf}P,u2/dA*5;4g1J$2">
+                <value name="TEXT">
+                  <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="BTHogam!R8W8eY`1~B)q">
+                    <field name="TEXT">ENTRE EM CONTATO ATRAVÉS DO CANAL PLETSCH TRADER.</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+  <block type="tick_analysis" id="~5(YL=zA]Gg#a$6seY?}" collapsed="true" x="7021" y="5608">
+    <statement name="TICKANALYSIS_STACK">
+      <block type="controls_if" id="*_ZX=x]Xx%8~}@:^mOe}">
+        <mutation elseif="1" else="1"></mutation>
+        <value name="IF0">
+          <block type="logic_compare" id="z4yxVQrZ*W88u5g+ut-,">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="Qb8jX!?@aIs2gcF32evF">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="logic_null" id="47-LMpBOdj3ePqk3zAb1"></block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="variables_set" id="!a@}IblBwz!Kxe+glQ|v">
+            <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+            <value name="VALUE">
+              <block type="text_prompt_ext" id="}pG;;8@/|N65@uvhDITE">
+                <mutation type="TEXT"></mutation>
+                <field name="TYPE">TEXT</field>
+                <value name="TEXT">
+                  <shadow type="text" id="$.Lz;$EYCg=b^7}jZz~R">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="KSW~hjM|U68LOP9Iv1mt">
+                    <field name="TEXT">BOT DISPONIBILIZADO PELO CANAL PLETSCH TRADER: DEIXE SEU LIKE NOS VÍDEOS BOTS DIÁRIOS 100% FREE</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </statement>
+        <value name="IF1">
+          <block type="logic_compare" id="lY(j%y6jsRpVBlN:(USF">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="DKyQ85VsFo|D[I/Joxp[">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="text" id="BIrkZe1fP5YZfzfv@/n]">
+                <field name="TEXT">CANALPLETSCHTRADER</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="ELSE">
+          <block type="text_print" id="f9F?$NJwDXn@1Ju5+K^T">
+            <value name="TEXT">
+              <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                <field name="TEXT">abc</field>
+              </shadow>
+              <block type="text" id="D9T/pa2EvlSmn/l)@HbO">
+                <field name="TEXT">SENHA INCORRETA</field>
+              </block>
+            </value>
+            <next>
+              <block type="text_print" id="n2Rig=:~Fa88=A9sy3XB">
+                <value name="TEXT">
+                  <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id=")usv(hXTCiW=dU4AM,:4">
+                    <field name="TEXT">ENTRE EM CONTATO ATRAVÉS DO CANAL PLETSCH TRADER.</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+  <block type="tick_analysis" id="WdtKGC:y-mU8b-@93QYN" collapsed="true" x="7041" y="5648">
+    <statement name="TICKANALYSIS_STACK">
+      <block type="controls_if" id="MWwWHQNM^pE$7(-lHNr%">
+        <mutation elseif="1" else="1"></mutation>
+        <value name="IF0">
+          <block type="logic_compare" id="`RUQGOQv$z)BrOq8,wq3">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="%f+FDWRDozS(em|J3_3d">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="logic_null" id="v;an+RkQj:Sl23/FlS[`"></block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="variables_set" id="C0b]*7y6A5Ki#bvW6yB=">
+            <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+            <value name="VALUE">
+              <block type="text_prompt_ext" id="#]grsl7$h8?-Lh*Fa[lH">
+                <mutation type="TEXT"></mutation>
+                <field name="TYPE">TEXT</field>
+                <value name="TEXT">
+                  <shadow type="text" id="$.Lz;$EYCg=b^7}jZz~R">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="-jzg6ZSyWov7AMt5:#mm">
+                    <field name="TEXT">BOT DISPONIBILIZADO PELO CANAL PLETSCH TRADER: DEIXE SEU LIKE NOS VÍDEOS BOTS DIÁRIOS 100% FREE</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </statement>
+        <value name="IF1">
+          <block type="logic_compare" id="zCR-_@RNkhCkssk(uJiL">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="COUL3Wu$J0{ll/Ai!I9-">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="text" id="?z!@sap0^(}H7y37|^D,">
+                <field name="TEXT">CANALPLETSCHTRADER</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="ELSE">
+          <block type="text_print" id="o66oTF1Lde4w!gGykuVo">
+            <value name="TEXT">
+              <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                <field name="TEXT">abc</field>
+              </shadow>
+              <block type="text" id="~m@,g*~0{+gJdi+2[rCl">
+                <field name="TEXT">SENHA INCORRETA</field>
+              </block>
+            </value>
+            <next>
+              <block type="text_print" id="Q4O!UGZF]/Pz``7IA_43">
+                <value name="TEXT">
+                  <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="*C2@jj}7ASMF)$cd1j0L">
+                    <field name="TEXT">ENTRE EM CONTATO ATRAVÉS DO CANAL PLETSCH TRADER.</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+  <block type="tick_analysis" id="7odVL,J%+sW*{83!D$GT" collapsed="true" x="7061" y="5688">
+    <statement name="TICKANALYSIS_STACK">
+      <block type="controls_if" id="49)nNALODVZ)Z?`b0V5m">
+        <mutation elseif="1" else="1"></mutation>
+        <value name="IF0">
+          <block type="logic_compare" id="|%3Em@]]/?%KJtWLe^Yi">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="62tTnncTG05zoDQLIvFC">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="logic_null" id="yXh},q_npV6M`8AvK-tp"></block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="variables_set" id="d-(~47-5dx[3hbSOLDPf">
+            <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+            <value name="VALUE">
+              <block type="text_prompt_ext" id="gx0=2/R07s?RHCZI^%2z">
+                <mutation type="TEXT"></mutation>
+                <field name="TYPE">TEXT</field>
+                <value name="TEXT">
+                  <shadow type="text" id="$.Lz;$EYCg=b^7}jZz~R">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="Q9w_ekPOc%3;b$GY-F~~">
+                    <field name="TEXT">BOT DISPONIBILIZADO PELO CANAL PLETSCH TRADER: DEIXE SEU LIKE NOS VÍDEOS BOTS DIÁRIOS 100% FREE</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </statement>
+        <value name="IF1">
+          <block type="logic_compare" id="E^@ZSeX4cHf8X-KcagB]">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="],}$tq3Nej9_d2`XICA7">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="text" id="1_[:hIuLzTJ.B2++#g_a">
+                <field name="TEXT">CANALPLETSCHTRADER</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="ELSE">
+          <block type="text_print" id="l;}zx0Tu9VA,3Xy]qMQt">
+            <value name="TEXT">
+              <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                <field name="TEXT">abc</field>
+              </shadow>
+              <block type="text" id="7_$h5dH#DCN}=/=XZ[04">
+                <field name="TEXT">SENHA INCORRETA</field>
+              </block>
+            </value>
+            <next>
+              <block type="text_print" id="u0Y%U59zuz.}!ye!Q{ky">
+                <value name="TEXT">
+                  <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="PVsm632s8/3ifWMA?CIr">
+                    <field name="TEXT">ENTRE EM CONTATO ATRAVÉS DO CANAL PLETSCH TRADER.</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+  <block type="tick_analysis" id="%DgGpTStu^u_jR,P%:[." collapsed="true" x="7081" y="5728">
+    <statement name="TICKANALYSIS_STACK">
+      <block type="controls_if" id="4#sQsz6bfLs$/w33M6K!">
+        <mutation elseif="1" else="1"></mutation>
+        <value name="IF0">
+          <block type="logic_compare" id="8aj??VAY}?#ytqMFN#1-">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="qy|Cg/L/|3lB:p%ACRB0">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="logic_null" id="{)LiZRv6lw}LM@$CJ~[M"></block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="variables_set" id="r}?KmrG}f{+h/(_+{/SH">
+            <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+            <value name="VALUE">
+              <block type="text_prompt_ext" id="r4H4`*9#^c?D{8r7~kQF">
+                <mutation type="TEXT"></mutation>
+                <field name="TYPE">TEXT</field>
+                <value name="TEXT">
+                  <shadow type="text" id="$.Lz;$EYCg=b^7}jZz~R">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="e2+H%)m*1ZF]3@kvEpbZ">
+                    <field name="TEXT">BOT DISPONIBILIZADO PELO CANAL PLETSCH TRADER: DEIXE SEU LIKE NOS VÍDEOS BOTS DIÁRIOS 100% FREE</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </statement>
+        <value name="IF1">
+          <block type="logic_compare" id="k+Jh;|~2CXyeko{7xNHc">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="Z=^pqM^)?s%4[f==.R8j">
+                <field name="VAR" id="J[A)Vzjm)5YLd+W;z1F/" variabletype="">PASSWORD</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="text" id="3iV,x_oi~jM?Zicd~v4,">
+                <field name="TEXT">CANALPLETSCHTRADER</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="ELSE">
+          <block type="text_print" id="@D.3u2k2=U499:7sY)0k">
+            <value name="TEXT">
+              <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                <field name="TEXT">abc</field>
+              </shadow>
+              <block type="text" id="`ZjM!466t64uG0AX-`n}">
+                <field name="TEXT">SENHA INCORRETA</field>
+              </block>
+            </value>
+            <next>
+              <block type="text_print" id="_S:.e_+V#!)FblHq!e^r">
+                <value name="TEXT">
+                  <shadow type="text" id="muC`DDsVQ!7xj8D^qHyn">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text" id="H;$YNKg6IaUP8p9)C:kc">
+                    <field name="TEXT">ENTRE EM CONTATO ATRAVÉS DO CANAL PLETSCH TRADER.</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+</xml>

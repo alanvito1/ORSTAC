@@ -1,0 +1,164 @@
+﻿<xml xmlns="http://www.w3.org/1999/xhtml" collection="false">
+  <block type="loader" id="z.mb[j~ezwa:]5_4NY^`" collapsed="true" x="0" y="0">
+    <field name="URL">https://gist.githubusercontent.com/binary-ex-machina/e5660582478169e87fa24cd463817820/raw/3ef409c7e967debfa59dcf0f7ae984eea17fcbb1/exmachina-rsirisefall.xml</field>
+  </block>
+  <block type="trade" id="xgH69|xFn9=70w.*3Vo@" x="0" y="53">
+    <field name="MARKET_LIST">volidx</field>
+    <field name="SUBMARKET_LIST">random_index</field>
+    <field name="SYMBOL_LIST">R_100</field>
+    <field name="TRADETYPECAT_LIST">callput</field>
+    <field name="TRADETYPE_LIST">risefall</field>
+    <field name="TYPE_LIST">both</field>
+    <field name="CANDLEINTERVAL_LIST">60</field>
+    <field name="TIME_MACHINE_ENABLED">FALSE</field>
+    <field name="RESTARTONERROR">TRUE</field>
+    <statement name="INITIALIZATION">
+      <block type="procedures_callnoreturn" id="=tO)6=pdH]P/y:QC]j[X">
+        <mutation name="ExMachina::Config(1)"></mutation>
+      </block>
+    </statement>
+    <statement name="SUBMARKET">
+      <block type="tradeOptions" id="x=V33~4Lb|(sLv`J[:Eb">
+        <field name="DURATIONTYPE_LIST">s</field>
+        <field name="CURRENCY_LIST">USD</field>
+        <value name="DURATION">
+          <shadow type="math_number" id="O*@58sDc=!cOO}*b2vf9">
+            <field name="NUM">30</field>
+          </shadow>
+        </value>
+        <value name="AMOUNT">
+          <shadow type="math_number" id="ml)25~7^q}3I9}vjf:%K">
+            <field name="NUM">1</field>
+          </shadow>
+          <block type="procedures_callreturn" id="#~u=Gc={)cN?;#WLfIfn">
+            <mutation name="ExMachina::GetStake"></mutation>
+          </block>
+        </value>
+      </block>
+    </statement>
+  </block>
+  <block type="before_purchase" id="i-CIx.(Onm4?ihxzA}Y]" collapsed="true" x="0" y="358">
+    <statement name="BEFOREPURCHASE_STACK">
+      <block type="controls_if" id="Um=ga;Y^!nR|]}p?t.gQ">
+        <mutation elseif="1"></mutation>
+        <value name="IF0">
+          <block type="procedures_callreturn" id="Q.P%JO%+k%:0(/I0F7OB">
+            <mutation name="ExMachina::Rising(2)"></mutation>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="purchase" id="W6q#Z-I3q3d[d3-`S[dS">
+            <field name="PURCHASE_LIST">CALL</field>
+          </block>
+        </statement>
+        <value name="IF1">
+          <block type="procedures_callreturn" id="vbwPWfbRA;YHW4?/jAhv">
+            <mutation name="ExMachina::Falling(2)"></mutation>
+          </block>
+        </value>
+        <statement name="DO1">
+          <block type="purchase" id="O.368Jg,u9aSx^AJWa5Q">
+            <field name="PURCHASE_LIST">PUT</field>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+  <block type="after_purchase" id="D^Jz1^n=2vtZku1vBN@;" collapsed="true" x="0" y="410">
+    <statement name="AFTERPURCHASE_STACK">
+      <block type="procedures_callnoreturn" id="s=HMND1?NEhpwp+~-jv2">
+        <mutation name="ExMachina::TradeAgain(4)">
+          <arg name="_profit"></arg>
+        </mutation>
+        <value name="ARG0">
+          <block type="read_details" id="^ZV3m@w{sjJsW!3.XO,U">
+            <field name="DETAIL_INDEX">4</field>
+          </block>
+        </value>
+        <next>
+          <block type="trade_again" id="c)S|KjoQdXc8l#J@5z3P"></block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <block type="tick_analysis" id="ky6o$HLo):l6U4$jD.$l" collapsed="true" x="0" y="462">
+    <statement name="TICKANALYSIS_STACK">
+      <block type="procedures_callnoreturn" id="U4Netn1,JWM:X62x3DVb">
+        <mutation name="ExMachina::SetCandles(5)">
+          <arg name="_src"></arg>
+        </mutation>
+        <value name="ARG0">
+          <block type="ohlc_values" id="DJepU~|.ItnJE.*?zoD{" inline="false">
+            <field name="OHLCFIELD_LIST">close</field>
+            <field name="CANDLEINTERVAL_LIST">default</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+  </block>
+  <block type="block_holder" id="Wzyp69z)IFi61cfn5QjV" x="0" y="514">
+    <statement name="USELESS_STACK">
+      <block type="text_append" id="hGC78mQ:ayb|)0*X6UMa">
+        <field name="VAR">Info</field>
+        <value name="TEXT">
+          <shadow type="text" id="0@;!l{hi{d}x;Q8oVHBm">
+            <field name="TEXT"></field>
+          </shadow>
+          <block type="text_join" id="8-lI/C;Cw|0B=Fvi|b8.">
+            <mutation items="10"></mutation>
+            <value name="ADD0">
+              <block type="text" id="8nyX%tLesRTc1bk7C4Uj">
+                <field name="TEXT">Created by Binary Ex-Machina</field>
+              </block>
+            </value>
+            <value name="ADD1">
+              <block type="text" id="sy0b5Irl^J/4=%mYM+`f">
+                <field name="TEXT">This is a Free version</field>
+              </block>
+            </value>
+            <value name="ADD2">
+              <block type="text" id="5KvH,$oA+pV98pa%-Zrc">
+                <field name="TEXT">Check the pro version for more options</field>
+              </block>
+            </value>
+            <value name="ADD3">
+              <block type="text" id="I@97KO}JDC|5Cn@grwgS">
+                <field name="TEXT">https://gumroad.com/l/rsisafebotpro</field>
+              </block>
+            </value>
+            <value name="ADD4">
+              <block type="text" id="P)qmXkg%MK:b2|~P:G^D">
+                <field name="TEXT">For more scripts access:</field>
+              </block>
+            </value>
+            <value name="ADD5">
+              <block type="text" id="~r!TEkvMSW6w_ZmS9;c.">
+                <field name="TEXT">https://gumroad.com/binarybot</field>
+              </block>
+            </value>
+            <value name="ADD6">
+              <block type="text" id="4;@!9G[j2aaf[GC(u%wA">
+                <field name="TEXT">Check my youtube channel</field>
+              </block>
+            </value>
+            <value name="ADD7">
+              <block type="text" id="AVKQIIEC8pqoty1I1SFA">
+                <field name="TEXT">https://www.youtube.com/channel/UC8bp520Y09EdGwSQlMHIKmw</field>
+              </block>
+            </value>
+            <value name="ADD8">
+              <block type="text" id="d5ycoi!g/Qaq^/D7v+k;">
+                <field name="TEXT">I'm doing account management, send an email:</field>
+              </block>
+            </value>
+            <value name="ADD9">
+              <block type="text" id="!Sio|jL2(YUBmh)R14u@">
+                <field name="TEXT">thigoemail@gmail.com</field>
+              </block>
+            </value>
+          </block>
+        </value>
+      </block>
+    </statement>
+  </block>
+</xml>

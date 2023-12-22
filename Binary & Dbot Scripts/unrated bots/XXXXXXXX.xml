@@ -1,0 +1,190 @@
+﻿<xml xmlns="http://www.w3.org/1999/xhtml" collection="false">
+  <block type="trade" id="xgH69|xFn9=70w.*3Vo@" x="0" y="0">
+    <field name="MARKET_LIST">volidx</field>
+    <field name="SUBMARKET_LIST">random_index</field>
+    <field name="SYMBOL_LIST">R_100</field>
+    <field name="TRADETYPECAT_LIST">callput</field>
+    <field name="TRADETYPE_LIST">risefall</field>
+    <field name="TYPE_LIST">both</field>
+    <field name="CANDLEINTERVAL_LIST">60</field>
+    <field name="TIME_MACHINE_ENABLED">FALSE</field>
+    <field name="RESTARTONERROR">TRUE</field>
+    <statement name="SUBMARKET">
+      <block type="tradeOptions" id="x=V33~4Lb|(sLv`J[:Eb">
+        <field name="DURATIONTYPE_LIST">s</field>
+        <field name="CURRENCY_LIST">USD</field>
+        <value name="DURATION">
+          <shadow type="math_number" id="O*@58sDc=!cOO}*b2vf9">
+            <field name="NUM">25</field>
+          </shadow>
+        </value>
+        <value name="AMOUNT">
+          <shadow type="math_number" id="ml)25~7^q}3I9}vjf:%K">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+      </block>
+    </statement>
+  </block>
+  <block type="before_purchase" id="i-CIx.(Onm4?ihxzA}Y]" x="0" y="301">
+    <statement name="BEFOREPURCHASE_STACK">
+      <block type="controls_if" id="35aX`mnDVoV[eq!M1#Df">
+        <mutation elseif="1"></mutation>
+        <value name="IF0">
+          <block type="logic_operation" id="H5(0Q)E}Za$z,c=,|u5k">
+            <field name="OP">AND</field>
+            <value name="A">
+              <block type="logic_compare" id="3Cs6dz5LSDeUXo=ZE,?K">
+                <field name="OP">GT</field>
+                <value name="A">
+                  <block type="rsi" id="oOD#@u^p+7EfRL[mIsFe">
+                    <value name="INPUT">
+                      <block type="ohlc_values" id="?hL/2E~mjg1s}W{ua=A$">
+                        <field name="OHLCFIELD_LIST">close</field>
+                        <field name="CANDLEINTERVAL_LIST">60</field>
+                      </block>
+                    </value>
+                    <value name="PERIOD">
+                      <shadow type="math_number" id="`@L{xj]/JP0:I^;*LwY/">
+                        <field name="NUM">2</field>
+                      </shadow>
+                    </value>
+                  </block>
+                </value>
+                <value name="B">
+                  <block type="math_number" id="p.5B[w`zlHq/{AHSE$lq">
+                    <field name="NUM">70</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <value name="B">
+              <block type="logic_compare" id="vz+aM10Q@%X)F6[8WC)9">
+                <field name="OP">GT</field>
+                <value name="A">
+                  <block type="sma" id="6Uo7CE.JGT@0~9@vF]y[">
+                    <value name="INPUT">
+                      <block type="ohlc_values" id="[]v2:wFh3:s.Z.:f:6t5">
+                        <field name="OHLCFIELD_LIST">close</field>
+                        <field name="CANDLEINTERVAL_LIST">60</field>
+                      </block>
+                    </value>
+                    <value name="PERIOD">
+                      <shadow type="math_number" id="Oo3/y,Qn/Q?2m.;PU($c">
+                        <field name="NUM">1</field>
+                      </shadow>
+                    </value>
+                  </block>
+                </value>
+                <value name="B">
+                  <block type="sma" id="u[Z-@+E%u6P%{e1zJaEf">
+                    <value name="INPUT">
+                      <block type="ohlc_values" id="#}7Ju#u=PT4znrl--UOg">
+                        <field name="OHLCFIELD_LIST">close</field>
+                        <field name="CANDLEINTERVAL_LIST">60</field>
+                      </block>
+                    </value>
+                    <value name="PERIOD">
+                      <shadow type="math_number" id="/etCeEhT8[LP#Mk10%n@">
+                        <field name="NUM">2</field>
+                      </shadow>
+                    </value>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="purchase" id="W6q#Z-I3q3d[d3-`S[dS">
+            <field name="PURCHASE_LIST">CALL</field>
+          </block>
+        </statement>
+        <value name="IF1">
+          <block type="logic_operation" id="8$O:qmAVg=z}n!j9)Rqv">
+            <field name="OP">AND</field>
+            <value name="A">
+              <block type="logic_compare" id="`oL{Gww@oNM*wv/DRN]=">
+                <field name="OP">LT</field>
+                <value name="A">
+                  <block type="rsi" id="8,VL^u^nZ)r(xse2ZQ?C">
+                    <value name="INPUT">
+                      <block type="ohlc_values" id="_*$P1MVB`~:h_)JdC}];">
+                        <field name="OHLCFIELD_LIST">close</field>
+                        <field name="CANDLEINTERVAL_LIST">60</field>
+                      </block>
+                    </value>
+                    <value name="PERIOD">
+                      <shadow type="math_number" id="g2|_=}ltP3}|=DTsfS0R">
+                        <field name="NUM">2</field>
+                      </shadow>
+                    </value>
+                  </block>
+                </value>
+                <value name="B">
+                  <block type="math_number" id="^BD)GpimNs*g%(sSz@{L">
+                    <field name="NUM">30</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <value name="B">
+              <block type="logic_compare" id="r;4W1LsL5q@pnAg%r@e9">
+                <field name="OP">GT</field>
+                <value name="A">
+                  <block type="sma" id="D#cnAy:#xVP$F_/p#{GP">
+                    <value name="INPUT">
+                      <block type="ohlc_values" id="H9EJ`sHBYsMbR]uO*K@?">
+                        <field name="OHLCFIELD_LIST">close</field>
+                        <field name="CANDLEINTERVAL_LIST">60</field>
+                      </block>
+                    </value>
+                    <value name="PERIOD">
+                      <shadow type="math_number" id="O2F+-)v7|N~~q8GhxhS-">
+                        <field name="NUM">2</field>
+                      </shadow>
+                    </value>
+                  </block>
+                </value>
+                <value name="B">
+                  <block type="sma" id="_%%$M[KpzcOhCq?B_qiH">
+                    <value name="INPUT">
+                      <block type="ohlc_values" id="|^M,D~}=?,4jKE3p.c%@">
+                        <field name="OHLCFIELD_LIST">close</field>
+                        <field name="CANDLEINTERVAL_LIST">60</field>
+                      </block>
+                    </value>
+                    <value name="PERIOD">
+                      <shadow type="math_number" id="?oJt3B-aLRzw8h;oR76S">
+                        <field name="NUM">1</field>
+                      </shadow>
+                    </value>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO1">
+          <block type="purchase" id="LOz5iyf{lxcAg}[7]/u4">
+            <field name="PURCHASE_LIST">PUT</field>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+  <block type="during_purchase" id="(4;NieXd}j|Bn!c-YiC|" x="0" y="629">
+    <statement name="DURING_PURCHASE_STACK">
+      <block type="controls_if" id="8?eYKAW%VczmRXQ-ou3r">
+        <value name="IF0">
+          <block type="check_sell" id="M=:_KpEeRAJY_}XTU^8~"></block>
+        </value>
+      </block>
+    </statement>
+  </block>
+  <block type="after_purchase" id="D^Jz1^n=2vtZku1vBN@;" x="0" y="754">
+    <statement name="AFTERPURCHASE_STACK">
+      <block type="trade_again" id="c)S|KjoQdXc8l#J@5z3P"></block>
+    </statement>
+  </block>
+</xml>

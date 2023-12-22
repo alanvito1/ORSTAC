@@ -1,0 +1,207 @@
+﻿<xml xmlns="http://www.w3.org/1999/xhtml" collection="false">
+  <variables>
+    <variable type="" id="RY8[iV=eKz,0nLRxI,hE">Next Trade Condition</variable>
+    <variable type="" id="Z-dVD@EtU!|Mn,rQ:5c0">Quantos Martingale quer que faça</variable>
+    <variable type="" id="Fez:!WoQ1/rIRsc5##[s">Max Acceptable Loss</variable>
+    <variable type="" id="ZC|$p_{ydi)DHS%a#$WA">Initial Amount</variable>
+    <variable type="" id="/o-*A(cfeL`=ldIP@$te">Expected Profit</variable>
+    <variable type="" id="M!Up]VeO;ps_g_W;Pw4m">Cada vez que perde acrescenta 1</variable>
+    <variable type="" id="lH3I5}]dxz/9{{`;``QS">Win Amount</variable>
+  </variables>
+  <block type="trade" id="trade" x="-96" y="-31">
+    <field name="MARKET_LIST">volidx</field>
+    <field name="SUBMARKET_LIST">random_index</field>
+    <field name="SYMBOL_LIST">R_100</field>
+    <field name="TRADETYPECAT_LIST">callput</field>
+    <field name="TRADETYPE_LIST">risefall</field>
+    <field name="TYPE_LIST">both</field>
+    <field name="CANDLEINTERVAL_LIST">60</field>
+    <field name="TIME_MACHINE_ENABLED">FALSE</field>
+    <field name="RESTARTONERROR">TRUE</field>
+    <statement name="INITIALIZATION">
+      <block type="variables_set" id="zz)iLP1!8N|q,-DRj7Yg">
+        <field name="VAR" id="RY8[iV=eKz,0nLRxI,hE" variabletype="">Next Trade Condition</field>
+        <value name="VALUE">
+          <block type="text" id="xDe{UMxXa@.Jx2oj5jlG">
+            <field name="TEXT">Rise</field>
+          </block>
+        </value>
+        <next>
+          <block type="variables_set" id="v/O]iCQ}j[GiAK!S1!vk">
+            <field name="VAR" id="Fez:!WoQ1/rIRsc5##[s" variabletype="">Max Acceptable Loss</field>
+            <value name="VALUE">
+              <block type="math_number" id="^:bth~fukQ(H;qG~W,J9">
+                <field name="NUM">12</field>
+              </block>
+            </value>
+            <next>
+              <block type="variables_set" id="yuF[{UN_)/n/p_7|Bn{^">
+                <field name="VAR" id="/o-*A(cfeL`=ldIP@$te" variabletype="">Expected Profit</field>
+                <value name="VALUE">
+                  <block type="math_number" id="TNeUN!N2ai|Riu#T4Hs+">
+                    <field name="NUM">10</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="variables_set" id="kYN4z~^G*jW!tl[ag//|">
+                    <field name="VAR" id="lH3I5}]dxz/9{{`;``QS" variabletype="">Win Amount</field>
+                    <value name="VALUE">
+                      <block type="math_number" id="D.+RaH}/KM^=R_/i;Uj-">
+                        <field name="NUM">0.35</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="variables_set" id="!rE+(YJ?USv@e;5A6{3i">
+                        <field name="VAR" id="ZC|$p_{ydi)DHS%a#$WA" variabletype="">Initial Amount</field>
+                        <value name="VALUE">
+                          <block type="math_number" id="zBSG}Pb^V)cr2}S(Tt})">
+                            <field name="NUM">0.35</field>
+                          </block>
+                        </value>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <statement name="SUBMARKET">
+      <block type="tradeOptions" id="-E~9VN}~*INBE*b51-!$">
+        <field name="DURATIONTYPE_LIST">t</field>
+        <field name="CURRENCY_LIST">USD</field>
+        <value name="DURATION">
+          <block type="math_number" id="E{wg9Uzbj#A5|*K4jYPN">
+            <field name="NUM">1</field>
+          </block>
+        </value>
+        <value name="AMOUNT">
+          <block type="variables_get" id="0?Q}sei*{a4`}f^PRB%]">
+            <field name="VAR" id="ZC|$p_{ydi)DHS%a#$WA" variabletype="">Initial Amount</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+  </block>
+  <block type="after_purchase" id="finish" x="-94" y="505">
+    <statement name="AFTERPURCHASE_STACK">
+      <block type="variables_set" id="Q/o~JPbt^hpi:#510Ee?">
+        <field name="VAR" id="Z-dVD@EtU!|Mn,rQ:5c0" variabletype="">Quantos Martingale quer que faça</field>
+        <value name="VALUE">
+          <block type="math_number" id="rndj.SO=0|!^z=%XK|jK">
+            <field name="NUM">4</field>
+          </block>
+        </value>
+        <next>
+          <block type="controls_if" id="IXjzMcQZcdDd3n7,,:dR">
+            <mutation else="1"></mutation>
+            <value name="IF0">
+              <block type="contract_check_result" id=".tV9-1S^OyBs^[#.IOwC">
+                <field name="CHECK_RESULT">win</field>
+              </block>
+            </value>
+            <statement name="DO0">
+              <block type="variables_set" id="sz:*/;3FGv{_(@8`CsAN">
+                <field name="VAR" id="ZC|$p_{ydi)DHS%a#$WA" variabletype="">Initial Amount</field>
+                <value name="VALUE">
+                  <block type="variables_get" id="N+s2q0OtXoD?l5m)*yEC">
+                    <field name="VAR" id="lH3I5}]dxz/9{{`;``QS" variabletype="">Win Amount</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="variables_set" id="M@gwszP*zN49:$-qcKIY">
+                    <field name="VAR" id="M!Up]VeO;ps_g_W;Pw4m" variabletype="">Cada vez que perde acrescenta 1</field>
+                    <value name="VALUE">
+                      <block type="math_number" id="3#poT~1+_{cZ)j!mW@L_">
+                        <field name="NUM">0</field>
+                      </block>
+                    </value>
+                  </block>
+                </next>
+              </block>
+            </statement>
+            <statement name="ELSE">
+              <block type="math_change" id="O^^V``,s*LPb7=?R~](6">
+                <field name="VAR" id="M!Up]VeO;ps_g_W;Pw4m" variabletype="">Cada vez que perde acrescenta 1</field>
+                <value name="DELTA">
+                  <shadow type="math_number" id="bAG}a{bmR!2lJOHMBxy)">
+                    <field name="NUM">1</field>
+                  </shadow>
+                </value>
+                <next>
+                  <block type="controls_if" id="vRJR#?ICnX`Rf`gSBD?-">
+                    <mutation else="1"></mutation>
+                    <value name="IF0">
+                      <block type="logic_compare" id=")YcDH$b4tWwdXi=UQfyf">
+                        <field name="OP">LTE</field>
+                        <value name="A">
+                          <block type="variables_get" id="dr~V(?WEe|)IwaB%k9}$">
+                            <field name="VAR" id="M!Up]VeO;ps_g_W;Pw4m" variabletype="">Cada vez que perde acrescenta 1</field>
+                          </block>
+                        </value>
+                        <value name="B">
+                          <block type="variables_get" id="*a@-u}cvn,9v87(1d2aq">
+                            <field name="VAR" id="Z-dVD@EtU!|Mn,rQ:5c0" variabletype="">Quantos Martingale quer que faça</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <statement name="DO0">
+                      <block type="math_change" id="b.}/:AKk:!MkP9M]i]^L">
+                        <field name="VAR" id="ZC|$p_{ydi)DHS%a#$WA" variabletype="">Initial Amount</field>
+                        <value name="DELTA">
+                          <shadow type="math_number" id="N=Vo^MVz~/^(xt7Ag@8E">
+                            <field name="NUM">1</field>
+                          </shadow>
+                          <block type="math_arithmetic" id="kwXPJjs[|E9{~lCyv^0I">
+                            <field name="OP">MULTIPLY</field>
+                            <value name="A">
+                              <shadow type="math_number" id="ka8n8|Dugz,q5FkUjs`7">
+                                <field name="NUM">1</field>
+                              </shadow>
+                              <block type="math_single" id="{{BEm2CxpR[vmDc8R%=!">
+                                <field name="OP">ABS</field>
+                                <value name="NUM">
+                                  <shadow type="math_number" id="GleSn`9j7Cm7/dqg}FIA">
+                                    <field name="NUM">9</field>
+                                  </shadow>
+                                  <block type="read_details" id="#pt~G|1(kk;gPZNzCmFF">
+                                    <field name="DETAIL_INDEX">4</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                            <value name="B">
+                              <shadow type="math_number" id="{JXdZCp2%s=sfO@yN:n}">
+                                <field name="NUM">1</field>
+                              </shadow>
+                              <block type="math_number" id="1q||m4Da@z,?Qwp-:,~=">
+                                <field name="NUM">1.041</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                      </block>
+                    </statement>
+                    <statement name="ELSE">
+                      <block type="variables_set" id="BYKh7*$%,4N[0Rxb(duC">
+                        <field name="VAR" id="ZC|$p_{ydi)DHS%a#$WA" variabletype="">Initial Amount</field>
+                        <value name="VALUE">
+                          <block type="variables_get" id="~XtA1-I#~Dt]U4jhDsos">
+                            <field name="VAR" id="lH3I5}]dxz/9{{`;``QS" variabletype="">Win Amount</field>
+                          </block>
+                        </value>
+                      </block>
+                    </statement>
+                  </block>
+                </next>
+              </block>
+            </statement>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+</xml>

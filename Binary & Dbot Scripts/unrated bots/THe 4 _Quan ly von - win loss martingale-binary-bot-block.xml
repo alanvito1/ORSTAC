@@ -1,0 +1,77 @@
+﻿<xml xmlns="http://www.w3.org/1999/xhtml" collection="true">
+  <block type="after_purchase" id="D^Jz1^n=2vtZku1vBN@;">
+    <statement name="AFTERPURCHASE_STACK">
+      <block type="math_change" id="FeToEN;qzaTRrT3..*Nw">
+        <field name="VAR" id="Q+0tAhC0qbb_?VoJ7cH%" variabletype="">totalProfit</field>
+        <value name="DELTA">
+          <shadow type="math_number" id="FWKoAl[N3F5l.0]F.oK-">
+            <field name="NUM">1</field>
+          </shadow>
+          <block type="read_details" id="$dS2~.fyuur.[YeM}~f:">
+            <field name="DETAIL_INDEX">4</field>
+          </block>
+        </value>
+        <next>
+          <block type="controls_if" id="Z*GU7]-m|EFzWPh9oD5x">
+            <mutation else="1"></mutation>
+            <value name="IF0">
+              <block type="contract_check_result" id="=05-x5PPk;0mC*~!+]L/">
+                <field name="CHECK_RESULT">win</field>
+              </block>
+            </value>
+            <statement name="DO0">
+              <block type="variables_set" id=".KL,.4uP(jm2nB!-5b2)">
+                <field name="VAR" id="6?B)6%6mAIzhVN}WI!J:" variabletype="">stake</field>
+                <value name="VALUE">
+                  <block type="math_number" id="!={}_W;,e`c[u!g+Wikf">
+                    <field name="NUM">0.35</field>
+                  </block>
+                </value>
+              </block>
+            </statement>
+            <statement name="ELSE">
+              <block type="variables_set" id="{~]{;Q?KhBkdqPr_3buU">
+                <field name="VAR" id="6?B)6%6mAIzhVN}WI!J:" variabletype="">stake</field>
+                <value name="VALUE">
+                  <block type="math_arithmetic" id="ZG!kWkLCkEe1C$l`dx~]">
+                    <field name="OP">MULTIPLY</field>
+                    <value name="A">
+                      <shadow type="math_number" id="@`cb@HK.TXoL~^VB+;3{">
+                        <field name="NUM">1</field>
+                      </shadow>
+                      <block type="variables_get" id="6^Pg-k}wjXge_HsZM|n{">
+                        <field name="VAR" id="6?B)6%6mAIzhVN}WI!J:" variabletype="">stake</field>
+                      </block>
+                    </value>
+                    <value name="B">
+                      <shadow type="math_number" id="{MC:qlpP%jTS_~;?uRr6">
+                        <field name="NUM">1.095</field>
+                      </shadow>
+                    </value>
+                  </block>
+                </value>
+              </block>
+            </statement>
+            <next>
+              <block type="notify" id="hF(]z.*ur@@U[?7UdUO1">
+                <field name="NOTIFICATION_TYPE">success</field>
+                <field name="NOTIFICATION_SOUND">silent</field>
+                <value name="MESSAGE">
+                  <shadow type="text" id="hVBW`3kfkaQIP?i71L5v">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="variables_get" id="@.CCvaWbq`q(*DHnL*Td">
+                    <field name="VAR" id="Q+0tAhC0qbb_?VoJ7cH%" variabletype="">totalProfit</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="trade_again" id="c)S|KjoQdXc8l#J@5z3P"></block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+</xml>
