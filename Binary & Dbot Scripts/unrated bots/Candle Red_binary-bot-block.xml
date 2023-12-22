@@ -1,0 +1,150 @@
+﻿<xml xmlns="http://www.w3.org/1999/xhtml" collection="true">
+  <block type="tick_analysis" id="5ak#!lo]1Ak3AJR4`teZ">
+    <statement name="TICKANALYSIS_STACK">
+      <block type="variables_set" id="OJk^R_`-Kf-b:@5P_a6=">
+        <field name="VAR" id="q-`7Uh#SN}Hts?8v6zvN" variabletype="">PurchaseTime</field>
+        <value name="VALUE">
+          <block type="logic_boolean" id="]Z,L/c]m*[[D9nN~}?dk">
+            <field name="BOOL">FALSE</field>
+          </block>
+        </value>
+        <next>
+          <block type="controls_if" id=")kJp#;nn#,_~]aLrxWIX">
+            <mutation elseif="1" else="1"></mutation>
+            <value name="IF0">
+              <block type="logic_negate" id="#4p{(?|7on~+V|5T6Eje">
+                <value name="BOOL">
+                  <block type="variables_get" id="GI4zw+4oUeU(3S6Q|mEY">
+                    <field name="VAR" id="sMhP@S2R)h^w|YfhI}cU" variabletype="">CandleTime</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <statement name="DO0">
+              <block type="variables_set" id="nF!e+a4?F7+cyRNnxt3M">
+                <field name="VAR" id="sMhP@S2R)h^w|YfhI}cU" variabletype="">CandleTime</field>
+                <value name="VALUE">
+                  <block type="read_ohlc" id=";kl1,;s*p~-/M7GwP]:C">
+                    <field name="OHLCFIELD_LIST">epoch</field>
+                    <field name="CANDLEINTERVAL_LIST">default</field>
+                    <value name="CANDLEINDEX">
+                      <shadow type="math_number" id="G4}Bt-,=:UTpO@$u[#,_">
+                        <field name="NUM">1</field>
+                      </shadow>
+                    </value>
+                  </block>
+                </value>
+              </block>
+            </statement>
+            <value name="IF1">
+              <block type="logic_compare" id="S?wk0-nxEH+dS,Dm-%~H">
+                <field name="OP">NEQ</field>
+                <value name="A">
+                  <block type="variables_get" id="r)Qie0TLK3EV%6Ci!Txk">
+                    <field name="VAR" id="sMhP@S2R)h^w|YfhI}cU" variabletype="">CandleTime</field>
+                  </block>
+                </value>
+                <value name="B">
+                  <block type="read_ohlc" id="Ucs-a5gao:jUzA=sH,jl">
+                    <field name="OHLCFIELD_LIST">epoch</field>
+                    <field name="CANDLEINTERVAL_LIST">default</field>
+                    <value name="CANDLEINDEX">
+                      <shadow type="math_number" id="#mO%Kv%/g8jgk]Qp{{V9">
+                        <field name="NUM">1</field>
+                      </shadow>
+                    </value>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <statement name="DO1">
+              <block type="variables_set" id="!?=8#},~eI$-X=m_z8Q]">
+                <field name="VAR" id="sMhP@S2R)h^w|YfhI}cU" variabletype="">CandleTime</field>
+                <value name="VALUE">
+                  <block type="read_ohlc" id="K~Ls_F+o?0ZNM@8~2Sk)">
+                    <field name="OHLCFIELD_LIST">epoch</field>
+                    <field name="CANDLEINTERVAL_LIST">default</field>
+                    <value name="CANDLEINDEX">
+                      <shadow type="math_number" id="i!W`n@uq#ih%R`mY4tK_">
+                        <field name="NUM">1</field>
+                      </shadow>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="variables_set" id="m@g`M|G[vW_zZcA!g0P!">
+                    <field name="VAR" id="2L%:EmpGIf-1PeYb@-k%" variabletype="">CandleClosed</field>
+                    <value name="VALUE">
+                      <block type="logic_boolean" id="2`fzM#NRB3^9N!K5q)+}">
+                        <field name="BOOL">TRUE</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="variables_set" id=";tcw}t]]A:EWy+z;id=(">
+                        <field name="VAR" id="q-`7Uh#SN}Hts?8v6zvN" variabletype="">PurchaseTime</field>
+                        <value name="VALUE">
+                          <block type="logic_boolean" id="hZN|2gCFtdxiRGKyAE=%">
+                            <field name="BOOL">TRUE</field>
+                          </block>
+                        </value>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </statement>
+            <statement name="ELSE">
+              <block type="variables_set" id="NsJ4Fu6.H$6{F7V%?~$1">
+                <field name="VAR" id="2L%:EmpGIf-1PeYb@-k%" variabletype="">CandleClosed</field>
+                <value name="VALUE">
+                  <block type="logic_boolean" id=")R636[p$KA;Rzi[}p|+t">
+                    <field name="BOOL">FALSE</field>
+                  </block>
+                </value>
+              </block>
+            </statement>
+            <next>
+              <block type="controls_if" id="nfE;DZ,vkf+7X(jD:Y8b">
+                <mutation else="1"></mutation>
+                <value name="IF0">
+                  <block type="is_candle_black" id="e?=TIJXo-@b#27ZrAdO#">
+                    <value name="OHLCOBJ">
+                      <block type="get_ohlc" id="DU?j@ZD,(W#N%k?.[ukS">
+                        <field name="CANDLEINTERVAL_LIST">default</field>
+                        <value name="CANDLEINDEX">
+                          <shadow type="math_number" id="i*3SBF*Jl9a$GijZW@rE">
+                            <field name="NUM">1</field>
+                          </shadow>
+                        </value>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <statement name="DO0">
+                  <block type="variables_set" id="yFESm2:pO5E9D[BvxqPe">
+                    <field name="VAR" id="Lm~n;LP/}Z0w9Tu;Q|E9" variabletype="">NenRed</field>
+                    <value name="VALUE">
+                      <block type="logic_boolean" id="8d/k]Ersf@-kET!EK$JD">
+                        <field name="BOOL">TRUE</field>
+                      </block>
+                    </value>
+                  </block>
+                </statement>
+                <statement name="ELSE">
+                  <block type="variables_set" id="|rjEzG!g1cP`4YVopv?f">
+                    <field name="VAR" id="Lm~n;LP/}Z0w9Tu;Q|E9" variabletype="">NenRed</field>
+                    <value name="VALUE">
+                      <block type="logic_boolean" id=":`[Um(e.q^YEiL0fG)f/">
+                        <field name="BOOL">FALSE</field>
+                      </block>
+                    </value>
+                  </block>
+                </statement>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+</xml>

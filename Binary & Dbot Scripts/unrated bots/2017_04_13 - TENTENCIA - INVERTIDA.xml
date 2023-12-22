@@ -1,0 +1,431 @@
+﻿<xml xmlns="http://www.w3.org/1999/xhtml" collection="false">
+  <block type="loader" id="G8*bH0yYOiK7:XhZ-!pX" x="0" y="0">
+    <field name="URL">https://gist.githubusercontent.com/aminmarashi/0feb52b5802519cd4157b612d9bd3471/raw/martingale.xml</field>
+  </block>
+  <block type="trade" id=")inu*9KBx=?O=ZEkmjl_" x="0" y="53">
+    <statement name="SUBMARKET">
+      <block type="variables_set" id="#2)TjfNB:ZB)Njqnyt%h">
+        <field name="VAR">LOST_MAX_LAST</field>
+        <value name="VALUE">
+          <block type="math_number" id="(PA+^yMipeS[f0X%mKGP">
+            <field name="NUM">0</field>
+          </block>
+        </value>
+        <next>
+          <block type="variables_set" id="iyM|fokS,yn8jsIPH{qN">
+            <field name="VAR">LOST_MAX</field>
+            <value name="VALUE">
+              <block type="math_number" id="WSu=C=8TG1t=DKhUWAyH">
+                <field name="NUM">0</field>
+              </block>
+            </value>
+            <next>
+              <block type="variables_set" id="!mCqh{.@3?8[fm1.7~^{">
+                <field name="VAR">martingale:amount</field>
+                <value name="VALUE">
+                  <block type="math_number" id=":9@NS[@zkeEc=|:ku-bc">
+                    <field name="NUM">0.76</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="variables_set" id="P}t6g|yXib=?s2H@j/|*">
+                    <field name="VAR">martingale:expectedProfit</field>
+                    <value name="VALUE">
+                      <block type="math_number" id="Jo)!/%Fn|V.Iffxsf46q">
+                        <field name="NUM">5</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="variables_set" id="g|kno2P@iV`90kB3v$l?">
+                        <field name="VAR">martingale:maximumLoss</field>
+                        <value name="VALUE">
+                          <block type="math_number" id="NcNd@}S:|Uli}v_4T4V2">
+                            <field name="NUM">10</field>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="market" id="kuvDky08AB9p$:4j-FW9">
+                            <field name="MARKET_LIST">volidx</field>
+                            <field name="SUBMARKET_LIST">random_index</field>
+                            <field name="SYMBOL_LIST">R_100</field>
+                            <field name="TRADETYPECAT_LIST">asian</field>
+                            <field name="TRADETYPE_LIST">asians</field>
+                            <field name="TYPE_LIST">both</field>
+                            <field name="CANDLEINTERVAL_LIST">60</field>
+                            <field name="DURATIONTYPE_LIST">t</field>
+                            <field name="PAYOUTTYPE_LIST">stake</field>
+                            <field name="CURRENCY_LIST">USD</field>
+                            <field name="RESTARTONERROR">FALSE</field>
+                            <value name="DURATION">
+                              <block type="math_number" id="jFf?/QhNYU(`5|8/[[N2">
+                                <field name="NUM">5</field>
+                              </block>
+                            </value>
+                            <value name="AMOUNT">
+                              <block type="procedures_callreturn" id="@uXod$$=Tt$}6Vt`!$vo">
+                                <mutation name="Martingale Trade Amount"></mutation>
+                              </block>
+                            </value>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <block type="before_purchase" id="*Q[~K|v:Sg)bHrl+VA1N" x="0" y="424">
+    <statement name="BEFOREPURCHASE_STACK">
+      <block type="variables_set" id=",k3e|97Q#zy~St|},FIw">
+        <field name="VAR">RSI</field>
+        <value name="VALUE">
+          <block type="rsi" id="L`@9^C8dP8t_eY~kc`z@">
+            <value name="INPUT">
+              <block type="ohlc_values" id="zfL;*8=+xY4c;D.a+BNG">
+                <field name="OHLCFIELD_LIST">close</field>
+              </block>
+            </value>
+            <value name="PERIOD">
+              <block type="math_number" id="M`iwUevPD`7AM;@a_lxL">
+                <field name="NUM">14</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="notify" id="d6hoYghe$|5gGM!Uw4^E">
+            <field name="NOTIFICATION_TYPE">success</field>
+            <value name="MESSAGE">
+              <block type="text_join" id="0}QaY20UMMh`;6uUyJJV">
+                <mutation items="2"></mutation>
+                <value name="ADD0">
+                  <block type="text" id="rycoAM.71-1g2W0KNs9N">
+                    <field name="TEXT">RSI: </field>
+                  </block>
+                </value>
+                <value name="ADD1">
+                  <block type="variables_get" id="@6r^:%J(M%u/C:m.1,np">
+                    <field name="VAR">RSI</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="notify" id="Okq`Z6xI~nT?O!cCKv)t">
+                <field name="NOTIFICATION_TYPE">warn</field>
+                <value name="MESSAGE">
+                  <block type="text_join" id="rKk@PtVd[]M+3iD8NDPu">
+                    <mutation items="2"></mutation>
+                    <value name="ADD0">
+                      <block type="text" id="F*@5lw{B(-Cpy@k/swoV">
+                        <field name="TEXT">LOST_MAX:</field>
+                      </block>
+                    </value>
+                    <value name="ADD1">
+                      <block type="variables_get" id="|ec-wk0O?}!f~BB036[y">
+                        <field name="VAR">LOST_MAX</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="controls_if" id=".w6#:3YN02iJYEn~*zeO">
+                    <mutation elseif="1"></mutation>
+                    <value name="IF0">
+                      <block type="logic_compare" id="}[99+Ny4yVf;!J=sZqZK">
+                        <field name="OP">GTE</field>
+                        <value name="A">
+                          <block type="variables_get" id="d2lEPSjR=xRctYlaXZ%/">
+                            <field name="VAR">RSI</field>
+                          </block>
+                        </value>
+                        <value name="B">
+                          <block type="math_number" id="EZ9`dW{*yzAaw.9JN?PD">
+                            <field name="NUM">80</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <statement name="DO0">
+                      <block type="variables_set" id="zU[QX~LZY]`T.BL!7cZo">
+                        <field name="VAR">Contract Type</field>
+                        <value name="VALUE">
+                          <block type="text" id="PJ=t,D@QV~q*pxN8_/nd">
+                            <field name="TEXT">DOWN</field>
+                          </block>
+                        </value>
+                      </block>
+                    </statement>
+                    <value name="IF1">
+                      <block type="logic_compare" id="J8fPxAVJ=pJRsvb2*/,2">
+                        <field name="OP">LTE</field>
+                        <value name="A">
+                          <block type="variables_get" id="j/)Z{xC~w:%S~.$tPFcW">
+                            <field name="VAR">RSI</field>
+                          </block>
+                        </value>
+                        <value name="B">
+                          <block type="math_number" id="k^GA+}=[E*+b5DPc3-$O">
+                            <field name="NUM">20</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <statement name="DO1">
+                      <block type="variables_set" id=";8:g`}3Zy2F@@^5uX}O}">
+                        <field name="VAR">Contract Type</field>
+                        <value name="VALUE">
+                          <block type="text" id="PkPH%1SJ6E`-1(NKNHa,">
+                            <field name="TEXT">UP</field>
+                          </block>
+                        </value>
+                      </block>
+                    </statement>
+                    <next>
+                      <block type="controls_if" id="i^y1-),y7~|#4?F~nZ_|">
+                        <mutation elseif="1"></mutation>
+                        <value name="IF0">
+                          <block type="logic_compare" id="!WkMU~7t-BaX/6mu`-0^">
+                            <field name="OP">EQ</field>
+                            <value name="A">
+                              <block type="variables_get" id="nFY.TxN+a_J`Np?^d:2c">
+                                <field name="VAR">Contract Type</field>
+                              </block>
+                            </value>
+                            <value name="B">
+                              <block type="text" id="+b{$akN|O+G6jWK%I;^P">
+                                <field name="TEXT">UP</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <statement name="DO0">
+                          <block type="purchase" id="Q;`vp48|v7pG%t@W6`uQ">
+                            <field name="PURCHASE_LIST">ASIANU</field>
+                          </block>
+                        </statement>
+                        <value name="IF1">
+                          <block type="logic_compare" id="%yhN~3:_V+xTdF)Bn#c#">
+                            <field name="OP">EQ</field>
+                            <value name="A">
+                              <block type="variables_get" id="#=mn$^(PB+EUJ#cFj_Y6">
+                                <field name="VAR">Contract Type</field>
+                              </block>
+                            </value>
+                            <value name="B">
+                              <block type="text" id="[?dp[FgN%8c-qc`yEB#H">
+                                <field name="TEXT">DOWN</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <statement name="DO1">
+                          <block type="purchase" id="@5$RB6|F?Ws{|s)a6(3k">
+                            <field name="PURCHASE_LIST">ASIAND</field>
+                          </block>
+                        </statement>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <block type="after_purchase" id="X[gun7Sx6Shn3kldC}mZ" x="0" y="951">
+    <statement name="AFTERPURCHASE_STACK">
+      <block type="controls_if" id="1-c,VlN:,{n1.F271)z.">
+        <mutation else="1"></mutation>
+        <value name="IF0">
+          <block type="contract_check_result" id="}I,%h*R43lliT%QzYNqC">
+            <field name="CHECK_RESULT">win</field>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="controls_if" id="P?.YnyyBGB,!js~P,TsJ">
+            <mutation else="1"></mutation>
+            <value name="IF0">
+              <block type="logic_compare" id="%2*J-BW6[ktl,NW=z?.t">
+                <field name="OP">EQ</field>
+                <value name="A">
+                  <block type="variables_get" id="D%Du/lf^JVp#]AC5{W.F">
+                    <field name="VAR">Contract Type</field>
+                  </block>
+                </value>
+                <value name="B">
+                  <block type="text" id="rGedI3B,0Kd]7[O{@4Ps">
+                    <field name="TEXT">DOWN</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <statement name="DO0">
+              <block type="variables_set" id="~.@s#y{,D8S:2|?[NAfo">
+                <field name="VAR">Contract Type</field>
+                <value name="VALUE">
+                  <block type="text" id="cw|7IQ];h,G:TuKNu@7L">
+                    <field name="TEXT">UP</field>
+                  </block>
+                </value>
+              </block>
+            </statement>
+            <statement name="ELSE">
+              <block type="variables_set" id="J:f@Gx4jV?m3b+2z)7lI">
+                <field name="VAR">Contract Type</field>
+                <value name="VALUE">
+                  <block type="text" id="|UzX[fs*xRK@Jq?Y9w7d">
+                    <field name="TEXT">DOWN</field>
+                  </block>
+                </value>
+              </block>
+            </statement>
+            <next>
+              <block type="variables_set" id="Iz}km[F%zc/La:[r2*qo">
+                <field name="VAR">LOST_MAX_LAST</field>
+                <value name="VALUE">
+                  <block type="math_number" id="ZG7O6ihEEm_OW7bdv^N,">
+                    <field name="NUM">0</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <statement name="ELSE">
+          <block type="controls_if" id="@6w_!NzrD(Lsn-z?=`GB">
+            <value name="IF0">
+              <block type="contract_check_result" id="zm87}U/~V5eGvDdVk0rN">
+                <field name="CHECK_RESULT">loss</field>
+              </block>
+            </value>
+            <statement name="DO0">
+              <block type="variables_set" id="T`nH,`h%4`Obj`TCG0uw">
+                <field name="VAR">LOST_MAX_LAST</field>
+                <value name="VALUE">
+                  <block type="math_arithmetic" id="t(@Zja5TStCX$44Msz?}">
+                    <field name="OP">ADD</field>
+                    <value name="A">
+                      <shadow type="math_number" id="Y$=Lg+0xm0a2/A).=KZ#">
+                        <field name="NUM">1</field>
+                      </shadow>
+                      <block type="variables_get" id="]U!`X_w,5=+i7N6g|4jG">
+                        <field name="VAR">LOST_MAX_LAST</field>
+                      </block>
+                    </value>
+                    <value name="B">
+                      <shadow type="math_number" id="G@-~{.7VG;U-*fk;@{_@">
+                        <field name="NUM">1</field>
+                      </shadow>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="controls_if" id="*S0Hk7wOF6i)5`hqE};h">
+                    <value name="IF0">
+                      <block type="logic_compare" id="ZYIxLL;m%8ML0d]Ct83n">
+                        <field name="OP">GT</field>
+                        <value name="A">
+                          <block type="variables_get" id=":2,Ki.GH-fE_|)#${lme">
+                            <field name="VAR">LOST_MAX_LAST</field>
+                          </block>
+                        </value>
+                        <value name="B">
+                          <block type="variables_get" id="%U=K`VHP:h0))O!o/+0L">
+                            <field name="VAR">LOST_MAX</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <statement name="DO0">
+                      <block type="variables_set" id="+lDOWjSF?%Y$n*~pXIci">
+                        <field name="VAR">LOST_MAX</field>
+                        <value name="VALUE">
+                          <block type="variables_get" id="ywRdYj!|41az.2fS-|.$">
+                            <field name="VAR">LOST_MAX_LAST</field>
+                          </block>
+                        </value>
+                      </block>
+                    </statement>
+                  </block>
+                </next>
+              </block>
+            </statement>
+            <next>
+              <block type="controls_if" id="@V^]p;xp2FZ#-`1w%yab">
+                <mutation else="1"></mutation>
+                <value name="IF0">
+                  <block type="logic_compare" id="jBjDC0Ux{4;K$ji=l22I">
+                    <field name="OP">EQ</field>
+                    <value name="A">
+                      <block type="variables_get" id=".n`/02U3.7+E(6SQJh(+">
+                        <field name="VAR">Contract Type</field>
+                      </block>
+                    </value>
+                    <value name="B">
+                      <block type="text" id="@:jjB-!3NhtK#)fUHBVq">
+                        <field name="TEXT">UP</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <statement name="DO0">
+                  <block type="variables_set" id="#c][8cBMKHz(aF-WWcU[">
+                    <field name="VAR">Contract Type</field>
+                    <value name="VALUE">
+                      <block type="text" id="}6aQ]vo7I2~YC0kf8L]t">
+                        <field name="TEXT">UP</field>
+                      </block>
+                    </value>
+                  </block>
+                </statement>
+                <statement name="ELSE">
+                  <block type="variables_set" id="qvepsZGiv-l]1,I-D}#x">
+                    <field name="VAR">Contract Type</field>
+                    <value name="VALUE">
+                      <block type="text" id="zze4$w4V`45+/@!HpK%j">
+                        <field name="TEXT">DOWN</field>
+                      </block>
+                    </value>
+                  </block>
+                </statement>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <next>
+          <block type="controls_if" id="#=yO.C1rn7n]Zw*%E1AI">
+            <value name="IF0">
+              <block type="procedures_callreturn" id=")5H0+av/lasc#QI6to2^">
+                <mutation name="Martingale Trade Again After Purchase">
+                  <arg name="martingale:profit"></arg>
+                  <arg name="martingale:resultIsWin"></arg>
+                </mutation>
+                <value name="ARG0">
+                  <block type="read_details" id="(E,!25pd^Ev`yMmr[z*_">
+                    <field name="DETAIL_INDEX">4</field>
+                  </block>
+                </value>
+                <value name="ARG1">
+                  <block type="contract_check_result" id="^ShXafO+N,gqVXtl^w)e">
+                    <field name="CHECK_RESULT">win</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <statement name="DO0">
+              <block type="trade_again" id=",VG2~pX|wvNj6hMyw=%~"></block>
+            </statement>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+</xml>

@@ -1,0 +1,179 @@
+<xml xmlns="http://www.w3.org/1999/xhtml" is_dbot="true" collection="false">
+  <variables>
+    <variable type="" id="Or^h!9Y-2d^PCguLgbtn" islocal="false" iscloud="false">Entrada inicial</variable>
+    <variable type="" id="K%b2]ZDRCL`n,U)-$JXQ" islocal="false" iscloud="false">Ultimo numero</variable>
+    <variable type="" id="(o4=zRYm?M$Q:|7~ro1W" islocal="false" iscloud="false">Numero previsto</variable>
+  </variables>
+  <block type="trade_definition" id="J|IlD*AaKN/g~`$r3;r$" x="0" y="0">
+    <statement name="TRADE_OPTIONS">
+      <block type="trade_definition_market" id="%-sP,c)GOJNHgEE8wHQ=" deletable="false" movable="false">
+        <field name="MARKET_LIST">synthetic_index</field>
+        <field name="SUBMARKET_LIST">random_index</field>
+        <field name="SYMBOL_LIST">R_10</field>
+        <next>
+          <block type="trade_definition_tradetype" id="yJYs9j?3o.!2,J%CZ2,e" deletable="false" movable="false">
+            <field name="TRADETYPECAT_LIST">callput</field>
+            <field name="TRADETYPE_LIST">higherlower</field>
+            <next>
+              <block type="trade_definition_contracttype" id="`J6R,Bx7K:jkyO`s|tS8" deletable="false" movable="false">
+                <field name="TYPE_LIST">both</field>
+                <next>
+                  <block type="trade_definition_candleinterval" id="-^-sr#}PK]IMdob]^vUw" deletable="false" movable="false">
+                    <field name="CANDLEINTERVAL_LIST">60</field>
+                    <next>
+                      <block type="trade_definition_restartbuysell" id="xCeg+5xz,`-K~R9BYIR9" deletable="false" movable="false">
+                        <field name="TIME_MACHINE_ENABLED">FALSE</field>
+                        <next>
+                          <block type="trade_definition_restartonerror" id="+Uk$o)cww0TExko[89s0" deletable="false" movable="false">
+                            <field name="RESTARTONERROR">TRUE</field>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <statement name="INITIALIZATION">
+      <block type="variables_set" id="65N#{!Ol;.l]AgOY^6Un">
+        <field name="VAR" id="Or^h!9Y-2d^PCguLgbtn" variabletype="">Entrada inicial</field>
+        <value name="VALUE">
+          <block type="math_number" id="a4ZMgm%5..8|xUn35%/f">
+            <field name="NUM">1</field>
+          </block>
+        </value>
+        <next>
+          <block type="variables_set" id="v6Xotr]ew:aZ{Kz0?f`M">
+            <field name="VAR" id="K%b2]ZDRCL`n,U)-$JXQ" variabletype="">Ultimo numero</field>
+            <next>
+              <block type="variables_set" id="jg_kicWVczjwU+S{/u;2">
+                <field name="VAR" id="(o4=zRYm?M$Q:|7~ro1W" variabletype="">Numero previsto</field>
+                <value name="VALUE">
+                  <block type="math_number" id="u=eY3-)y9pgkDDq6SXrn">
+                    <field name="NUM">1</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <statement name="SUBMARKET">
+      <block type="trade_definition_tradeoptions" id="bJg}cokwBiH1D,%8q%E0">
+        <mutation has_first_barrier="true" has_second_barrier="false" has_prediction="false"></mutation>
+        <field name="DURATIONTYPE_LIST">t</field>
+        <field name="BARRIEROFFSETTYPE_LIST">-</field>
+        <value name="DURATION">
+          <shadow type="math_number" id="v`AtgxqYp2UgaD_R:)E`">
+            <field name="NUM">10</field>
+          </shadow>
+        </value>
+        <value name="AMOUNT">
+          <shadow type="math_number" id="HZ$PGGUK]mPHyB;RSB2a">
+            <field name="NUM">0.35</field>
+          </shadow>
+          <block type="variables_get" id="rv2Bpe[W5iDau:Dz)R(F">
+            <field name="VAR" id="Or^h!9Y-2d^PCguLgbtn" variabletype="">Entrada inicial</field>
+          </block>
+        </value>
+        <value name="BARRIEROFFSET">
+          <shadow type="math_number" id="ibJbJ75R0^dUEee)!}Gl">
+            <field name="NUM">0.9</field>
+          </shadow>
+        </value>
+      </block>
+    </statement>
+  </block>
+  <block type="during_purchase" id="|qy[Sz[q_?sO8#8E#Rjx" collapsed="true" x="1072" y="0">
+    <statement name="DURING_PURCHASE_STACK">
+      <block type="controls_if" id="Cq#1M]bh3}M?jCI/FhJX">
+        <value name="IF0">
+          <block type="check_sell" id=".vwQ`/]-6dKLb,YqQH(O"></block>
+        </value>
+      </block>
+    </statement>
+  </block>
+  <block type="after_purchase" id="a[#@[QGg.rNIWFvql[Na" collapsed="true" x="1072" y="96">
+    <statement name="AFTERPURCHASE_STACK">
+      <block type="controls_if" id="vsFk)WoXZ~S?hjbV#HOp">
+        <mutation else="1"></mutation>
+        <value name="IF0">
+          <block type="contract_check_result" id="`4)@fS)5/fu:rs:N!8gB">
+            <field name="CHECK_RESULT">win</field>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="variables_set" id="MTtDBu#fRK%iGjIg^:)-">
+            <field name="VAR" id="Or^h!9Y-2d^PCguLgbtn" variabletype="">Entrada inicial</field>
+            <value name="VALUE">
+              <block type="math_number" id="!ogxOVJ.fp|b9_1(#ZJT">
+                <field name="NUM">17</field>
+              </block>
+            </value>
+            <next>
+              <block type="trade_again" id="]X)GvIS:*IFYISus?60?"></block>
+            </next>
+          </block>
+        </statement>
+        <statement name="ELSE">
+          <block type="controls_if" id=".-k{8TkDkI-Hm5{Iu=1m">
+            <value name="IF0">
+              <block type="contract_check_result" id="9@_TkcW~U5{E{6X_z|qe">
+                <field name="CHECK_RESULT">loss</field>
+              </block>
+            </value>
+            <statement name="DO0">
+              <block type="math_change" id="+N|E}%)9#^NVdE{5c+q_">
+                <field name="VAR" id="Or^h!9Y-2d^PCguLgbtn" variabletype="">Entrada inicial</field>
+                <value name="DELTA">
+                  <shadow type="math_number" id="K.q:K*x:uuJH|Dx*f$EC">
+                    <field name="NUM">1</field>
+                  </shadow>
+                  <block type="math_arithmetic" id="m.IcFfFjcsif;^/5m4E_">
+                    <field name="OP">MULTIPLY</field>
+                    <value name="A">
+                      <shadow type="math_number" id="**5%;OmfMJC?}8$0By?4">
+                        <field name="NUM">1</field>
+                      </shadow>
+                      <block type="math_single" id=".OgMAi)Qr38YJypXni-r">
+                        <field name="OP">ABS</field>
+                        <value name="NUM">
+                          <shadow type="math_number" id="c2sI$[lXhfWwh9Y--A!u">
+                            <field name="NUM">9</field>
+                          </shadow>
+                          <block type="read_details" id="w#||!5uVy[D*OyR]8N@.">
+                            <field name="DETAIL_INDEX">4</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <value name="B">
+                      <shadow type="math_number" id="ek|#^4d%$R2v::de5Q{2">
+                        <field name="NUM">1</field>
+                      </shadow>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="trade_again" id="1^;+5z#LGONCH7tGX^w2"></block>
+                </next>
+              </block>
+            </statement>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+  <block type="before_purchase" id="9=WHy^:bWVzI6FG)W:/_" x="0" y="696">
+    <statement name="BEFOREPURCHASE_STACK">
+      <block type="purchase" id="*/F.DM31Bp;js^85Enc`">
+        <field name="PURCHASE_LIST">CALL</field>
+      </block>
+    </statement>
+  </block>
+</xml>

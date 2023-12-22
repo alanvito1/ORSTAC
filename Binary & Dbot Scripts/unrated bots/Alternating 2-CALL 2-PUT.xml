@@ -1,0 +1,260 @@
+﻿<xml xmlns="http://www.w3.org/1999/xhtml" collection="false">
+  <variables>
+    <variable type="" id="5zs1VSJ@=gO8dM#+|Z+k">Buy Call</variable>
+    <variable type="" id="bh^1@kNROigw#rL~UTq{">Buy Put</variable>
+    <variable type="" id="Bvk5+W1uL2K;|I!=5Nxv">Call Counter</variable>
+    <variable type="" id=";t:A*{*QI`3ego}$%NCn">Put Counter</variable>
+  </variables>
+  <block type="trade" id="xgH69|xFn9=70w.*3Vo@" x="11" y="71">
+    <field name="MARKET_LIST">volidx</field>
+    <field name="SUBMARKET_LIST">random_index</field>
+    <field name="SYMBOL_LIST">R_100</field>
+    <field name="TRADETYPECAT_LIST">callput</field>
+    <field name="TRADETYPE_LIST">risefall</field>
+    <field name="TYPE_LIST">both</field>
+    <field name="CANDLEINTERVAL_LIST">60</field>
+    <field name="TIME_MACHINE_ENABLED">FALSE</field>
+    <field name="RESTARTONERROR">TRUE</field>
+    <statement name="INITIALIZATION">
+      <block type="variables_set" id="~Pn4);n4uH?uX%.YC/8`">
+        <field name="VAR" id="5zs1VSJ@=gO8dM#+|Z+k" variabletype="">Buy Call</field>
+        <value name="VALUE">
+          <block type="logic_boolean" id="UYfQPRbljyY/C{2}TJ?^">
+            <field name="BOOL">TRUE</field>
+          </block>
+        </value>
+        <next>
+          <block type="variables_set" id="e3T0:r`l3f9IgY3Ws-kS">
+            <field name="VAR" id="bh^1@kNROigw#rL~UTq{" variabletype="">Buy Put</field>
+            <value name="VALUE">
+              <block type="logic_boolean" id="./-C7J-^xUma],!w(`j%">
+                <field name="BOOL">FALSE</field>
+              </block>
+            </value>
+            <next>
+              <block type="variables_set" id="e%xd25FdWw#;)x=pUC_H">
+                <field name="VAR" id="Bvk5+W1uL2K;|I!=5Nxv" variabletype="">Call Counter</field>
+                <value name="VALUE">
+                  <block type="math_number" id="4vZrw!dsx%1W-@tr~~@7">
+                    <field name="NUM">0</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="variables_set" id="1Rv6-po,GBNrt.MQ:7jl">
+                    <field name="VAR" id=";t:A*{*QI`3ego}$%NCn" variabletype="">Put Counter</field>
+                    <value name="VALUE">
+                      <block type="math_number" id="%A#),$7RD+/(W|yw{}4A">
+                        <field name="NUM">0</field>
+                      </block>
+                    </value>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <statement name="SUBMARKET">
+      <block type="tradeOptions" id="x=V33~4Lb|(sLv`J[:Eb">
+        <field name="DURATIONTYPE_LIST">t</field>
+        <field name="CURRENCY_LIST">USD</field>
+        <value name="DURATION">
+          <shadow type="math_number" id="O*@58sDc=!cOO}*b2vf9">
+            <field name="NUM">5</field>
+          </shadow>
+        </value>
+        <value name="AMOUNT">
+          <shadow type="math_number" id="ml)25~7^q}3I9}vjf:%K">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+      </block>
+    </statement>
+  </block>
+  <block type="after_purchase" id="D^Jz1^n=2vtZku1vBN@;" x="654" y="70">
+    <statement name="AFTERPURCHASE_STACK">
+      <block type="controls_if" id="5xqlvN#S4j_,WDa0uu25">
+        <mutation else="1"></mutation>
+        <value name="IF0">
+          <block type="variables_get" id="CT^zps4{RK][[[0I+0{P">
+            <field name="VAR" id="5zs1VSJ@=gO8dM#+|Z+k" variabletype="">Buy Call</field>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="controls_if" id="TrRg0pYPDb]^W`-P1n}0">
+            <mutation else="1"></mutation>
+            <value name="IF0">
+              <block type="logic_compare" id="J*x],_AH*OPVcuI[pwAr">
+                <field name="OP">LT</field>
+                <value name="A">
+                  <block type="variables_get" id="K.|W,_4/KiMM:8OXc~v[">
+                    <field name="VAR" id="Bvk5+W1uL2K;|I!=5Nxv" variabletype="">Call Counter</field>
+                  </block>
+                </value>
+                <value name="B">
+                  <block type="math_number" id="xuGh5LmZ.xF$8d%D)@bG">
+                    <field name="NUM">1</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <statement name="DO0">
+              <block type="math_change" id="OcK#%RKvDf7HSadXU11;">
+                <field name="VAR" id="Bvk5+W1uL2K;|I!=5Nxv" variabletype="">Call Counter</field>
+                <value name="DELTA">
+                  <shadow type="math_number" id="c_4C{!mz[M)I#?5z?/B4">
+                    <field name="NUM">1</field>
+                  </shadow>
+                </value>
+                <next>
+                  <block type="variables_set" id="Ipv4rHivC$Mc+zqj[84V">
+                    <field name="VAR" id=";t:A*{*QI`3ego}$%NCn" variabletype="">Put Counter</field>
+                    <value name="VALUE">
+                      <block type="math_number" id="4vWe6LP!}+W2P4H],@Z|">
+                        <field name="NUM">0</field>
+                      </block>
+                    </value>
+                  </block>
+                </next>
+              </block>
+            </statement>
+            <statement name="ELSE">
+              <block type="variables_set" id="~%#G9Sp+1djov^gR|bpM">
+                <field name="VAR" id="Bvk5+W1uL2K;|I!=5Nxv" variabletype="">Call Counter</field>
+                <value name="VALUE">
+                  <block type="math_number" id="1T^i]rr|:/E^kVr)!6d@">
+                    <field name="NUM">0</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="variables_set" id=")5I/+rUR|2+0ploray;D">
+                    <field name="VAR" id="bh^1@kNROigw#rL~UTq{" variabletype="">Buy Put</field>
+                    <value name="VALUE">
+                      <block type="logic_boolean" id="nMK@|FGX]eD?6abVrjpB">
+                        <field name="BOOL">TRUE</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="variables_set" id="F*HN)c36wh}f7{{zt:9~">
+                        <field name="VAR" id="5zs1VSJ@=gO8dM#+|Z+k" variabletype="">Buy Call</field>
+                        <value name="VALUE">
+                          <block type="logic_boolean" id="etJl73pzu|C`$ca)z!yL">
+                            <field name="BOOL">FALSE</field>
+                          </block>
+                        </value>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </statement>
+          </block>
+        </statement>
+        <statement name="ELSE">
+          <block type="controls_if" id="eQ9tC%1I:2GJ*F.m[{R*">
+            <mutation else="1"></mutation>
+            <value name="IF0">
+              <block type="logic_compare" id="C`e%y-Ef_J4FssP$z9VL">
+                <field name="OP">LT</field>
+                <value name="A">
+                  <block type="variables_get" id="o0jUJVi^ndU#y+Ne=R;#">
+                    <field name="VAR" id=";t:A*{*QI`3ego}$%NCn" variabletype="">Put Counter</field>
+                  </block>
+                </value>
+                <value name="B">
+                  <block type="math_number" id="fsRW)W:Di]xGE,K5(oBB">
+                    <field name="NUM">1</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <statement name="DO0">
+              <block type="math_change" id="mVP-gK2mMVPb}6ABK`Z2">
+                <field name="VAR" id=";t:A*{*QI`3ego}$%NCn" variabletype="">Put Counter</field>
+                <value name="DELTA">
+                  <shadow type="math_number" id="+#Y~g1LN%$ar1`Ea9ujh">
+                    <field name="NUM">1</field>
+                  </shadow>
+                </value>
+                <next>
+                  <block type="variables_set" id="`Lyu:TzmDjX-ts9(dwqK">
+                    <field name="VAR" id="Bvk5+W1uL2K;|I!=5Nxv" variabletype="">Call Counter</field>
+                    <value name="VALUE">
+                      <block type="math_number" id="W;8GRij$T4e7+ZY@.Lq:">
+                        <field name="NUM">0</field>
+                      </block>
+                    </value>
+                  </block>
+                </next>
+              </block>
+            </statement>
+            <statement name="ELSE">
+              <block type="variables_set" id="W89HR~4bqNpF#2(H:16M">
+                <field name="VAR" id=";t:A*{*QI`3ego}$%NCn" variabletype="">Put Counter</field>
+                <value name="VALUE">
+                  <block type="math_number" id="82(_P_o4`3eI{!K#1WEP">
+                    <field name="NUM">0</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="variables_set" id="#L%2ad?[c)Da:,=|x0q.">
+                    <field name="VAR" id="5zs1VSJ@=gO8dM#+|Z+k" variabletype="">Buy Call</field>
+                    <value name="VALUE">
+                      <block type="logic_boolean" id="(f?Kb87X_;bYqF{rLj[T">
+                        <field name="BOOL">TRUE</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="variables_set" id="x*Sil}J%c@]Hpk8V}r5Q">
+                        <field name="VAR" id="bh^1@kNROigw#rL~UTq{" variabletype="">Buy Put</field>
+                        <value name="VALUE">
+                          <block type="logic_boolean" id="KuJ?4%dv)5$~aou/fc:`">
+                            <field name="BOOL">FALSE</field>
+                          </block>
+                        </value>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </statement>
+          </block>
+        </statement>
+        <next>
+          <block type="trade_again" id="c)S|KjoQdXc8l#J@5z3P"></block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <block type="before_purchase" id="i-CIx.(Onm4?ihxzA}Y]" x="13" y="569">
+    <statement name="BEFOREPURCHASE_STACK">
+      <block type="controls_if" id="Jt_zuubKb:RH.{QO(Go.">
+        <value name="IF0">
+          <block type="variables_get" id="|,M]2h}t!17=YjF[Tw#$">
+            <field name="VAR" id="5zs1VSJ@=gO8dM#+|Z+k" variabletype="">Buy Call</field>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="purchase" id="A^50=h7DpuPE{pT;#;/b">
+            <field name="PURCHASE_LIST">CALL</field>
+          </block>
+        </statement>
+        <next>
+          <block type="controls_if" id="F}55za/o7I5|O5AV@svJ">
+            <value name="IF0">
+              <block type="variables_get" id="JjW!E`J|=/OkKF$ps}0H">
+                <field name="VAR" id="bh^1@kNROigw#rL~UTq{" variabletype="">Buy Put</field>
+              </block>
+            </value>
+            <statement name="DO0">
+              <block type="purchase" id="=9Vw3J?.?#+~:doxGb)n">
+                <field name="PURCHASE_LIST">PUT</field>
+              </block>
+            </statement>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+</xml>
