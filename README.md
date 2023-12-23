@@ -19,7 +19,7 @@ We extend a warm welcome to our distinguished guests at the Open Source Robots R
 
 A prudent reminder: Always initiate your bot testing with a DEMO ACCOUNT.
 
-# Copy Trading an Expert and Grid Trading
+# Steps to Copy Trading 
 1. [Sign up on BingX](https://bingx.com/partner/avre/30CtTw)
 2. [BingX Trader Jennie❤️'s 180D ROI is as high as +5.20%. New users can claim 10 USDT Subsidy Voucher to copy the strategies of elite traders at 0 risks.](https://bingx.com/int/2puEPN)
 3. Enjoy the experience!
