@@ -2,7 +2,7 @@
 
 Greetings,
 
-We extend a warm welcome to our distinguished guests at the Open Source Robots Repository. It stands as a testament to innovation and collaboration in the world of automated trading. The repository, aptly named "Open Source," emphasizes its commitment to inclusivity, allowing enthusiasts to access and modify our extensive collection of Trading Bots. 
+We extend a warm welcome to our distinguished guests at the Open Source Robots Repository. It stands as a testament to innovation and collaboration in the world of automated trading. The repository, aptly named "Open Source," emphasizes its commitment to inclusivity, allowing enthusiasts to access and modify our extensive collection of [Trading Bots](https://track.deriv.com/_h1BT0Uryldi34Ib7uprVbWNd7ZgqdRLk/1/). 
 
 "Game theory rules everything. Come to the game." This is our mutual learning and growth.
 
