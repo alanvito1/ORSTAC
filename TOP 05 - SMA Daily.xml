@@ -465,7 +465,7 @@ Run once a day
       </block>
     </statement>
   </block>
-  <block type="before_purchase" id="zwrLZ1+W,@?1ZL59xNk2" collapsed="true" deletable="false" x="0" y="696">
+  <block type="before_purchase" id="zwrLZ1+W,@?1ZL59xNk2" deletable="false" x="0" y="696">
     <statement name="BEFOREPURCHASE_STACK">
       <block type="sma_statement" id="6S2,xQ3v8?9Ii0KvB,:L">
         <field name="VARIABLE" id="2^SMH62uFYpf9_.p-bb;" variabletype="">sma-fast</field>
@@ -489,75 +489,75 @@ Run once a day
           </block>
         </statement>
         <next>
-          <block type="controls_if" id="QW~H^(MhwaGHF2[u/D|1">
-            <value name="IF0">
-              <block type="logic_compare" id="|whObKGA6Md!o~!%8zh(">
-                <field name="OP">GT</field>
-                <value name="A">
-                  <block type="tick" id="(Xiv.s2QBx}mz}?Fs?b_"></block>
-                </value>
-                <value name="B">
-                  <block type="logic_operation" id="D9R00/`S(;9O7,mbqx#s">
-                    <field name="OP">AND</field>
-                    <value name="A">
-                      <block type="variables_get" id="XBw,G]/BzYMD(Z5{mY5`">
-                        <field name="VAR" id="rk7iHm)*aCD+Q6)U(I:d" variabletype="">sma-slow</field>
-                      </block>
-                    </value>
-                    <value name="B">
-                      <block type="variables_get" id="u5eR$6LC+Qx_ouEj9hM{">
-                        <field name="VAR" id="2^SMH62uFYpf9_.p-bb;" variabletype="">sma-fast</field>
-                      </block>
-                    </value>
+          <block type="sma_statement" id="ryOYLB=709-P/itBQ77~">
+            <field name="VARIABLE" id="rk7iHm)*aCD+Q6)U(I:d" variabletype="">sma-slow</field>
+            <statement name="STATEMENT">
+              <block type="input_list" id="~7`QyVta:W7Ry{2Z3}^?" deletable="false" movable="false">
+                <value name="INPUT_LIST">
+                  <block type="ohlc_values" id="FvunkSfob]Wxi|Uq^-#2">
+                    <field name="OHLCFIELD_LIST">close</field>
+                    <field name="CANDLEINTERVAL_LIST">default</field>
                   </block>
                 </value>
-              </block>
-            </value>
-            <statement name="DO0">
-              <block type="purchase" id="K5egXps-3P%4:.vk!4)u">
-                <field name="PURCHASE_LIST">CALL</field>
+                <next>
+                  <block type="period" id="JExz2fr.{Oa)WfhCfSE/" deletable="false" movable="false">
+                    <value name="PERIOD">
+                      <shadow type="math_number" id="b*nDD(##%ifjyv*6N)MS">
+                        <field name="NUM">77</field>
+                      </shadow>
+                    </value>
+                  </block>
+                </next>
               </block>
             </statement>
             <next>
-              <block type="sma_statement" id="ryOYLB=709-P/itBQ77~">
-                <field name="VARIABLE" id="rk7iHm)*aCD+Q6)U(I:d" variabletype="">sma-slow</field>
-                <statement name="STATEMENT">
-                  <block type="input_list" id="~7`QyVta:W7Ry{2Z3}^?" deletable="false" movable="false">
-                    <value name="INPUT_LIST">
-                      <block type="ohlc_values" id="FvunkSfob]Wxi|Uq^-#2">
-                        <field name="OHLCFIELD_LIST">close</field>
-                        <field name="CANDLEINTERVAL_LIST">default</field>
-                      </block>
+              <block type="controls_if" id="Rt!:#2aRq|5HJ]qngzEl">
+                <value name="IF0">
+                  <block type="logic_compare" id="GI#lk~gg8Pjf{lRvK1B{">
+                    <field name="OP">LT</field>
+                    <value name="A">
+                      <block type="tick" id="SM_Mgexca6*|]w]1XH*9"></block>
                     </value>
-                    <next>
-                      <block type="period" id="JExz2fr.{Oa)WfhCfSE/" deletable="false" movable="false">
-                        <value name="PERIOD">
-                          <shadow type="math_number" id="b*nDD(##%ifjyv*6N)MS">
-                            <field name="NUM">77</field>
-                          </shadow>
+                    <value name="B">
+                      <block type="logic_operation" id="n8acDzK-E4-O=^zQkq^Y">
+                        <field name="OP">AND</field>
+                        <value name="A">
+                          <block type="variables_get" id="{BRfi;{:#A-QCoqv`kH=">
+                            <field name="VAR" id="rk7iHm)*aCD+Q6)U(I:d" variabletype="">sma-slow</field>
+                          </block>
+                        </value>
+                        <value name="B">
+                          <block type="variables_get" id="V?F(gC:{[DyIw[ou5*!;">
+                            <field name="VAR" id="2^SMH62uFYpf9_.p-bb;" variabletype="">sma-fast</field>
+                          </block>
                         </value>
                       </block>
-                    </next>
+                    </value>
+                  </block>
+                </value>
+                <statement name="DO0">
+                  <block type="purchase" id="0yagR)r!2Kc9;gkkQM[+">
+                    <field name="PURCHASE_LIST">PUT</field>
                   </block>
                 </statement>
                 <next>
-                  <block type="controls_if" id="Rt!:#2aRq|5HJ]qngzEl">
+                  <block type="controls_if" id="QW~H^(MhwaGHF2[u/D|1">
                     <value name="IF0">
-                      <block type="logic_compare" id="GI#lk~gg8Pjf{lRvK1B{">
-                        <field name="OP">LT</field>
+                      <block type="logic_compare" id="|whObKGA6Md!o~!%8zh(">
+                        <field name="OP">GT</field>
                         <value name="A">
-                          <block type="tick" id="SM_Mgexca6*|]w]1XH*9"></block>
+                          <block type="tick" id="(Xiv.s2QBx}mz}?Fs?b_"></block>
                         </value>
                         <value name="B">
-                          <block type="logic_operation" id="n8acDzK-E4-O=^zQkq^Y">
+                          <block type="logic_operation" id="D9R00/`S(;9O7,mbqx#s">
                             <field name="OP">AND</field>
                             <value name="A">
-                              <block type="variables_get" id="{BRfi;{:#A-QCoqv`kH=">
+                              <block type="variables_get" id="XBw,G]/BzYMD(Z5{mY5`">
                                 <field name="VAR" id="rk7iHm)*aCD+Q6)U(I:d" variabletype="">sma-slow</field>
                               </block>
                             </value>
                             <value name="B">
-                              <block type="variables_get" id="V?F(gC:{[DyIw[ou5*!;">
+                              <block type="variables_get" id="u5eR$6LC+Qx_ouEj9hM{">
                                 <field name="VAR" id="2^SMH62uFYpf9_.p-bb;" variabletype="">sma-fast</field>
                               </block>
                             </value>
@@ -566,8 +566,8 @@ Run once a day
                       </block>
                     </value>
                     <statement name="DO0">
-                      <block type="purchase" id="0yagR)r!2Kc9;gkkQM[+">
-                        <field name="PURCHASE_LIST">PUT</field>
+                      <block type="purchase" id="K5egXps-3P%4:.vk!4)u">
+                        <field name="PURCHASE_LIST">CALL</field>
                       </block>
                     </statement>
                   </block>
