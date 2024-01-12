@@ -29,3 +29,5 @@ Additionally, take a moment to explore our insightful article: [Embrace the Powe
 Warm regards,
 
 Alan Victor 🚀
+
+Deriv offers complex derivatives such as options and contracts for difference ("CFDs"). These products may not be suitable for all customers, and trading in them involves risks to you. Make sure you understand the following risks before trading Deriv products: a) you may lose some or all of the money invested in the trade, b) if the trade involves currency conversion, exchange rates will affect your profits and losses. You should never trade with borrowed money or money that you cannot afford to lose.
