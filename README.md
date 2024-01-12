@@ -21,6 +21,7 @@ A prudent reminder: Always initiate your bot testing with a DEMO ACCOUNT.
 
 # Copy Trading With Deriv MT5 signals 
 [JOIN DERIV COPY TRADING](https://track.deriv.com/_h1BT0Uryldj45mrAMZ2h2WNd7ZgqdRLk/1/)
+
 The MT5 trading signals service allows you to copy the trades of more experienced traders to your MT5 account. Once you’ve subscribed to a signal, the provider’s deals will be automatically replicated on your Deriv MT5 trading account each time they place a trade.
 
 
