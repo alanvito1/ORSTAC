@@ -1,4 +1,4 @@
-# Open Source Robots Repository
+# OSRTA - Open Source Robots and Technical Analyses
 
 Greetings,
 
