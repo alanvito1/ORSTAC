@@ -8,7 +8,7 @@ You can also become a Master Deriv affiliate to promote our robots and receive c
 
 "Game theory rules everything. Come to the game." This is our mutual learning and growth.
 
-[Join our Official Telegram Group](https://t.me/superbinarybots)
+[Join ORSTA, Our Official Telegram Group](https://t.me/superbinarybots)
 
 # Steps to Run Robots:
 
