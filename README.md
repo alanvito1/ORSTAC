@@ -4,7 +4,7 @@ Greetings,
 
 We extend a warm welcome to our distinguished guests at the Open Source Robots Repository. It stands as a testament to innovation and collaboration in the world of automated trading. The repository, aptly named "Open Source," emphasizes its commitment to inclusivity, allowing enthusiasts to access and modify our extensive collection of Trading Robots. [Register Here to Trade](https://track.deriv.com/_h1BT0Uryldi34Ib7uprVbWNd7ZgqdRLk/1/). 
 
-You can also become a Master Deriv affiliate to promote our robots and receive commissions, [click here](https://track.deriv.com/_h1BT0Uryldilxv1B6h4gZ2Nd7ZgqdRLk/1/).
+You can also become a Master Deriv affiliate to promote our robots and receive commissions, [Join Our Partner Programme](https://track.deriv.com/_h1BT0Uryldilxv1B6h4gZ2Nd7ZgqdRLk/1/).
 
 "Game theory rules everything. Come to the game." This is our mutual learning and growth.
 
