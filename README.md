@@ -6,7 +6,7 @@ Greetings,
 
 Welcome to the Open Source Robots Repository, a hub for innovation and collaboration in automated trading. The repository is committed to inclusivity, allowing enthusiasts to access and modify our extensive collection of Trading Robots. [Register Here to Trade](https://track.deriv.com/_h1BT0Uryldi34Ib7uprVbWNd7ZgqdRLk/1/).
 
-Join our community at [ORSTA, Our Official Telegram Group](https://t.me/superbinarybots) and become a Master Deriv affiliate to promote our robots and receive commissions, [Join Our Partner Programme](https://track.deriv.com/_h1BT0Uryldilxv1B6h4gZ2Nd7ZgqdRLk/1/).
+Join our community at [ORSTA Official Telegram Group](https://t.me/superbinarybots) and become a Master Deriv affiliate to promote our robots and receive commissions, [Join Our Partner Programme](https://track.deriv.com/_h1BT0Uryldilxv1B6h4gZ2Nd7ZgqdRLk/1/).
 
 "Game theory rules everything. Come to the game." This is our mutual learning and growth.
 
