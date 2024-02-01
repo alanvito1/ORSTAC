@@ -1,6 +1,6 @@
 # OSRTAC - Open Source Robots and Technical Analyses Community
 
-## Welcome to OSRTA!
+## Welcome to OSRTAC!
 
 Greetings,
 
