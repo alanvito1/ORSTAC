@@ -19,9 +19,10 @@
     <variable type="" id="GWM.R3l6d(Lkh^q0kzga" islocal="false" iscloud="false">MG FACTOR</variable>
     <variable type="" id="ht?_}OP:aYq+c98b[q[d" islocal="false" iscloud="false">join text</variable>
     <variable type="" id="6ttDZqlsUAUD3j6tpS0O" islocal="false" iscloud="false">Duration</variable>
+    <variable type="" id="5te#Mf~VpTv50RMx8gN~" islocal="false" iscloud="false">waitnext</variable>
   </variables>
   <block type="trade_definition" id="7jbN]1?+E_88Q@V/V[Lb" collapsed="true" deletable="false" x="0" y="60">
-    <comment id="mz;0w,zn{9~UE]#[[=PL" pinned="true" h="226" w="218" x="334" y="136.14285714285717" minimized="false">Press RUN
+    <comment id="mz;0w,zn{9~UE]#[[=PL" pinned="true" h="226" w="218" x="348" y="50.428571428571445" minimized="false">Press RUN
 
 Stake = 0.35 to 5000
 Profit = 4% of all
@@ -96,7 +97,7 @@ Run once a day
           <block type="text_print" id="pokgE5*lyrNqtD7M]3p:">
             <value name="TEXT">
               <shadow type="text" id="Lhvdr`9;6m%aUP5+~s:O">
-                <field name="TEXT">Telegram: https://t.me/superbinarybots</field>
+                <field name="TEXT">This robot is configured to analyze 1 minute candles... Join our  Telegram: https://t.me/superbinarybots</field>
               </shadow>
             </value>
             <next>
@@ -139,18 +140,33 @@ Run once a day
                           </block>
                         </value>
                         <next>
-                          <block type="variables_set" id="n!rjfRsRt[GMqCG(p(;e">
+                          <block type="variables_set" id="z=ZN]2^6;`[xliyG7ZwF">
                             <field name="VAR" id="6ttDZqlsUAUD3j6tpS0O" variabletype="">Duration</field>
                             <value name="VALUE">
-                              <block type="text_prompt_ext" id="XfZgI@U;Gzh05T{EYQ)V">
+                              <block type="text_prompt_ext" id="qa(kN`-LlA=tQGT(HG7n">
                                 <field name="TYPE">TEXT</field>
                                 <value name="TEXT">
-                                  <shadow type="text" id="g2$x.Qg5-|`bQVQ+DD(Z">
-                                    <field name="TEXT">Duration of operation (between 15 and 86400)</field>
+                                  <shadow type="text" id="vL/Zo([2O}xY_)XX$,f^">
+                                    <field name="TEXT">Duration of operation (between 15 and 86400 seconds)</field>
                                   </shadow>
                                 </value>
                               </block>
                             </value>
+                            <next>
+                              <block type="variables_set" id="n!rjfRsRt[GMqCG(p(;e">
+                                <field name="VAR" id="5te#Mf~VpTv50RMx8gN~" variabletype="">waitnext</field>
+                                <value name="VALUE">
+                                  <block type="text_prompt_ext" id="XfZgI@U;Gzh05T{EYQ)V">
+                                    <field name="TYPE">TEXT</field>
+                                    <value name="TEXT">
+                                      <shadow type="text" id="g2$x.Qg5-|`bQVQ+DD(Z">
+                                        <field name="TEXT">Wait to next trade (Seconds)</field>
+                                      </shadow>
+                                    </value>
+                                  </block>
+                                </value>
+                              </block>
+                            </next>
                           </block>
                         </next>
                       </block>
@@ -180,7 +196,7 @@ Run once a day
       </block>
     </statement>
   </block>
-  <block type="after_purchase" id="8x8%+MJ!e@/uS{nsp=IR" collapsed="true" x="350" y="60">
+  <block type="after_purchase" id="8x8%+MJ!e@/uS{nsp=IR" collapsed="true" x="775" y="60">
     <statement name="AFTERPURCHASE_STACK">
       <block type="controls_if" id="_z[yfAGk42wy5!{Z]1.O">
         <value name="IF0">
@@ -233,7 +249,16 @@ Run once a day
                   </block>
                 </value>
                 <next>
-                  <block type="trade_again" id="Ac7u*9AYnI7Sj50n,sYn"></block>
+                  <block type="timeout" id="_Q,{Zg]q$={W-V|cenpI">
+                    <statement name="TIMEOUTSTACK">
+                      <block type="trade_again" id="Ac7u*9AYnI7Sj50n,sYn"></block>
+                    </statement>
+                    <value name="SECONDS">
+                      <block type="variables_get" id="1}4{4}83@iuwX-5OD_A4">
+                        <field name="VAR" id="5te#Mf~VpTv50RMx8gN~" variabletype="">waitnext</field>
+                      </block>
+                    </value>
+                  </block>
                 </next>
               </block>
             </statement>
@@ -369,5 +394,8 @@ Run once a day
         </next>
       </block>
     </statement>
+  </block>
+  <block type="math_number" id="iP@_AIZfoovCW`|AcKx]" disabled="true" x="0" y="1012">
+    <field name="NUM">105</field>
   </block>
 </xml>
