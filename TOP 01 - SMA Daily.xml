@@ -18,8 +18,9 @@
     <variable type="" id="fkh~6-%!W/G-%aeywU(o" islocal="false" iscloud="false"></variable>
     <variable type="" id="GWM.R3l6d(Lkh^q0kzga" islocal="false" iscloud="false">MG FACTOR</variable>
     <variable type="" id="ht?_}OP:aYq+c98b[q[d" islocal="false" iscloud="false">join text</variable>
+    <variable type="" id="6ttDZqlsUAUD3j6tpS0O" islocal="false" iscloud="false">Duration</variable>
   </variables>
-  <block type="trade_definition" id="7jbN]1?+E_88Q@V/V[Lb" deletable="false" x="0" y="0">
+  <block type="trade_definition" id="7jbN]1?+E_88Q@V/V[Lb" deletable="false" x="0" y="60">
     <comment id="mz;0w,zn{9~UE]#[[=PL" pinned="true" h="226" w="218" x="570" y="-191" minimized="false">Press RUN
 
 Stake = 0.35 to 5000
@@ -102,26 +103,56 @@ Run once a day
               <block type="variables_set" id="MZwsDF9?~wQjT?y#w+;Y">
                 <field name="VAR" id="e5Bwo/c!Gmf-Cku@?%C]" variabletype="">STAKE</field>
                 <value name="VALUE">
-                  <block type="math_number" id="oSd[c-p3@K:t.-Qz|.G7">
-                    <field name="NUM">1</field>
+                  <block type="text_prompt_ext" id="+P-$|,4D.I1@gh=t-ul2">
+                    <field name="TYPE">TEXT</field>
+                    <value name="TEXT">
+                      <shadow type="text" id="-fKLvZdTC_Auggkr0YTq">
+                        <field name="TEXT">Enter stake value (0.35 - 1000)</field>
+                      </shadow>
+                    </value>
                   </block>
                 </value>
                 <next>
                   <block type="variables_set" id="[Hr[4~YcR#D)9BU4bU(X">
                     <field name="VAR" id="Fojr3T_^*,~*L=5;_~^!" variabletype="">WIN STAKE</field>
                     <value name="VALUE">
-                      <block type="math_number" id="qidM6sSh*MNrkYG%eP|K">
-                        <field name="NUM">1</field>
+                      <block type="text_prompt_ext" id="Mg^jP8tw!Nu[u[#UCwC]">
+                        <field name="TYPE">TEXT</field>
+                        <value name="TEXT">
+                          <shadow type="text" id="R26Bw$ylR8:W((,x,*Ke">
+                            <field name="TEXT">Repeat stake value (0.35 - 1000)</field>
+                          </shadow>
+                        </value>
                       </block>
                     </value>
                     <next>
                       <block type="variables_set" id="-vz6y(rSCVbqxr$~UzAC">
                         <field name="VAR" id="GWM.R3l6d(Lkh^q0kzga" variabletype="">MG FACTOR</field>
                         <value name="VALUE">
-                          <block type="math_number" id="A@zNE84m8gpRkQ.v#y|Q">
-                            <field name="NUM">2</field>
+                          <block type="text_prompt_ext" id="0;;kVSz;L,ylWy-lpWHW">
+                            <field name="TYPE">TEXT</field>
+                            <value name="TEXT">
+                              <shadow type="text" id="juC~[x|SHn)6N8qhPr2u">
+                                <field name="TEXT">If you lose what recovery factor? (2 = 2xStake)</field>
+                              </shadow>
+                            </value>
                           </block>
                         </value>
+                        <next>
+                          <block type="variables_set" id="n!rjfRsRt[GMqCG(p(;e">
+                            <field name="VAR" id="6ttDZqlsUAUD3j6tpS0O" variabletype="">Duration</field>
+                            <value name="VALUE">
+                              <block type="text_prompt_ext" id="XfZgI@U;Gzh05T{EYQ)V">
+                                <field name="TYPE">TEXT</field>
+                                <value name="TEXT">
+                                  <shadow type="text" id="g2$x.Qg5-|`bQVQ+DD(Z">
+                                    <field name="TEXT">Duration of operation (between 15 and 86400)</field>
+                                  </shadow>
+                                </value>
+                              </block>
+                            </value>
+                          </block>
+                        </next>
                       </block>
                     </next>
                   </block>
@@ -137,8 +168,8 @@ Run once a day
         <mutation has_first_barrier="false" has_second_barrier="false" has_prediction="false"></mutation>
         <field name="DURATIONTYPE_LIST">s</field>
         <value name="DURATION">
-          <block type="math_number" id="Eq_=c:)4g0R~G+jLsI}8">
-            <field name="NUM">21</field>
+          <block type="variables_get" id="0{NIG~{IEDBRVy62+H%t">
+            <field name="VAR" id="6ttDZqlsUAUD3j6tpS0O" variabletype="">Duration</field>
           </block>
         </value>
         <value name="AMOUNT">
@@ -149,7 +180,7 @@ Run once a day
       </block>
     </statement>
   </block>
-  <block type="after_purchase" id="8x8%+MJ!e@/uS{nsp=IR" collapsed="true" x="778" y="0">
+  <block type="after_purchase" id="8x8%+MJ!e@/uS{nsp=IR" collapsed="true" x="825" y="60">
     <statement name="AFTERPURCHASE_STACK">
       <block type="controls_if" id="_z[yfAGk42wy5!{Z]1.O">
         <value name="IF0">
@@ -211,7 +242,7 @@ Run once a day
       </block>
     </statement>
   </block>
-  <block type="before_purchase" id="zwrLZ1+W,@?1ZL59xNk2" collapsed="true" deletable="false" x="0" y="792">
+  <block type="before_purchase" id="zwrLZ1+W,@?1ZL59xNk2" collapsed="true" deletable="false" x="0" y="900">
     <statement name="BEFOREPURCHASE_STACK">
       <block type="sma_statement" id="6S2,xQ3v8?9Ii0KvB,:L">
         <field name="VARIABLE" id="2^SMH62uFYpf9_.p-bb;" variabletype="">sma-fast</field>
@@ -339,7 +370,22 @@ Run once a day
       </block>
     </statement>
   </block>
-  <block type="variables_get" id="Tz%c9#@J*^]h_S~6vQYb" disabled="true" x="0" y="888">
-    <field name="VAR" id="ht?_}OP:aYq+c98b[q[d" variabletype="">join text</field>
+  <block type="math_number" id="A@zNE84m8gpRkQ.v#y|Q" disabled="true" x="0" y="996">
+    <field name="NUM">2</field>
+  </block>
+  <block type="math_number" id="B4S6Vpu%nhNQYS4(be0L" disabled="true" x="0" y="1084">
+    <field name="NUM">2</field>
+  </block>
+  <block type="math_number" id="Eq_=c:)4g0R~G+jLsI}8" disabled="true" x="0" y="1172">
+    <field name="NUM">1</field>
+  </block>
+  <block type="math_number" id="oSd[c-p3@K:t.-Qz|.G7" disabled="true" x="0" y="1260">
+    <field name="NUM">0.35</field>
+  </block>
+  <block type="math_number" id="qidM6sSh*MNrkYG%eP|K" disabled="true" x="0" y="1348">
+    <field name="NUM">0.35</field>
+  </block>
+  <block type="variables_get" id="!4-`j~}mF*7,/a^RX=#)" disabled="true" x="0" y="1436">
+    <field name="VAR" id="6ttDZqlsUAUD3j6tpS0O" variabletype="">Duration</field>
   </block>
 </xml>
