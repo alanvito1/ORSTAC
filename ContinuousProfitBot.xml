@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <variables>
+    <variable type="" id="stake_initial">STAKE</variable>
+    <variable type="" id="stake_win">WIN STAKE</variable>
+    <variable type="" id="mg_factor">MG FACTOR</variable>
+    <variable type="" id="sma_fast">sma-fast</variable>
+    <variable type="" id="sma_slow">sma-slow</variable>
+    <variable type="" id="target_profit">DAILY PROFIT</variable>
+    <variable type="" id="max_loss">MAX LOSS</variable>
+    <variable type="" id="last_candle_low">LAST CANDLE LOW</variable>
+    <variable type="" id="last_candle_high">LAST CANDLE HIGH</variable>
+    <variable type="" id="text_msg">TEXT MSG</variable>
+  </variables>
+  <block type="trade_definition" id="trade_def" x="0" y="60">
+    <statement name="TRADE_OPTIONS">
+      <block type="trade_definition_market" id="market_def">
+        <field name="MARKET_LIST">synthetic_index</field>
+        <field name="SUBMARKET_LIST">random_index</field>
+        <field name="SYMBOL_LIST">R_100</field>
+        <next>
+          <block type="trade_definition_tradetype" id="tradetype_def">
+            <field name="TRADETYPECAT_LIST">callput</field>
+            <field name="TRADETYPE_LIST">callput</field>
+            <next>
+              <block type="trade_definition_contracttype" id="contract_def">
+                <field name="TYPE_LIST">both</field>
+                <next>
+                  <block type="trade_definition_candleinterval" id="candle_def">
+                    <field name="CANDLEINTERVAL_LIST">60</field>
+                    <next>
+                      <block type="trade_definition_restartbuysell" id="restart_def">
+                        <field name="TIME_MACHINE_ENABLED">FALSE</field>
+                        <next>
+                          <block type="trade_definition_restartonerror" id="error_def">
+                            <field name="RESTARTONERROR">TRUE</field>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <statement name="INITIALIZATION">
+      <block type="variables_set" id="set_stake">
+        <field name="VAR" id="stake_initial">STAKE</field>
+        <value name="VALUE">
+          <block type="math_number" id="stake_value">
+            <field name="NUM">0.35</field>
+          </block>
+        </value>
+        <next>
+          <block type="variables_set" id="set_win_stake">
+            <field name="VAR" id="stake_win">WIN STAKE</field>
+            <value name="VALUE">
+              <block type="math_number" id="win_stake_value">
+                <field name="NUM">0.35</field>
+              </block>
+            </value>
+            <next>
+              <block type="variables_set" id="set_mg_factor">
+                <field name="VAR" id="mg_factor">MG FACTOR</field>
+                <value name="VALUE">
+                  <block type="math_number" id="mg_value">
+                    <field name="NUM">2</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="variables_set" id="set_target_profit">
+                    <field name="VAR" id="target_profit">DAILY PROFIT</field>
+                    <value name="VALUE">
+                      <block type="math_number" id="profit_value">
+                        <field name="NUM">10</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="variables_set" id="set_max_loss">
+                        <field name="VAR" id="max_loss">MAX LOSS</field>
+                        <value name="VALUE">
+                          <block type="math_number" id="loss_value">
+                            <field name="NUM">-5</field>
+                          </block>
+                        </value>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <statement name="SUBMARKET">
+      <block type="trade_definition_tradeoptions" id="trade_options">
+        <mutation has_first_barrier="false" has_second_barrier="false" has_prediction="false"></mutation>
+        <field name="DURATIONTYPE_LIST">t</field>
+        <value name="DURATION">
+          <block type="math_number" id="duration_value">
+            <field name="NUM">5</field>
+          </block>
+        </value>
+        <value name="AMOUNT">
+          <block type="variables_get" id="get_stake">
+            <field name="VAR" id="stake_initial">STAKE</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+  </block>
+  <block type="before_purchase" id="before_purchase" x="0" y="500">
+    <statement name="BEFOREPURCHASE_STACK">
+      <block type="sma_statement" id="sma_fast_def">
+        <field name="VARIABLE" id="sma_fast">sma-fast</field>
+        <value name="INPUT">
+          <block type="ohlc_values" id="ohlc_fast">
+            <field name="OHLCFIELD_LIST">close</field>
+            <field name="CANDLEINTERVAL_LIST">default</field>
+          </block>
+        </value>
+        <value name="PERIOD">
+          <block type="math_number" id="period_fast_value">
+            <field name="NUM">21</field>
+          </block>
+        </value>
+        <next>
+          <block type="sma_statement" id="sma_slow_def">
+            <field name="VARIABLE" id="sma_slow">sma-slow</field>
+            <value name="INPUT">
+              <block type="ohlc_values" id="ohlc_slow">
+                <field name="OHLCFIELD_LIST">close</field>
+                <field name="CANDLEINTERVAL_LIST">default</field>
+              </block>
+            </value>
+            <value name="PERIOD">
+              <block type="math_number" id="period_slow_value">
+                <field name="NUM">77</field>
+              </block>
+            </value>
+            <next>
+              <block type="read_ohlc" id="read_candle_low">
+                <field name="VARIABLE" id="last_candle_low">LAST CANDLE LOW</field>
+                <field name="OHLCFIELD_LIST">low</field>
+                <field name="CANDLEINTERVAL_LIST">default</field>
+                <value name="INDEX">
+                  <block type="math_number" id="candle_index_low">
+                    <field name="NUM">1</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="read_ohlc" id="read_candle_high">
+                    <field name="VARIABLE" id="last_candle_high">LAST CANDLE HIGH</field>
+                    <field name="OHLCFIELD_LIST">high</field>
+                    <field name="CANDLEINTERVAL_LIST">default</field>
+                    <value name="INDEX">
+                      <block type="math_number" id="candle_index_high">
+                        <field name="NUM">1</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="controls_if" id="condition_put">
+                        <mutation elseif="1"></mutation>
+                        <value name="IF0">
+                          <block type="logic_operation" id="and_put">
+                            <field name="OP">AND</field>
+                            <value name="A">
+                              <block type="logic_compare" id="compare_tick_sma_put">
+                                <field name="OP">LT</field>
+                                <value name="A">
+                                  <block type="tick" id="tick_put"></block>
+                                </value>
+                                <value name="B">
+                                  <block type="variables_get" id="get_sma_fast_put">
+                                    <field name="VAR" id="sma_fast">sma-fast</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                            <value name="B">
+                              <block type="logic_compare" id="compare_sma_put">
+                                <field name="OP">LT</field>
+                                <value name="A">
+                                  <block type="tick" id="tick_sma_slow_put"></block>
+                                </value>
+                                <value name="B">
+                                  <block type="variables_get" id="get_sma_slow_put">
+                                    <field name="VAR" id="sma_slow">sma-slow</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <statement name="DO0">
+                          <block type="purchase" id="purchase_put">
+                            <field name="PURCHASE_LIST">PUT</field>
+                          </block>
+                        </statement>
+                        <value name="IF1">
+                          <block type="logic_compare" id="compare_candle_put">
+                            <field name="OP">EQ</field>
+                            <value name="A">
+                              <block type="tick" id="tick_candle_put"></block>
+                            </value>
+                            <value name="B">
+                              <block type="variables_get" id="get_candle_low">
+                                <field name="VAR" id="last_candle_low">LAST CANDLE LOW</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <statement name="DO1">
+                          <block type="purchase" id="purchase_put_candle">
+                            <field name="PURCHASE_LIST">PUT</field>
+                          </block>
+                        </statement>
+                        <next>
+                          <block type="controls_if" id="condition_call">
+                            <mutation elseif="1"></mutation>
+                            <value name="IF0">
+                              <block type="logic_operation" id="and_call">
+                                <field name="OP">AND</field>
+                                <value name="A">
+                                  <block type="logic_compare" id="compare_tick_sma_call">
+                                    <field name="OP">GT</field>
+                                    <value name="A">
+                                      <block type="tick" id="tick_call"></block>
+                                    </value>
+                                    <value name="B">
+                                      <block type="variables_get" id="get_sma_fast_call">
+                                        <field name="VAR" id="sma_fast">sma-fast</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                                <value name="B">
+                                  <block type="logic_compare" id="compare_sma_call">
+                                    <field name="OP">GT</field>
+                                    <value name="A">
+                                      <block type="tick" id="tick_sma_slow_call"></block>
+                                    </value>
+                                    <value name="B">
+                                      <block type="variables_get" id="get_sma_slow_call">
+                                        <field name="VAR" id="sma_slow">sma-slow</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                            <statement name="DO0">
+                              <block type="purchase" id="purchase_call">
+                                <field name="PURCHASE_LIST">CALL</field>
+                              </block>
+                            </statement>
+                            <value name="IF1">
+                              <block type="logic_compare" id="compare_candle_call">
+                                <field name="OP">EQ</field>
+                                <value name="A">
+                                  <block type="tick" id="tick_candle_call"></block>
+                                </value>
+                                <value name="B">
+                                  <block type="variables_get" id="get_candle_high">
+                                    <field name="VAR" id="last_candle_high">LAST CANDLE HIGH</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                            <statement name="DO1">
+                              <block type="purchase" id="purchase_call_candle">
+                                <field name="PURCHASE_LIST">CALL</field>
+                              </block>
+                            </statement>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <block type="after_purchase" id="after_purchase" x="500" y="60">
+    <statement name="AFTERPURCHASE_STACK">
+      <block type="controls_if" id="check_win">
+        <mutation else="1"></mutation>
+        <value name="IF0">
+          <block type="contract_check_result" id="result_win">
+            <field name="CHECK_RESULT">win</field>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="variables_set" id="reset_stake">
+            <field name="VAR" id="stake_initial">STAKE</field>
+            <value name="VALUE">
+              <block type="variables_get" id="get_win_stake">
+                <field name="VAR" id="stake_win">WIN STAKE</field>
+              </block>
+            </value>
+          </block>
+        </statement>
+        <statement name="ELSE">
+          <block type="variables_set" id="increase_stake">
+            <field name="VAR" id="stake_initial">STAKE</field>
+            <value name="VALUE">
+              <block type="math_arithmetic" id="multiply_stake">
+                <field name="OP">MULTIPLY</field>
+                <value name="A">
+                  <block type="variables_get" id="get_current_stake">
+                    <field name="VAR" id="stake_initial">STAKE</field>
+                  </block>
+                </value>
+                <value name="B">
+                  <block type="variables_get" id="get_mg_factor">
+                    <field name="VAR" id="mg_factor">MG FACTOR</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </statement>
+        <next>
+          <block type="text_join" id="profit_message">
+            <field name="VARIABLE" id="text_msg">TEXT MSG</field>
+            <statement name="STACK">
+              <block type="text_statement" id="text_profit_label">
+                <value name="TEXT">
+                  <block type="text" id="profit_label">
+                    <field name="TEXT">Total Profit: </field>
+                  </block>
+                </value>
+                <next>
+                  <block type="text_statement" id="text_profit_value">
+                    <value name="TEXT">
+                      <block type="total_profit" id="profit_value"></block>
+                    </value>
+                  </block>
+                </next>
+              </block>
+            </statement>
+            <next>
+              <block type="notify" id="notify_profit">
+                <field name="NOTIFICATION_TYPE">info</field>
+                <field name="NOTIFICATION_SOUND">silent</field>
+                <value name="MESSAGE">
+                  <block type="variables_get" id="get_text_msg">
+                    <field name="VAR" id="text_msg">TEXT MSG</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="controls_if" id="check_target">
+                    <mutation elseif="1" else="1"></mutation>
+                    <value name="IF0">
+                      <block type="logic_compare" id="compare_profit">
+                        <field name="OP">GTE</field>
+                        <value name="A">
+                          <block type="total_profit" id="current_profit"></block>
+                        </value>
+                        <value name="B">
+                          <block type="variables_get" id="get_target">
+                            <field name="VAR" id="target_profit">DAILY PROFIT</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <statement name="DO0">
+                      <block type="text_print" id="print_profit">
+                        <value name="TEXT">
+                          <block type="text" id="profit_message">
+                            <field name="TEXT">Daily Profit Achieved!</field>
+                          </block>
+                        </value>
+                      </block>
+                    </statement>
+                    <value name="IF1">
+                      <block type="logic_compare" id="compare_loss">
+                        <field name="OP">LTE</field>
+                        <value name="A">
+                          <block type="total_profit" id="current_loss"></block>
+                        </value>
+                        <value name="B">
+                          <block type="variables_get" id="get_max_loss">
+                            <field name="VAR" id="max_loss">MAX LOSS</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <statement name="DO1">
+                      <block type="text_print" id="print_loss">
+                        <value name="TEXT">
+                          <block type="text" id="loss_message">
+                            <field name="TEXT">Max Loss Reached!</field>
+                          </block>
+                        </value>
+                      </block>
+                    </statement>
+                    <statement name="ELSE">
+                      <block type="timeout" id="pause">
+                        <value name="SECONDS">
+                          <block type="math_number" id="pause_duration">
+                            <field name="NUM">10</field>
+                          </block>
+                        </value>
+                        <statement name="TIMEOUT_STACK">
+                          <block type="trade_again" id="trade_again"></block>
+                        </statement>
+                      </block>
+                    </statement>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+</xml>
