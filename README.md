@@ -1,124 +1,89 @@
-# OSRTAC - Open Source Robots and Technical Analyses Community
+# ORSTAC - Open Source Robots and Technical Analyses Community
 
-## Welcome to OSRTAC!
+![ORSTAC Logo](https://orstac.com/wp-content/uploads/2025/01/cropped-cropped-logo-ORSTAC.webp)
 
-Greetings,
+*Empowering traders with open-source trading bots for Deriv and Binary platforms*
 
-Welcome to the Open Source Robots Repository — a hub for innovation and collaboration in automated trading. Our mission is to empower traders worldwide with accessible, editable, and transparent Trading Robots.
+[![GitHub stars](https://img.shields.io/github/stars/alanvito1/ORSTAC)](https://github.com/alanvito1/ORSTAC/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/alanvito1/ORSTAC)](https://github.com/alanvito1/ORSTAC/network)
+[![License](https://img.shields.io/github/license/alanvito1/ORSTAC)](https://github.com/alanvito1/ORSTAC/blob/main/LICENSE)
 
-👉 [Register Here to Trade on Deriv](https://track.deriv.com/_h1BT0Uryldi34Ib7uprVbWNd7ZgqdRLk/1/)
+[Leia em Português](README.pt-BR.md)
 
-🎯 Join our community at [ORSTAC Official Telegram Group](https://t.me/superbinarybots)  
-💼 Become a Master Deriv affiliate and earn commissions: [Join Our Partner Programme](https://track.deriv.com/_h1BT0Uryldilxv1B6h4gZ2Nd7ZgqdRLk/1/)
+## Table of Contents
+- [About ORSTAC](#about-orstac)
+- [Get Started](#get-started)
+- [How to Run Robots](#how-to-run-robots)
+- [Copy Trading](#copy-trading)
+- [Resources](#resources)
+- [Contributing](#contributing)
+- [Risk Warning](#risk-warning)
+- [License](#license)
+- [Project Status](#project-status)
 
-> "Game theory rules everything. Come to the game."  
-> This is our mutual learning and growth.
+## About ORSTAC
 
----
+Welcome to ORSTAC, home to the largest open-source collection of over 4000 trading bot scripts for Deriv and Binary platforms. Our mission is to empower traders with accessible, customizable, and transparent automation tools. Whether you're a coder or a trader, ORSTAC offers strategies, insights, and a vibrant community of 1000+ members on Telegram to fuel your success.
 
-## 🚀 Steps to Run Robots
+> "Game theory rules everything. Come to the game." — Join us for mutual learning and growth.
 
-1. [Register on the Deriv DBot Platform](https://track.deriv.com/_h1BT0Uryldi34Ib7uprVbWNd7ZgqdRLk/1/)
-2. [Download our collection of bots](https://github.com/alanvito1/Binary-Robots/archive/refs/heads/master.zip)
-3. Load your XML file into DBot, view the blocks visually (no coding needed!)
-4. Review the robot’s actions and customize parameters
-5. Hit **RUN** and observe its performance
-6. Expand your skills via our discussion topics:  
-   [Explore Articles & Risk Management Tips](https://github.com/alanvito1/Binary-Robots/discussions)
+## Get Started
+Start your trading journey with ORSTAC's free resources:
+- 📝 **Register**: Create a Deriv account to access DBot. [Sign Up](https://track.deriv.com/_h1BT0Uryldi34Ib7uprVbWNd7ZgqdRLk/1/)
+- 🤖 **Download Bots**: Access our script collection. [Download](https://github.com/alanvito1/ORSTAC/archive/refs/heads/main.zip)
+- 💬 **Join Community**: Connect with traders. [Telegram](https://t.me/superbinarybots)
+- 💼 **Earn Commissions**: Become a Deriv affiliate. [Partner Program](https://track.deriv.com/_h1BT0Uryldilxv1B6h4gZ2Nd7ZgqdRLk/1/)
 
-📌 **Important:** Always start bot testing with a **DEMO ACCOUNT**!
+*Note: Some links are affiliate links, supporting ORSTAC at no extra cost to you.*
 
----
+## How to Run Robots
+Follow these steps to use our trading bots on Deriv DBot:
+1. **Register on Deriv DBot**  
+   Sign up for a free Deriv account to access DBot, a visual platform for building bots. [Create Account | Learn About DBot](https://track.deriv.com/_h1BT0Uryldi34Ib7uprVbWNd7ZgqdRLk/1/)
+2. **Download Bots**  
+   Get our collection of XML scripts. [Download ZIP](https://github.com/alanvito1/ORSTAC/archive/refs/heads/main.zip)
+3. **Load XML in DBot**  
+   Upload the XML file to DBot to visualize blocks—no coding required.
+4. **Customize Parameters**  
+   Adjust settings like stop-loss or trade size to fit your strategy.
+5. **Run and Monitor**  
+   Click **Run** and track performance on a **DEMO ACCOUNT** first.
+6. **Contribute**  
+   Share your own scripts or improvements! See [Contributing](#contributing).
 
-## 📊 Copy Trading With Deriv MT5 Signals
+📌 **Tip**: Always test bots in a demo account to understand their behavior.
 
-[Click here to start Copy Trading](https://track.deriv.com/_h1BT0Uryldj45mrAMZ2h2WNd7ZgqdRLk/1/)
+## Copy Trading
+Mirror top traders' strategies with Deriv MT5 Signals. Trades are replicated automatically in real-time. [Start Copy Trading](https://track.deriv.com/_h1BT0Uryldj45mrAMZ2h2WNd7ZgqdRLk/1/)
 
-Experience the simplicity of mirroring trades from top-performing traders directly to your Deriv MT5 account. All executions are replicated automatically, in real-time.
+## Resources
+Enhance your trading skills with these resources:
+| Resource | Description |
+|----------|-------------|
+| [ORSTAC Blog](https://orstac.com) | Articles on trading strategies and risk management. |
+| [GitHub Discussions](https://github.com/alanvito1/ORSTAC/discussions) | Community Q&A and strategy tips. |
+| [Deriv DBot Docs](https://deriv.com/dbot) | Official guide to building bots. |
+| [Technical Tips](https://orstac.com/category/technical-tips/) | *Thriving in Today's Highly Volatile Market*. |
+| [Book Recommendation](https://pay.kiwify.com.br/PHsbGPU) | *Complete Guide: Wisdom Capsules for Traders. |
 
----
+## Contributing
+We welcome contributions from traders and developers! To add a bot script or improve the repository:
+1. Fork the repository.
+2. Create a branch (`git checkout -b feature/new-bot`).
+3. Submit a pull request with your changes.
+See our [Contributing Guidelines](CONTRIBUTING.md) and join the discussion on [GitHub](https://github.com/alanvito1/ORSTAC/discussions) or [Telegram](https://t.me/superbinarybots).
 
-## 📚 Embrace the Power of Knowledge
+## Risk Warning
+> **Important**: Trading on Deriv involves complex derivatives like options and CFDs, which carry high risk. You may lose all your capital. Never trade with borrowed funds or money you cannot afford to lose. Always start with a [DEMO ACCOUNT](https://track.deriv.com/_h1BT0Uryldi34Ib7uprVbWNd7ZgqdRLk/1/).
 
-Gain deeper insight with our community recommendations:  
-🔗 [Embrace the Power of Knowledge: Thriving in Today's Highly Volatile Market](https://www.dinheiroedestinos.com.br/2023/06/embrace-power-of-knowledge-thriving-in.html)
+## License
+All scripts are licensed under the MIT License. See [LICENSE](LICENSE) for details.
+
+## Project Status
+Actively maintained by [Alan Victor](https://github.com/alanvito1) and the ORSTAC community. Issues and pull requests are welcome!
 
 ---
 
 Warm regards,  
 **Alan Victor**  
 Founder & Community Maintainer
-
----
-
-## ⚠️ Important Warning
-
-**Deriv offers complex derivatives** such as options and contracts for difference (CFDs). These products may not be suitable for all customers and involve risks. Please ensure you understand the following before trading:
-
-- You may lose part or all of your capital
-- Currency conversion can impact your results
-- Never trade with borrowed funds or money you cannot afford to lose
-
-
-Poruguês 🇧🇷
-
-# OSRTAC - Comunidade de Robôs Open Source e Análises Técnicas
-
-## Bem-vindo à ORSTAC!
-
-Saudações,
-
-Bem-vindo ao Repositório de Robôs Open Source — um polo de inovação e colaboração no universo do trading automatizado. Nossa missão é democratizar o acesso a robôs de negociação poderosos, personalizáveis e transparentes.
-
-👉 [Cadastre-se aqui para operar na Deriv](https://track.deriv.com/_h1BT0Uryldi34Ib7uprVbWNd7ZgqdRLk/1/)
-
-🎯 Participe da nossa comunidade no [Grupo Oficial da ORSTAC no Telegram](https://t.me/superbinarybots)  
-💼 Torne-se um afiliado Master Deriv e ganhe comissões: [Entre para o Programa de Parceiros](https://track.deriv.com/_h1BT0Uryldilxv1B6h4gZ2Nd7ZgqdRLk/1/)
-
-> "A teoria dos jogos rege tudo. Venha para o jogo."  
-> Estamos aqui para aprender e evoluir juntos.
-
----
-
-## 🚀 Passo a Passo para Usar os Robôs
-
-1. [Cadastre-se na plataforma Deriv DBot](https://track.deriv.com/_h1BT0Uryldi34Ib7uprVbWNd7ZgqdRLk/1/)
-2. [Baixe nossa coleção de bots](https://github.com/alanvito1/Binary-Robots/archive/refs/heads/master.zip)
-3. Faça o upload do XML no DBot, visualize os blocos e edite sem precisar programar
-4. Verifique as ações do robô e ajuste os parâmetros
-5. Clique em **EXECUTAR** e acompanhe o desempenho
-6. Aprimore seus conhecimentos com nossos materiais:  
-   [Explore nossos artigos e dicas de gerenciamento de risco](https://github.com/alanvito1/Binary-Robots/discussions)
-
-📌 **Importante:** Sempre comece os testes em uma **CONTA DEMO**!
-
----
-
-## 📊 Copy Trading com Sinais Deriv MT5
-
-[Inicie no Copy Trading da Deriv](https://track.deriv.com/_h1BT0Uryldj45mrAMZ2h2WNd7ZgqdRLk/1/)
-
-Copie automaticamente as operações dos traders mais experientes diretamente para sua conta Deriv MT5. Simples, eficiente e em tempo real.
-
----
-
-## 📚 Conhecimento é Poder
-
-Aprofunde-se ainda mais com nosso artigo recomendado:  
-🔗 [O poder do conhecimento: como prosperar em um mercado volátil](https://www.dinheiroedestinos.com.br/2023/06/embrace-power-of-knowledge-thriving-in.html)
-
----
-
-Com respeito e dedicação,  
-**Alan Victor**  
-Fundador & Mantenedor da Comunidade
-
----
-
-## ⚠️ Aviso Importante
-
-**A Deriv oferece derivativos complexos**, como opções e contratos por diferença (CFDs). Esses produtos podem não ser adequados para todos os perfis e envolvem riscos. Antes de operar, tenha plena consciência de que:
-
-- Você pode perder parte ou todo o valor investido
-- Conversões cambiais podem impactar seus resultados
-- Nunca opere com dinheiro emprestado ou que você não possa perder
