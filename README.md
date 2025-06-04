@@ -8,7 +8,7 @@
 [![GitHub forks](https://img.shields.io/github/forks/alanvito1/ORSTAC)](https://github.com/alanvito1/ORSTAC/network)
 [![License](https://img.shields.io/github/license/alanvito1/ORSTAC)](https://github.com/alanvito1/ORSTAC/blob/main/LICENSE)
 
-[Leia em Português](README.pt-BR.md)
+[Leia em Português](https://github.com/alanvito1/ORSTAC/blob/master/README.pt-BR.markdown)
 
 ## Table of Contents
 - [About ORSTAC](#about-orstac)
