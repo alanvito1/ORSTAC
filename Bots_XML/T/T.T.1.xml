@@ -327,16 +327,6 @@
       </block>
     </statement>
   </block>
-  <block type="before_purchase" id="i-CIx.(Onm4?ihxzA}Y]" x="-113" y="321">
-    <statement name="BEFOREPURCHASE_STACK">
-      <block type="controls_if" id="QSQ%Tmczwv;AIwi7nUsO">
-        <mutation elseif="1"></mutation>
-        <value name="IF0">
-          <block type="logic_compare" id="ZAtuv;*_l=[p{n/iGOO=">
-            <field name="OP">EQ</field>
-            <value name="A">
-              <block type="variables_get" id="S#4cCVjht1$g_^3OgB@S">
-                <field name="VAR" id="N6ZHdxxgL=@uAtm2z~ac" variabletype="">wormHead</field>
               </block>
             </value>
             <value name="B">
@@ -345,7 +335,51 @@
               </block>
             </value>
           </block>
-        </value>
+        </value><block type="controls_if">
+  <mutation elseif="2"></mutation>
+  <!-- CONDITION 1: Strong UP trend -->
+  <value name="IF0">
+    <block type="logic_compare">
+      <field name="OP">EQ</field>
+      <value name="A">
+        <block type="variables_get">
+          <field name="VAR">wormColor</field>
+        </block>
+      </value>
+      <value name="B">
+        <block type="math_number">
+          <field name="NUM">-20</field>
+        </block>
+      </value>
+    </block>
+  </value>
+  <statement name="DO0">
+    <block type="purchase">
+      <field name="PURCHASE_LIST">CALL</field>
+    </block>
+  </statement>
+  <!-- CONDITION 2: Strong DOWN trend -->
+  <value name="IF1">
+    <block type="logic_compare">
+      <field name="OP">EQ</field>
+      <value name="A">
+        <block type="variables_get">
+          <field name="VAR">wormColor</field>
+        </block>
+      </value>
+      <value name="B">
+        <block type="math_number">
+          <field name="NUM">20</field>
+        </block>
+      </value>
+    </block>
+  </value>
+  <statement name="DO1">
+    <block type="purchase">
+      <field name="PURCHASE_LIST">PUT</field>
+    </block>
+  </statement>
+</block>
         <statement name="DO0">
           <block type="purchase" id="#5]?~eN!6#QyZr^akeud">
             <field name="PURCHASE_LIST">CALL</field>
