@@ -1,6 +1,6 @@
 # ORSTAC - Open Source Robots and Technical Analyses Community
 
-**Empowering Traders with the World's Largest Collection of Open-Source Trading Bots**
+**Empowering Traders with the World's Largest Collection of Open-Source Deriv Trading Bots**
 
 ---
 
@@ -12,7 +12,7 @@ Join the leading platform for automated trading. By registering through the link
 
 ### 2. BingX - The Future of AI Trading
 Experience the World's First AI-Powered Crypto Trading Assistant. BingX is a pioneer in integrating AI into the trading experience.
-👉 **[START TRADING ON BingX](https://bingx.com/en-us/register/)** (Note: User should use their link if they have one, but I'll use the official one for now or just the name if specified).
+👉 **[START TRADING ON BingX](https://bingxdao.com/invite/TLU7DW/)**
 *The World's First AI-Powered Crypto Trading Assistant*
 
 ---
