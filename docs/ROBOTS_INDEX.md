@@ -6,9 +6,9 @@ Generated on: 2026-04-23 20:23:15
 
 The bots listed below have been selected as the most consistent and well-structured after a forensic audit of the repository.
 
-- [**Safe Profit Pro (Mathematical Brain)**](../champions/safe%20profit%20pro.xml) - [Strategy Guide](../champions/estrategia_safe_profit_pro.txt)
-- [**Candlestick v2 (Price Action Analyst)**](../champions/Candlestick%20v2.xml) - [Strategy Guide](../champions/estrategia_candlestick_v2.txt)
-- [**Rise-Fall Consistente (Bankroll Manager)**](../champions/Rise-Fall%20-%20%20Consistente%20-%20Tendencias.xml) - [Strategy Guide](../champions/estrategia_rise_fall_consistente.txt)
+- [**Safe Profit Pro (Mathematical Brain)**](../champions/safe%20profit%20pro.xml) - [Strategy Guide](../champions/strategy_safe_profit_pro.txt)
+- [**Candlestick v2 (Price Action Analyst)**](../champions/Candlestick%20v2.xml) - [Strategy Guide](../champions/strategy_candlestick_v2.txt)
+- [**Rise-Fall Consistent (Bankroll Manager)**](../champions/Rise-Fall%20-%20Consistent%20-%20Trends.xml) - [Strategy Guide](../champions/strategy_rise_fall_consistent.txt)
 
 > [!TIP]
 > Read the [Champions README](../champions/README.md) for a detailed breakdown of this elite selection.
