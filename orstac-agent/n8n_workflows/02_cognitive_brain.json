@@ -1,0 +1,139 @@
+{
+  "name": "02_Cognitive_Brain",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.chatTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "chat-trigger-1"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "You are the ORSTAC Cognitive Agent, an AI built for the Open Source Robots and Technical Analyses Community.\nYour primary role is to assist users in building, optimizing, and debugging Deriv XML trading bots and understanding the Deriv API.\nUtilize the provided RAG vector store tool to retrieve accurate info from the codebase and Deriv docs.\nYour primary brain is Gemini, and your fallback is DeepSeek. Maintain a professional, quantitative, and strategic mindset."
+        }
+      },
+      "type": "n8n-nodes-base.agent",
+      "typeVersion": 1.6,
+      "position": [
+        200,
+        0
+      ],
+      "id": "ai-agent"
+    },
+    {
+      "parameters": {
+        "modelName": "gemini-1.5-pro",
+        "options": {
+          "apiKey": "={{ $env.GEMINI_API_KEY }}"
+        }
+      },
+      "type": "n8n-nodes-base.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        150,
+        200
+      ],
+      "id": "gemini-model"
+    },
+    {
+      "parameters": {
+        "model": "deepseek-chat",
+        "options": {
+          "apiKey": "={{ $env.DEEPSEEK_API_KEY }}",
+          "apiUrl": "={{ $env.DEEPSEEK_API_URL || 'https://api.deepseek.com/v1' }}"
+        }
+      },
+      "type": "n8n-nodes-base.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [
+        300,
+        200
+      ],
+      "id": "deepseek-fallback-model"
+    },
+    {
+      "parameters": {
+        "tableName": "chat_conversations",
+        "sessionIdKey": "={{ $json.sessionId }}",
+        "roleKey": "role",
+        "messageKey": "message"
+      },
+      "type": "n8n-nodes-base.postgresMemory",
+      "typeVersion": 1,
+      "position": [
+        450,
+        200
+      ],
+      "id": "postgres-chat-memory"
+    },
+    {
+      "parameters": {
+        "name": "orstac_rag_tool",
+        "description": "Searches the ORSTAC Knowledge Base for Deriv API endpoints, XML block logic, and historical trading bot strategies."
+      },
+      "type": "n8n-nodes-base.toolVectorStore",
+      "typeVersion": 1,
+      "position": [
+        600,
+        200
+      ],
+      "id": "rag-vector-tool"
+    }
+  ],
+  "connections": {
+    "chat-trigger-1": {
+      "main": [
+        [
+          {
+            "node": "ai-agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "gemini-model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "ai-agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "postgres-chat-memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "ai-agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "rag-vector-tool": {
+      "ai_tool": [
+        [
+          {
+            "node": "ai-agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "id": "02_cognitive_brain"
+}

@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: ankane/pgvector:v0.5.1
+    container_name: orstac-postgres
+    restart: always
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-orstac_cognitive}
+      POSTGRES_USER: ${POSTGRES_USER:-orstac_admin}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-orstac_secret_pass}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
+    networks:
+      - orstac-network
+
+  n8n:
+    image: docker.n8n.io/n8nio/n8n:latest
+    container_name: orstac-n8n
+    restart: always
+    ports:
+      - "${N8N_PORT:-5678}:5678"
+    environment:
+      - N8N_HOST=${N8N_HOST:-localhost}
+      - N8N_PORT=${N8N_PORT:-5678}
+      - N8N_PROTOCOL=http
+      - WEBHOOK_URL=http://${N8N_HOST:-localhost}:${N8N_PORT:-5678}/
+      - GENERIC_TIMEZONE=${TIMEZONE:-America/Sao_Paulo}
+      - N8N_METRICS=true
+      # Enable local file execution so n8n can read/write bots and docs in the workspace
+      - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=false
+      - N8N_BLOCK_ENV_ACCESS_IN_NODE=false
+    volumes:
+      - n8n_data:/home/node/.n8n
+      # Mount the main workspace into n8n so the agent can scan XML files and documentation
+      - ../:/home/node/orstac_workspace:ro
+    depends_on:
+      - postgres
+    networks:
+      - orstac-network
+
+networks:
+  orstac-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  n8n_data:

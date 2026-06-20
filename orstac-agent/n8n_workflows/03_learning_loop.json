@@ -1,0 +1,125 @@
+{
+  "name": "03_Learning_Loop",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "telemetry-receiver",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "webhook-trigger"
+    },
+    {
+      "parameters": {
+        "operation": "insert",
+        "table": "learning_logs",
+        "columns": "log_type, input_state, action_taken, outcome, feedback_score",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.2,
+      "position": [
+        200,
+        0
+      ],
+      "id": "insert-initial-log"
+    },
+    {
+      "parameters": {
+        "modelName": "gemini-1.5-flash",
+        "options": {
+          "apiKey": "={{ $env.GEMINI_API_KEY }}"
+        }
+      },
+      "type": "n8n-nodes-base.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        400,
+        150
+      ],
+      "id": "gemini-analyst"
+    },
+    {
+      "parameters": {
+        "prompt": "=Analyze this trading execution log and generate a concise learned_insight explaining what went right/wrong, and how the strategy parameters (e.g. Martingale, SMA trigger, Stop Loss) can be adjusted to prevent this loss or lock profits.\n\nInput State (Parameters): {{ JSON.stringify($json.input_state) }}\nAction Taken: {{ JSON.stringify($json.action_taken) }}\nOutcome: {{ JSON.stringify($json.outcome) }}\nFeedback Score (Reward): {{ $json.feedback_score }}"
+      },
+      "type": "n8n-nodes-base.basicLlmChain",
+      "typeVersion": 1.1,
+      "position": [
+        450,
+        -50
+      ],
+      "id": "generate-insight-chain"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "table": "learning_logs",
+        "updateKey": "id",
+        "columns": "learned_insight",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.2,
+      "position": [
+        700,
+        -50
+      ],
+      "id": "update-learned-insight"
+    }
+  ],
+  "connections": {
+    "webhook-trigger": {
+      "main": [
+        [
+          {
+            "node": "insert-initial-log",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "insert-initial-log": {
+      "main": [
+        [
+          {
+            "node": "generate-insight-chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "gemini-analyst": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "generate-insight-chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "generate-insight-chain": {
+      "main": [
+        [
+          {
+            "node": "update-learned-insight",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "id": "03_learning_loop"
+}

@@ -1,0 +1,148 @@
+{
+  "name": "01_Ingest_Resources",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "days",
+              "value": 1
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "schedule-trigger-1"
+    },
+    {
+      "parameters": {
+        "command": "dir /s /b C:\\home\\node\\orstac_workspace\\Bots_XML\\*.xml C:\\home\\node\\orstac_workspace\\docs\\*.md C:\\home\\node\\orstac_workspace\\champions\\*.xml"
+      },
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        200,
+        0
+      ],
+      "id": "find-files-node"
+    },
+    {
+      "parameters": {
+        "jsCode": "const filePaths = $input.first().json.stdout.split('\\n').filter(p => p.trim() !== '');\nreturn filePaths.map(path => ({\n  json: {\n    path: path.trim(),\n    fileName: path.split('\\\\').pop(),\n    type: path.endsWith('.xml') ? 'xml-bot-logic' : 'deriv-api-documentation'\n  }\n}));"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        400,
+        0
+      ],
+      "id": "parse-file-list"
+    },
+    {
+      "parameters": {
+        "fileSignal": "={{ $json.path }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readBinaryFile",
+      "typeVersion": 1,
+      "position": [
+        600,
+        0
+      ],
+      "id": "read-file-data"
+    },
+    {
+      "parameters": {
+        "jsCode": "const content = $input.first().binary.data.data; // Read data content\nconst decoded = Buffer.from(content, 'base64').toString('utf8');\nreturn [{\n  json: {\n    title: $input.first().json.fileName,\n    content: decoded,\n    category: $input.first().json.type,\n    source_path: $input.first().json.path\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        800,
+        0
+      ],
+      "id": "decode-and-chunk"
+    },
+    {
+      "parameters": {
+        "operation": "insert",
+        "table": "knowledge_base",
+        "columns": "title, content, category, source_path",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.2,
+      "position": [
+        1000,
+        0
+      ],
+      "id": "postgres-vector-store"
+    }
+  ],
+  "connections": {
+    "schedule-trigger-1": {
+      "main": [
+        [
+          {
+            "node": "find-files-node",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "find-files-node": {
+      "main": [
+        [
+          {
+            "node": "parse-file-list",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "parse-file-list": {
+      "main": [
+        [
+          {
+            "node": "read-file-data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "read-file-data": {
+      "main": [
+        [
+          {
+            "node": "decode-and-chunk",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "decode-and-chunk": {
+      "main": [
+        [
+          {
+            "node": "postgres-vector-store",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "id": "01_ingest_resources"
+}
