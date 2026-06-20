@@ -1,84 +1,84 @@
 # 🧠 ORSTAC AI Cognitive Agent Stack
 
-Este diretório contém a pilha de infraestrutura isolada do **Agente Cognitivo Autônomo da ORSTAC**. Ele foi construído para servir como o cérebro assistente do repositório, capaz de recuperar estratégias de negociação semânticas, analisar a lógica de blocos XML e aprender constantemente por meio de feedback operacional de execuções.
+This directory contains the isolated infrastructure stack for the **ORSTAC AI Cognitive Agent**. It is designed to act as the repository's assistant brain, capable of retrieving semantic trading strategies, analyzing Blockly XML logic, and learning continuously from live operational feedback.
 
 ---
 
-## 🛠️ Arquitetura e Pilha de Tecnologia
+## 🛠️ Architecture & Technology Stack
 
-A infraestrutura do agente baseia-se nos seguintes pilares:
-1. **n8n (AI-Native Runner):** Motor de fluxos que orquestra a lógica de decisão, ferramentas de RAG (Retrieval-Augmented Generation) e memória conversacional.
-2. **PostgreSQL + `pgvector`:** Banco de dados otimizado para RAG. Ele armazena vetores de embeddings gerados pelos robôs e artigos, histórico de chat e logs de aprendizado contínuo.
-3. **LLM Primário (Gemini):** Utilizado para inferência de raciocínio lógico e geração de respostas através de chaves de API.
-4. **LLM Fallback (DeepSeek):** Utilizado como contingência caso ocorram limites de cota ou falha na API primária.
+The agent's infrastructure relies on the following components:
+1. **n8n (AI-Native Runner):** The workflow engine that orchestrates decision logic, RAG (Retrieval-Augmented Generation) tools, and conversational memory.
+2. **PostgreSQL + `pgvector`:** Database optimized for RAG. It stores vector embeddings generated from robots and blog articles, chat history, and episodic learning logs.
+3. **Primary LLM (Gemini):** Used for logical reasoning, prompt inference, and response generation via API keys.
+4. **Fallback LLM (DeepSeek):** Used as redundancy in case of API rate limits or primary endpoint downtime.
 
 ---
 
-## 📂 Estrutura de Pastas e Componentes
+## 📂 Folders & Components Structure
 
 ```
 orstac-agent/
-├── README.md                  # Este arquivo de instruções
-├── docker-compose.yml         # Orquestração do n8n e Postgres (pgvector)
-├── .env.example               # Template de variáveis de ambiente e credenciais
-├── init-db.sql                # Inicializador de tabelas e indexador vetorial HNSW
-├── n8n_workflows/             # Fluxos exportados em JSON para o n8n
-│   ├── 01_ingest_resources.json  # Fluxo de ingestão e vetorização de bots/textos
-│   ├── 02_cognitive_brain.json   # Fluxo de chat interativo e RAG
-│   └── 03_learning_loop.json     # Loop de aprendizado constante por Webhook
-└── knowledge/                 # Base de conhecimento de RAG em Markdown e JSON
-    ├── blog_insights.md       # Insights extraídos do Blog ORSTAC
-    ├── deriv_api_reference.md # Referência da API WebSocket da Deriv e Blockly XML
-    ├── bot_mapping.md         # Mapeamento estatístico e arquétipos dos 3.360 bots
-    ├── bot_catalog_raw.json   # Dados estruturados de todos os bots para busca
-    └── bot_analysis_summary.json # Estatísticas consolidadas do catálogo
+├── README.md                  # This instruction file
+├── docker-compose.yml         # Container orchestration for n8n & Postgres (pgvector)
+├── .env.example               # Environment variables and credentials template
+├── init-db.sql                # Database initialization and HNSW vector index setup
+├── n8n_workflows/             # Exported JSON blueprints for n8n
+│   ├── 01_ingest_resources.json  # Ingestion and vectorization workflow
+│   ├── 02_cognitive_brain.json   # Interactive agent chat and RAG workflow
+│   └── 03_learning_loop.json     # Continuous feedback learning loop webhook
+└── knowledge/                 # RAG semantic knowledge documents & JSON stats
+    ├── blog_insights.md       # Extracted strategies from the ORSTAC Blog
+    ├── deriv_api_reference.md # WebSocket API reference & Blockly XML specifications
+    ├── bot_mapping.md         # Statistical distribution and archetypes of the 3,360 bots
+    ├── bot_catalog_raw.json   # Parsed JSON metadata of all 3,360 bots
+    └── bot_analysis_summary.json # Aggregated catalog statistics
 ```
 
 ---
 
-## 🚀 Como Executar a Pilha do Agente
+## 🚀 How to Run the Agent Stack
 
-### Requisitos Prévios
-- Docker e Docker Compose instalados na máquina.
-- Chave de API do **Google Gemini** (e opcionalmente do **DeepSeek** para fallback).
+### Prerequisites
+- Docker and Docker Compose installed.
+- **Google Gemini API Key** (and optionally **DeepSeek API Key** for fallback).
 
-### Passo 1: Configuração do Ambiente
-1. Duplique o arquivo `.env.example` e renomeie-o para `.env`:
+### Step 1: Environment Configuration
+1. Duplicate `.env.example` and rename it to `.env`:
    ```bash
    cp .env.example .env
    ```
-2. Abra o arquivo `.env` e insira suas credenciais:
-   - Defina usuário e senha do Postgres.
-   - Insira sua chave Gemini no campo correspondente.
-   - Insira sua chave DeepSeek (ou URL local do Ollama) se desejar ativar a redundância.
+2. Open `.env` and fill in your credentials:
+   - Configure PostgreSQL user and password.
+   - Insert your Gemini API key.
+   - Insert your DeepSeek API key (or local Ollama URL) if redundancy is desired.
 
-### Passo 2: Subir a Infraestrutura
-No terminal, dentro desta pasta (`orstac-agent/`), execute o Docker Compose:
+### Step 2: Spin Up the Containers
+In your terminal, inside the `orstac-agent/` directory, run:
 ```bash
 docker compose up -d
 ```
-Isso iniciará:
-- Um container Postgres na porta `5432` com suporte a indexação vetorial.
-- Um container n8n acessível na porta `5678`.
+This launches:
+- A PostgreSQL container on port `5432` with pgvector capabilities.
+- An n8n container accessible at `http://localhost:5678`.
 
-### Passo 3: Importar e Ativar os Workflows no n8n
-1. Acesse o n8n no seu navegador: `http://localhost:5678`.
-2. Crie sua conta de administrador local.
-3. Importe os três arquivos JSON de fluxos contidos em `n8n_workflows/`:
-   - Vá em **Workflows** -> **Add Workflow** -> **Import from file...**
-4. Ative os fluxos clicando no interruptor **Active** no canto superior direito de cada fluxo.
+### Step 3: Import and Activate Workflows in n8n
+1. Open n8n in your browser: `http://localhost:5678`.
+2. Create your administrator account.
+3. Import the three JSON files from `n8n_workflows/`:
+   - Navigate to **Workflows** -> **Add Workflow** -> **Import from file...**
+4. Activate each workflow by clicking the **Active** toggle in the top-right corner.
 
-### Passo 4: Executar a Ingestão Inicial (RAG)
-Abra o fluxo `01_ingest_resources.json` e clique em **Listen for test event** ou execute-o manualmente. Esse fluxo irá ler os arquivos Markdown de conhecimento, os 3.360 robôs XML da pasta `Bots_XML`, gerar seus respectivos vetores de embedding e salvá-los na tabela `knowledge_base` do PostgreSQL.
+### Step 4: Run Initial RAG Ingestion
+Open `01_ingest_resources.json` in n8n and click **Execute Workflow** or listen to the trigger. This scans all markdown files inside `knowledge/` and the 3,360 XML bots in `Bots_XML`, generates their embeddings, and saves them to the Postgres `knowledge_base` table.
 
 ---
 
-## 🧠 Como o Agente Aprende (Episodic Learning Loop)
+## 🧠 Continuous Feedback & Learning Loop
 
-O fluxo `03_learning_loop.json` expõe uma URL de Webhook no n8n.
-Toda vez que uma operação de trading é concluída por um robô (ou em simulações de backtesting), o status (sucesso, falha, payout, sequência de perdas) pode ser enviado para esta URL.
+The `03_learning_loop.json` workflow exposes a webhook endpoint in n8n.
+Every time a trade execution finishes (either in live trading or simulation/backtesting), status telemetries (payout, losses, martingale steps, market volatility) can be sent to this webhook.
 
-O Agente analisa os dados operacionais:
-1. Registra os parâmetros de entrada e resultado em `learning_logs`.
-2. Em caso de anomalias (ex: sequência longa de reds no Martingale), o agente aciona o LLM para deduzir o que causou o problema com base na volatilidade do mercado.
-3. O insight gerado é salvo na memória histórica, permitindo ao agente sugerir ajustes dinâmicos de stakes ou filtros de volatilidade no futuro.
+The Agent processes the data:
+1. Logs entry variables and results into `learning_logs`.
+2. On anomalies (e.g. high loss sequences), it calls the LLM to deduce what went wrong under current market conditions.
+3. The generated insight is saved as long-term episodic memory, enabling the agent to suggest dynamic stake changes or volatility filters in future chats.
