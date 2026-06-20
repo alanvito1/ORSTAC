@@ -40,6 +40,12 @@ Welcome to **ORSTAC**, the home of over 4,000 open-source trading bot scripts fo
 
 ---
 
+## 🧠 ORSTAC Cognitive AI Agent
+
+The repository features an autonomous **AI Cognitive Agent** stack located in the [orstac-agent/](orstac-agent/) directory. Built on top of n8n, Gemini, and pgvector (PostgreSQL), the agent acts as an advanced repository assistant. It has access to our complete database of 3,360+ robots, the Deriv WebSocket API specifications, and Blockly XML rules. The agent performs semantic searches, analyzes XML block logic, and learns continuously from trading execution outcomes to recommend the best strategies and money management models.
+
+---
+
 ## 🤝 Contributing
 
 Contributions are the lifeblood of ORSTAC! We have thousands of bots, but there is always room for improvement. Whether you are fixing a bug or sharing a new "Holy Grail" strategy, your contribution matters.
