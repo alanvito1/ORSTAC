@@ -8,10 +8,14 @@ This document serves as the core semantic knowledge base for the ORSTAC AI Agent
 
 Deriv uses a high-performance WebSocket API for real-time market data streaming and trading.
 
-### WebSocket Connection
-- **Endpoint:** `wss://ws.derivws.com/websockets/v3?app_id={app_id}`
-- Replace `{app_id}` with the registered application ID.
-- Connection requires a secure WebSocket interface.
+### WebSocket Connection (updated November 2026)
+Source: <https://developers.deriv.com/docs/intro/api-overview/>. Verified with live calls on 2026-11-09.
+- **Public (no authentication):** `wss://api.derivws.com/trading/v1/options/ws/public`. Use it for ticks_history, active_symbols, contracts_for and proposal.
+- **Demo / real (authenticated):** `wss://api.derivws.com/trading/v1/options/ws/demo?otp=...` and `.../ws/real?otp=...`. The one-time password comes from `POST https://api.derivws.com/trading/v1/options/accounts/{accountId}/otp` with a Bearer token, is valid for 120 seconds and can be used only once.
+- The legacy endpoint `wss://ws.derivws.com/websockets/v3?app_id=...` returned HTTP 520 in our tests (November 2026).
+- `proposal` now requires **`underlying_symbol`**; sending `symbol` fails with `InputValidationFailed`. `active_symbols` returns `underlying_symbol` and `underlying_symbol_name`.
+- Rate limits: <https://developers.deriv.com/docs/limits/>.
+- The examples below follow the legacy message format. Check field names against the current schemas before using them.
 
 ### Key Message Types & Operations
 
@@ -48,7 +52,7 @@ Request a price proposal for a contract before buying (e.g. Rise/Fall, Digits, e
   "currency": "USD",
   "duration": 5,
   "duration_unit": "t",
-  "symbol": "R_100",
+  "underlying_symbol": "R_100",
   "barrier": "+0.5",
   "contract_type": "CALL"
 }

@@ -140,7 +140,7 @@ These three bots were curated from the repository audits as structural benchmark
 ### 1️⃣ The Mathematical Brain: `safe profit pro.xml`
 - **Archetype:** Combined Trend & Reversion (Class B + C).
 - **Indicators:** Multi-timeframe confluence of EMA, RSI, and MACD.
-- **Risk Management:** Predefined progression list (`0.35`, `0.39`, `0.80`, `1.62`, `3.36`, `6.98`, `14.4`, `30.06`). Avoids geometric doubling, capping drawdowns at 8 calculated steps to protect equity.
+- **Risk Management (corrected Nov 2026):** predefined step table chosen at start (e.g. `0.35`, `0.39`, `0.80`, `1.62`, `3.36`, `6.98`, `14.4`, `30.06`). From step 2 it roughly doubles after each loss, so it is a **capped martingale** (up to 8 steps; the full table sums to about 58 base units). Has a session stop-loss and profit target. Audit grade C.
 - **Target Market:** Volatility 100 Index (`R_100`).
 
 ### 2️⃣ The Price Action Analyst: `Candlestick v2.xml`
@@ -149,11 +149,11 @@ These three bots were curated from the repository audits as structural benchmark
 - **Advantage:** Trades based on raw price formation rather than lagging mathematical averages.
 - **Target Market:** Highly volatile, structured asset classes.
 
-### 3️⃣ The Bankroll Manager: `Rise-Fall - Consistent - Trends.xml`
-- **Archetype:** Conservative Trend Follower (Class B).
-- **Risk Management:** Micro-recovery compounding. Instead of a standard `2.0x` multiplier, this bot uses a conservative **`1.071x`** recovery factor.
-- **Logic:** Prioritizes steady, low-risk account growth. Survives long drawdowns (red blocks) without risking account liquidation.
-- **Target Market:** Extended trading sessions and low-capital accounts.
+### 3️⃣ High risk (corrected Nov 2026): `Rise-Fall - Consistent - Trends.xml`
+- **Archetype:** Trend entry with martingale recovery (audit grade D).
+- **Risk Management:** `stake += |last loss| × 1.071`, so the next stake is about **2.07x** the previous one (a full martingale, not a 1.071x factor). No session stop-loss; it stops only at the profit target.
+- **Risk:** balance 1,000 / base stake 1: nine consecutive losses commit about 65% of the balance; simulated ruin probability about 39% over 500 contracts (payout 0.954, win rate 50%).
+- **Use:** study only; add a session stop-loss and a step cap before any demo test.
 
 ---
 

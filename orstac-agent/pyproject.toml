@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "orstac-agent"
+version = "2.0.0"
+description = "Read-only risk and validation toolkit (CLI + MCP server) for Deriv trading bots, by the ORSTAC community."
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+dependencies = ["websockets>=13"]
+
+[project.optional-dependencies]
+mcp = ["mcp>=2.3"]
+dev = ["pytest>=8", "mcp>=2.3"]
+
+[project.scripts]
+orstac-agent = "orstac_agent.cli:main"
+orstac-mcp = "orstac_agent.mcp_server:main"
+
+[project.urls]
+Repository = "https://github.com/alanvito1/ORSTAC"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

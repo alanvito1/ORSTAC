@@ -1,14 +1,27 @@
 STRATEGY: RISE-FALL CONSISTENT
 -------------------------------
-TYPE: Risk Management and Capital Preservation
+TYPE: Trend entry with martingale recovery (HIGH RISK)
+
+AUDIT CORRECTION (November 2026):
+An earlier version of this guide described the bot as using a "1.071x multiplier" and called it
+the safest robot for protecting a bankroll. That was wrong. The audit with the open-source
+ORSTAC Agent (orstac-agent/) shows:
+
+- After each loss the bot runs: stake += |last loss| x 1.071.
+  The next stake is therefore about 2.07 times the previous one. This is a full martingale.
+- "Max Loss Amount" only resets the stake after a single large loss. It does not stop the bot.
+- The bot stops only when the expected profit is reached. It has no session stop-loss.
 
 OPERATIONAL LOGIC:
-This robot is designed to "win by exhaustion." Its entry strategy is simple (based on short-term trend), but its secret lies in its MANAGEMENT:
-- It uses a Martingale multiplier of only 1.071x.
-- This means that in case of a loss, it doesn't try to recover everything at once by doubling the bet.
-- It recovers capital gradually over several wins, protecting your bankroll against long losing streaks (Red).
+- Market: Volatility 50 Index (R_50), Rise/Fall, short duration.
+- Entry: short-term trend.
+- Money management: martingale recovery as described above.
 
-RECOMMENDED SETTINGS:
-- Usage: Ideal for running for long periods (1h to 3h).
-- Bankroll: Excellent for accounts starting from 50 USD.
-- Safety: The safest robot for those prioritizing NOT blowing the account.
+RISK (illustrative, reproducible):
+- Balance 1,000, base stake 1: nine consecutive losses commit about 65% of the balance.
+- 500 contracts, payout 0.954, win rate 50%: simulated ruin probability about 39%.
+  Command: orstac-agent ruin --balance 1000 --stake 1 --multiplier 2.071 --payout 0.954 --contracts 500
+
+IF YOU STUDY OR RUN IT:
+- Add a session stop-loss and cap the number of progression steps.
+- Use a demo account only. Do not use it on small real accounts.
