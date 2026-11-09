@@ -21,29 +21,24 @@ ORSTAC is a content repository, not an application: ~3,360 open-source Deriv DBo
 
 `.github/workflows/static.yml` deploys the **entire repo root** to GitHub Pages on every push to `master`, with no build step. Anything committed gets published.
 
-## orstac-agent/ (AI agent stack)
+## orstac-agent/ (Python toolkit + MCP server)
 
-Run from `orstac-agent/`:
+Read-only risk and validation toolkit: Deriv Bot XML auditor, risk math, public Deriv API client, MCP server. It never trades.
+
 ```bash
-cp .env.example .env      # fill Postgres creds, GEMINI_API_KEY, optional DEEPSEEK_API_KEY
-docker compose up -d      # Postgres+pgvector on :5432, n8n on http://localhost:5678
+cd orstac-agent
+pip install -e ".[dev]"          # Python 3.10+
+pytest -q                        # offline tests
+ORSTAC_LIVE=1 pytest -q          # + live calls to the public Deriv API
+pytest -q tests/test_risk.py::test_max_consecutive_losses_doubling   # single test
+orstac-agent audit-repo ../Bots_XML    # aggregate audit (regenerate knowledge/repo_audit_*.{csv,json} after changing the auditor)
+orstac-mcp                       # MCP server over stdio
 ```
-Then import the three `n8n_workflows/*.json` files in the n8n UI and activate them.
 
-- `docker-compose.yml` mounts the repo root (`../`) read-only into n8n at `/home/node/orstac_workspace`. `init-db.sql` only runs on the first Postgres start, when the volume is empty.
-- DB schema (`init-db.sql`):
-  - `knowledge_base`: RAG store. `embedding vector(768)` is sized for Gemini `text-embedding-004`; use 1536 for OpenAI embeddings.
-  - `chat_conversations`: n8n Postgres chat memory.
-  - `learning_logs`: telemetry and episodic insights.
-- Workflows:
-  - `01_ingest_resources`: schedule → list files → read → insert into `knowledge_base`.
-  - `02_cognitive_brain`: chat trigger → agent with Gemini as primary LLM and an OpenAI-compatible DeepSeek fallback, Postgres memory, and a vector-store tool.
-  - `03_learning_loop`: webhook `telemetry-receiver` → log to `learning_logs` → LLM insight.
-- Known gaps in `01_ingest_resources.json`:
-  - The Execute Command node uses the Windows command `dir /s /b C:\home\node\...`, but n8n runs in a Linux container.
-  - It doesn't scan `orstac-agent/knowledge/`, although the README says it does.
-  - The insert doesn't populate `embedding`.
-- `knowledge/` holds the RAG source docs. `bot_catalog_raw.json` and `bot_analysis_summary.json` came from a parser that is not in the repo. Each `bot_catalog_raw.json` entry has the bot's path, symbol, market/trade category, trade type, indicators, martingale/soros flags, and variables. `bot_mapping.md` summarizes both files.
+- `src/orstac_agent/`: `risk.py` (break-even, position size, exact losing-streak probability, seeded Monte Carlo), `xml_audit.py` (heuristic static audit: progression = stake multiplied / increased by a multiple of the loss / step tables / Soros, inside `after_purchase` and procedures; session loss limit = comparison on `total_profit` or a session variable, not on the last contract), `stats.py` (digit chi-square, runs test, autocorrelation), `deriv_api.py` (public endpoint `wss://api.derivws.com/trading/v1/options/ws/public`; `proposal` needs `underlying_symbol`; trading/auth calls are refused), `mcp_server.py` (MCP SDK 2.x `MCPServer`; repository paths are confined to the repo root), `premises.py`.
+- Auditor changes must be checked against hand-inspected bots: the champions' tests in `tests/test_xml_audit.py` encode verified results (Candlestick v2 = Soros/B, safe profit pro = capped martingale/C, Rise-Fall = martingale without stop/D).
+- `docker-compose.yml`, `init-db.sql`, `n8n_workflows/` are an earlier, non-functional n8n experiment (wrong node types, no connections, retired models); see the README before touching them.
+- `knowledge/`: RAG material plus the generated audit (`repo_audit_2026-11.csv`, `repo_audit_summary_2026-11.json`). `bot_catalog_raw.json` comes from an older parser that under-counts martingale.
 
 ## Conventions
 
