@@ -1,81 +1,69 @@
-# ORSTAC - Open Source Robots and Technical Analyses Community
+# ORSTAC: Open-Source Deriv Trading Bots, Risk Audits and Community
 
-**Empowering Traders with the World's Largest Collection of Open-Source Deriv Trading Bots**
+ORSTAC (Open Source Robots and Technical Analyses Community) is a free, open-source collection of about 3,350 Deriv Bot (DBot) XML strategies, a short list of audited "champion" bots, and a read-only toolkit that audits bot risk. Website: [orstac.com](https://orstac.com) · Community: [Telegram](https://t.me/superbinarybots)
 
----
+[![Open a free Deriv account](https://img.shields.io/badge/Open%20a%20free%20Deriv%20account-demo%20available-red?style=for-the-badge)](https://t.deriv.link?t=HBNVQ55CN68H)
 
-## 🚀 Get Started Now
+## Quick start
 
-### 1. Register on Deriv
-Join the leading platform for automated trading. By registering through the link below, you support our community and ensure we continue to bring you new opportunities and cutting-edge bots.
-👉 **[REGISTER ON DERIV HERE](https://track.deriv.com/_h1BT0UryldiFfUyb_9NCN2Nd7ZgqdRLk/1/)**
+1. [Open a free Deriv account](https://t.deriv.link?t=HBNVQ55CN68H). A demo account with virtual funds is available, and an account is needed to run the bots in Deriv Bot.
+2. Download a bot from [`Bots_XML/`](Bots_XML/), the [curated champions](champions/README.md), or the [full index](docs/ROBOTS_INDEX.md).
+3. Load the XML file in [Deriv Bot](https://t.deriv.link?t=HBNVQ55CN68H) and run it on a **demo account first**. Study its behavior before risking real money.
 
-### 2. BingX - The Future of AI Trading
-Experience the World's First AI-Powered Crypto Trading Assistant. BingX is a pioneer in integrating AI into the trading experience.
-👉 **[START TRADING ON BingX](https://bingxdao.com/invite/TLU7DW/)**
-*The World's First AI-Powered Crypto Trading Assistant*
+> **Risk warning.** Trading involves risk and you can lose your entire stake. Synthetic indices and other derivatives are not suitable for everyone. Nothing here is financial advice or a promise of profit. Test every bot on a demo account first and never trade money you cannot afford to lose. Trading services are provided by Deriv, not by ORSTAC. ORSTAC may earn a commission if you sign up through its links, at no extra cost to you.
 
 ---
 
-## 🤖 About ORSTAC
+## What is in this repository
 
-Welcome to **ORSTAC**, the home of over 4,000 open-source trading bot scripts for Deriv and Binary platforms. We provide the tools, you provide the vision. Whether you are a beginner or an expert, our repository offers unparalleled access to automated strategies.
+| Folder | Contents |
+|---|---|
+| [`Bots_XML/`](Bots_XML/) | Community Deriv Bot strategies in Blockly XML, grouped by first letter of the file name |
+| [`champions/`](champions/) | Three curated bots with strategy guides and audited risk grades |
+| [`docs/`](docs/) | [Robot index](docs/ROBOTS_INDEX.md), PDFs and spreadsheets for study |
+| [`orstac-agent/`](orstac-agent/) | Open-source, read-only Python toolkit and MCP server: XML auditor, risk math, public Deriv API client. It never trades |
 
-### Why Choose ORSTAC?
-- **4000+ Bots**: The largest free collection of XML scripts.
-- **Transparency**: Fully open-source logic.
-- **Community Driven**: Join 1,000+ members on [Telegram](https://t.me/superbinarybots).
-- **AI-Forward**: We embrace the future of AI-driven trading.
+Why use it:
+- **Transparent:** every strategy is readable Blockly logic that you can inspect before running it.
+- **Risk-aware:** the [ORSTAC Agent](orstac-agent/) grades bots from A to D by stake progression (such as martingale) and by the presence of a session stop-loss.
+- **Community:** contributions and discussion are welcome.
 
----
+## How to use the bots
 
-## 📖 How to Use the Bots
+1. **Register** a [Deriv account](https://t.deriv.link?t=HBNVQ55CN68H) (demo is free).
+2. **Explore** the [full index of robots](docs/ROBOTS_INDEX.md) and the [champions](champions/README.md).
+3. **Download** the XML file from `Bots_XML/`.
+4. **Load** it in Deriv Bot using the import option.
+5. **Test** on a **demo account**. Check the stake after losses and whether the bot stops by itself.
+6. **Adjust** parameters such as stake, stop loss and take profit, and measure results over a large sample.
 
-1.  **Register**: Create your account on [Deriv](https://track.deriv.com/_h1BT0UryldiFfUyb_9NCN2Nd7ZgqdRLk/1/) to access the DBot platform.
-2.  **Explore**: Browse our [Full Index of Robots](docs/ROBOTS_INDEX.md) to find a strategy that fits your style.
-3.  **Download**: Get the XML files from the `Bots_XML/` directory.
-4.  **Load**: Go to Deriv DBot and upload the XML file.
-5.  **Test**: **ALWAYS** start with a **DEMO ACCOUNT**. Study the bot's behavior before risking real capital.
-6.  **Optimize**: Adjust parameters like Stake, Stop Loss, and Take Profit.
+## Audit a bot before you run it
 
----
+The [ORSTAC Agent](orstac-agent/) reports a bot's market, contract type, how the stake changes after a loss, whether it has a session loss limit, and a risk grade (A to D). It also computes break-even win rate, position size and the probability of losing streaks. See [`orstac-agent/README.md`](orstac-agent/README.md) for installation and usage.
 
-## 🧠 ORSTAC Cognitive AI Agent
+## Contributing
 
-The repository features an autonomous **AI Cognitive Agent** stack located in the [orstac-agent/](orstac-agent/) directory. Built on top of n8n, Gemini, and pgvector (PostgreSQL), the agent acts as an advanced repository assistant. It has access to our complete database of 3,360+ robots, the Deriv WebSocket API specifications, and Blockly XML rules. The agent performs semantic searches, analyzes XML block logic, and learns continuously from trading execution outcomes to recommend the best strategies and money management models.
+Contributions are welcome: fixes, documentation and new bots.
 
----
+- [Contributing guidelines](CONTRIBUTING.md): how to document a bot (timeframe, market, variables, strategy, best configuration).
+- [AI contributing guide](AI_CONTRIBUTING.md): guidance for using AI assistants on this repository.
 
-## 🤝 Contributing
+## Principles
 
-Contributions are the lifeblood of ORSTAC! We have thousands of bots, but there is always room for improvement. Whether you are fixing a bug or sharing a new "Holy Grail" strategy, your contribution matters.
-
-- **[Contributing Guidelines](CONTRIBUTING.md)**: Learn how to document your bots correctly.
-- **[AI Contributing Guide](AI_CONTRIBUTING.md)**: We encourage everyone to use AI for development. Those who don't use AI will be left behind!
-
----
-
-## 💡 Words of Wisdom
-
-Choosing a bot is a serious decision. There are thousands of options here so that no one can say they never had an opportunity.
-
-**Choose with wisdom.**
-Your money is valuable, but **studying is worth even more**. 
-
-1.  **Study** the logic.
-2.  **Plan** your risk management.
-3.  **Apply** with discipline.
-4.  **Measure** the results.
-5.  **Repeat** until you reach the extraordinary.
+Choose with care. Study the logic, plan your risk management, apply with discipline, measure the results, and repeat. Studying is worth more than any single bot.
 
 ---
 
-## 🔗 Resources & Links
-- 📝 [Full Robot Index](docs/ROBOTS_INDEX.md)
-- 💬 [Telegram Community](https://t.me/superbinarybots)
-- 💼 [Deriv Affiliate Program](https://track.deriv.com/_h1BT0UryldiFfUyb_9NCN2Nd7ZgqdRLk/1/)
-- 📄 [License](LICENSE)
+## Ready to try a bot?
 
----
+[Open a free Deriv account](https://t.deriv.link?t=HBNVQ55CN68H) and test on the demo first. See also [orstac.com](https://orstac.com).
 
-*Risk Warning: Trading involves significant risk. Never trade with money you cannot afford to lose. Always use a demo account first.*
+## Links
+
+- [Full robot index](docs/ROBOTS_INDEX.md)
+- [orstac.com](https://orstac.com)
+- [Telegram community](https://t.me/superbinarybots)
+- [Open a Deriv account](https://t.deriv.link?t=HBNVQ55CN68H) (affiliate link)
+- [License](LICENSE)
+
+*Risk warning: trading involves risk. Never trade with money you cannot afford to lose. Always use a demo account first. Services are offered by Deriv.*
