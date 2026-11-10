@@ -6,6 +6,7 @@ Examples
   orstac-agent ruin --balance 1000 --stake 1 --multiplier 2 --win-rate 0.5 --payout 0.95
   orstac-agent quote R_100 --type CALL --duration 5
   orstac-agent analyze R_100 --count 3000
+  orstac-agent lab Bots_XML --out knowledge/lab_ranking.json
 """
 
 from __future__ import annotations
@@ -21,7 +22,7 @@ from .xml_audit import audit_file
 
 
 def _print(obj) -> None:
-    print(json.dumps(obj, indent=2, ensure_ascii=False))
+    print(json.dumps(obj, indent=2, ensure_ascii=True))
 
 
 def cmd_audit(args) -> None:
@@ -80,6 +81,17 @@ def cmd_analyze(args) -> None:
     _print(res)
 
 
+def cmd_lab(args) -> None:
+    from .lab import run_lab
+
+    result = run_lab(args.folder, simulations=args.simulations)
+    if args.out:
+        Path(args.out).write_text(json.dumps(result, indent=1, ensure_ascii=False), encoding="utf-8")
+    top = [{k: e[k] for k in ("file", "contract", "score", "admitted")} for e in result["ranking"][: args.top]]
+    _print({k: result[k] for k in ("files", "parsed", "modeled", "admitted", "distinct_strategies_simulated",
+                                   "not_modeled")} | {"top": top})
+
+
 def main(argv: list[str] | None = None) -> None:
     ap = argparse.ArgumentParser(prog="orstac-agent", description="ORSTAC read-only risk and validation toolkit for Deriv bots.")
     sub = ap.add_subparsers(dest="cmd", required=True)
@@ -118,6 +130,13 @@ def main(argv: list[str] | None = None) -> None:
     n.add_argument("symbol")
     n.add_argument("--count", type=int, default=2000)
     n.set_defaults(func=cmd_analyze)
+
+    lb = sub.add_parser("lab", help="price, simulate and rank every bot in a folder (ORSTAC Score)")
+    lb.add_argument("folder")
+    lb.add_argument("--out", help="write the full ranking JSON here")
+    lb.add_argument("--simulations", type=int, default=2000)
+    lb.add_argument("--top", type=int, default=10)
+    lb.set_defaults(func=cmd_lab)
 
     args = ap.parse_args(argv)
     args.func(args)

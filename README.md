@@ -17,7 +17,7 @@ Prefer not to install anything? Run Lab-tested strategies, or your own bot, stra
 [ORSTAC Runner](https://bot.orstac.com) is a free web platform that runs bots on your own Deriv account, with safety limits that stay on.
 
 - **Log in with Deriv.** You type your password on Deriv's own page. ORSTAC never sees it and never holds your funds. Your first contracts always run on a demo account.
-- **Lab catalog.** 49 strategies that passed the ORSTAC Lab (no martingale, a session stop-loss, a low house edge), each with its Lab Score and the live house edge before you start.
+- **Lab catalog.** 70 strategies that passed the ORSTAC Lab (no martingale, a session stop-loss, a low house edge), each with its Lab Score and the live house edge before you start.
 - **My bots.** Build a bot, or import the XML you use in Deriv Bot, with any money management: flat stake, martingale, soft martingale, d'Alembert, Fibonacci or Soros. Each one is explained step by step, with a table of how the stake grows.
 - **Instant Lab check.** 2,000 simulated sessions with your balance, the live payout and your settings: how often a session ends at the stop-loss, the expected cost per 100 contracts and the worst drawdown.
 - **Export.** Download any bot as a Deriv Bot XML or as an ORSTAC file.

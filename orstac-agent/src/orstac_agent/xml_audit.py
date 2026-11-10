@@ -54,6 +54,31 @@ def _numbers(el: ET.Element) -> list[float]:
     return [x for x in out if x == x]
 
 
+def _static_number(value: ET.Element) -> tuple[float | None, bool]:
+    """(number, dynamic) for a block input: a literal math_number (block or shadow) or something computed."""
+    kids = [c for c in value if c.tag in ("block", "shadow")]
+    node = next((c for c in kids if c.tag == "block"), None)
+    if node is None:
+        node = next((c for c in kids if c.tag == "shadow"), None)
+    if node is None:
+        return None, False
+    if node.get("type") == "math_number":
+        try:
+            return float(_field(node, "NUM") or "nan"), False
+        except ValueError:
+            return None, True
+    return None, True
+
+
+TRADE_OPTIONS_TYPES = ("tradeOptions", "trade_definition_tradeoptions")  # legacy and current Deriv Bot
+
+
+def _value_numbers(b: ET.Element) -> list[float]:
+    """Numbers in a variables_set's own VALUE input, not in the statements chained after it (<next>)."""
+    v = next((x for x in b.findall("value") if x.get("name") == "VALUE"), None)
+    return _numbers(v) if v is not None else []
+
+
 def _var_names(el: ET.Element) -> list[str]:
     return [(f.text or "").strip() for f in el.iter("field") if f.get("name") == "VAR"]
 
@@ -71,6 +96,8 @@ class BotAudit:
     contract_side: str | None = None
     duration: float | None = None
     duration_unit: str | None = None
+    prediction: float | None = None     # digit prediction / barrier when it is a fixed number
+    prediction_dynamic: bool = False    # True when the prediction comes from a variable or expression
     initial_stake: float | None = None
     indicators: list[str] = field(default_factory=list)
     progression: str = "none"          # none | soft | martingale | soros
@@ -121,7 +148,7 @@ def _stake_vars(root: ET.Element) -> set[str]:
     """Variables that hold the stake: the one wired into the trade AMOUNT, plus stake-like names."""
     out: set[str] = set()
     for b in root.iter("block"):
-        if b.get("type") == "tradeOptions":
+        if b.get("type") in TRADE_OPTIONS_TYPES:
             for v in b.findall("value"):
                 if v.get("name") == "AMOUNT":
                     out.update(_var_names(v))
@@ -184,7 +211,7 @@ def _detect_progression(root: ET.Element) -> tuple[str, float | None]:
         if b.get("type") == "variables_set":
             names = _var_names(b)[:1]
             if names and names[0] in factor_vars:
-                nums = [n for n in _numbers(b) if 1.0 < n <= 20.0]
+                nums = [n for n in _value_numbers(b) if 1.0 < n <= 20.0]
                 if nums:
                     multipliers += nums
                 else:
@@ -242,17 +269,24 @@ def _detect_limits(root: ET.Element) -> tuple[bool, bool]:
 
 def _initial_stake(root: ET.Element) -> float | None:
     for b in root.iter("block"):
-        if b.get("type") == "tradeOptions":
+        if b.get("type") in TRADE_OPTIONS_TYPES:
             for v in b.findall("value"):
                 if v.get("name") == "AMOUNT":
-                    nums = _numbers(v)
-                    if nums:
-                        return nums[0]
+                    n, dynamic = _static_number(v)
+                    if n is not None:
+                        return n
+                    # stake wired to a variable: use the value the bot assigns to it
+                    names = set(_var_names(v))
+                    for s in root.iter("block"):
+                        if s.get("type") == "variables_set" and _var_names(s)[:1] and _var_names(s)[0] in names:
+                            nums = _value_numbers(s)
+                            if nums:
+                                return nums[0]
     for b in root.iter("block"):
         if b.get("type") == "variables_set":
             names = _var_names(b)[:1]
             if names and STAKE_NAME.search(names[0]) and not PROGRESSION_NAME.search(names[0]):
-                nums = _numbers(b)
+                nums = _value_numbers(b)
                 if nums:
                     return nums[0]
     return None
@@ -309,11 +343,12 @@ def audit_xml(xml_text: str, file: str = "") -> BotAudit:
     a.contract_side = _field(root, "PURCHASE_LIST")
     a.duration_unit = _field(root, "DURATIONTYPE_LIST")
     for b in root.iter("block"):
-        if b.get("type") == "tradeOptions":
+        if b.get("type") in TRADE_OPTIONS_TYPES:
             for v in b.findall("value"):
                 if v.get("name") == "DURATION":
-                    nums = _numbers(v)
-                    a.duration = nums[0] if nums else None
+                    a.duration, _ = _static_number(v)
+                elif v.get("name") == "PREDICTION":
+                    a.prediction, a.prediction_dynamic = _static_number(v)
     a.initial_stake = _initial_stake(root)
     types = [b.get("type") for b in root.iter("block")]
     a.indicators = sorted({INDICATOR_BLOCKS[t] for t in types if t in INDICATOR_BLOCKS})
