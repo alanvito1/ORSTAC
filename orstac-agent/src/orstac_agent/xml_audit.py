@@ -54,6 +54,22 @@ def _numbers(el: ET.Element) -> list[float]:
     return [x for x in out if x == x]
 
 
+def _static_number(value: ET.Element) -> tuple[float | None, bool]:
+    """(number, dynamic) for a block input: a literal math_number (block or shadow) or something computed."""
+    kids = [c for c in value if c.tag in ("block", "shadow")]
+    node = next((c for c in kids if c.tag == "block"), None)
+    if node is None:
+        node = next((c for c in kids if c.tag == "shadow"), None)
+    if node is None:
+        return None, False
+    if node.get("type") == "math_number":
+        try:
+            return float(_field(node, "NUM") or "nan"), False
+        except ValueError:
+            return None, True
+    return None, True
+
+
 def _var_names(el: ET.Element) -> list[str]:
     return [(f.text or "").strip() for f in el.iter("field") if f.get("name") == "VAR"]
 
@@ -71,6 +87,8 @@ class BotAudit:
     contract_side: str | None = None
     duration: float | None = None
     duration_unit: str | None = None
+    prediction: float | None = None     # digit prediction / barrier when it is a fixed number
+    prediction_dynamic: bool = False    # True when the prediction comes from a variable or expression
     initial_stake: float | None = None
     indicators: list[str] = field(default_factory=list)
     progression: str = "none"          # none | soft | martingale | soros
@@ -314,6 +332,8 @@ def audit_xml(xml_text: str, file: str = "") -> BotAudit:
                 if v.get("name") == "DURATION":
                     nums = _numbers(v)
                     a.duration = nums[0] if nums else None
+                elif v.get("name") == "PREDICTION":
+                    a.prediction, a.prediction_dynamic = _static_number(v)
     a.initial_stake = _initial_stake(root)
     types = [b.get("type") for b in root.iter("block")]
     a.indicators = sorted({INDICATOR_BLOCKS[t] for t in types if t in INDICATOR_BLOCKS})

@@ -56,6 +56,9 @@ orstac-agent ruin --balance 1000 --stake 1 --multiplier 2 --win-rate 0.5 --payou
 
 # Are there patterns in recent ticks? (last digit, streaks, momentum)
 orstac-agent analyze R_100 --count 3000
+
+# ORSTAC Lab: price, simulate and rank every bot in a folder
+orstac-agent lab Bots_XML --out knowledge/lab_ranking.json
 ```
 
 Example outputs, measured on 2026-11-09:
@@ -113,6 +116,35 @@ In n8n, add an **MCP Client Tool** node to an AI Agent and point it at the same 
 A common pattern to watch for is `stake += |last loss| × 1.071`. It looks like a small factor, but the next stake becomes about **2.07 times** the previous one. That is a full martingale, not a "soft" recovery.
 
 How the audit works: it parses the Blockly XML statically and never runs the bot. A progression is a stake variable that is multiplied after a result, increased by a multiple of the loss, picked from a growing step table (for example `0.35,0.72,1.5,3.1`), or increased by the last profit (Soros). The audit looks inside `after_purchase` and the functions it calls. A session loss limit is a comparison on the session result (`total_profit` or a session variable) against a loss value. A cap on the last contract only does not count. The audit is heuristic and was validated against hand-checked samples, but read the bot before trusting any grade.
+
+## ORSTAC Lab (November 2026)
+
+Volatility indices (`R_*`, `1HZ*V`) come from a random number generator, so indicators cannot change the probability of a contract. A bot's long-run result then depends only on four things: the contract's true win probability, the payout Deriv quotes for it, the stake progression and the limits the bot enforces. The Lab measures exactly that for every bot in the repository. The full output is in [`knowledge/lab_ranking_2026-11.json`](knowledge/lab_ranking_2026-11.json).
+
+**Protocol** (the same for every bot, so the ranking compares strategies, not settings):
+
+- Bankroll of 100 units, base stake of 1 unit (the 1% rule), sessions of up to 1,000 contracts, 2,000 seeded sessions per distinct strategy.
+- If the bot has a session loss limit, the session stops at -20 units. If it has a profit target, it stops at +10 units.
+- Ruin means the balance cannot pay the next stake the bot asks for.
+- The true probability is exact for digit contracts (each last digit is 1 in 10). For rise/fall the Lab uses 0.5, which is slightly generous because a tie loses.
+- Payouts are real quotes from the public Deriv API (stake 10 USD, 254 contracts priced on 2026-11-09).
+- **ORSTAC Score** (0-100) = 50 × (1 - ruin probability) + 20 for a stop-loss + 15 × progression (none 1, Soros 0.6, soft 0.4, martingale 0) + 15 × (1 - house edge / 10%).
+- **Admitted** only with ruin below 1%, a session stop-loss, no martingale and a contract house edge of 5% or less.
+
+**Results:**
+
+| Finding | Value |
+|---|---|
+| Bots modeled exactly (RNG indices, digit and rise/fall contracts) | 2,244 of 3,310 |
+| Admitted by the protocol | 305 |
+| Expected loss per 100 contracts, flat stake (median) | 2.3 units |
+| Expected loss per 100 contracts, martingale (median) | 8.9 units, almost 4 times more |
+| Martingale bots with more than 50% ruin in one 1,000-contract session | 284 |
+| Cheapest contracts (house edge) | DIGITDIFF, Over 0, Under 9: 1.4% |
+| Rise/Fall, Even/Odd | 2.3% to 2.4% |
+| Most expensive contracts | DIGITMATCH, Over 8, Under 1: 10.7% |
+
+Every contract has a negative expectation, so no bot is "profitable" here. The Score ranks how safely a bot loses its edge to the house: flat stakes, a stop-loss and cheap contracts come first. Not modeled yet: contracts that depend on a barrier (Higher/Lower, Touch), digit predictions chosen at runtime for Over/Under, and non-RNG markets such as forex.
 
 ## Library
 
