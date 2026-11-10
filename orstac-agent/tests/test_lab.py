@@ -80,3 +80,38 @@ def test_prediction_extraction():
                       '<block type="variables_get"><field name="VAR">d</field></block>')
     a = audit_xml(dyn)
     assert a.prediction is None and a.prediction_dynamic is True
+
+
+DBOT = """<xml xmlns="http://www.w3.org/1999/xhtml" is_dbot="true"><block type="trade_definition">
+  <field name="SYMBOL_LIST">R_100</field><field name="TRADETYPE_LIST">overunder</field>
+  <statement name="INITIALIZATION">
+    <block type="variables_set"><field name="VAR">MG FACTOR</field><value name="VALUE"><block type="math_number"><field name="NUM">2</field></block></value>
+      <next><block type="variables_set"><field name="VAR">STOP LOSS</field><value name="VALUE"><block type="math_number"><field name="NUM">15</field></block></value></block></next>
+    </block>
+  </statement>
+  <statement name="SUBMARKET"><block type="trade_definition_tradeoptions">
+    <field name="DURATIONTYPE_LIST">t</field>
+    <value name="DURATION"><shadow type="math_number"><field name="NUM">3</field></shadow></value>
+    <value name="AMOUNT"><shadow type="math_number"><field name="NUM">0.5</field></shadow></value>
+    <value name="PREDICTION"><shadow type="math_number"><field name="NUM">4</field></shadow></value>
+  </block></statement>
+</block>
+<block type="after_purchase"><statement name="AFTERPURCHASE_STACK">
+  <block type="variables_set"><field name="VAR">STAKE</field><value name="VALUE">
+    <block type="math_arithmetic"><field name="OP">MULTIPLY</field>
+      <value name="A"><block type="variables_get"><field name="VAR">STAKE</field></block></value>
+      <value name="B"><block type="variables_get"><field name="VAR">MG FACTOR</field></block></value>
+    </block></value></block>
+</statement></block>
+<block type="before_purchase"><statement name="BEFOREPURCHASE_STACK"><block type="purchase"><field name="PURCHASE_LIST">DIGITOVER</field></block></statement></block>
+</xml>"""
+
+
+def test_current_dbot_format_is_read():
+    a = audit_xml(DBOT)
+    assert (a.duration, a.prediction, a.initial_stake) == (3, 4, 0.5)
+
+
+def test_factor_ignores_numbers_chained_after_it():
+    a = audit_xml(DBOT)
+    assert a.progression == "martingale" and a.progression_multiplier == 2  # not 15 from the next block

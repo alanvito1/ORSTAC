@@ -125,9 +125,10 @@ Volatility indices (`R_*`, `1HZ*V`) come from a random number generator, so indi
 
 - Bankroll of 100 units, base stake of 1 unit (the 1% rule), sessions of up to 1,000 contracts, 2,000 seeded sessions per distinct strategy.
 - If the bot has a session loss limit, the session stops at -20 units. If it has a profit target, it stops at +10 units.
+- The XML reader handles both Deriv Bot formats (legacy `tradeOptions` and current `trade_definition_tradeoptions`), and reads a martingale factor only from the block that sets it.
 - Ruin means the balance cannot pay the next stake the bot asks for.
 - The true probability is exact for digit contracts (each last digit is 1 in 10). For rise/fall the Lab uses 0.5, which is slightly generous because a tie loses.
-- Payouts are real quotes from the public Deriv API (stake 10 USD, 254 contracts priced on 2026-11-09).
+- Payouts are real quotes from the public Deriv API (stake 10 USD, 295 contracts priced on 2026-11-10).
 - **ORSTAC Score** (0-100) = 50 × (1 - ruin probability) + 20 for a stop-loss + 15 × progression (none 1, Soros 0.6, soft 0.4, martingale 0) + 15 × (1 - house edge / 10%).
 - **Admitted** only with ruin below 1%, a session stop-loss, no martingale and a contract house edge of 5% or less.
 
@@ -135,11 +136,11 @@ Volatility indices (`R_*`, `1HZ*V`) come from a random number generator, so indi
 
 | Finding | Value |
 |---|---|
-| Bots modeled exactly (RNG indices, digit and rise/fall contracts) | 2,244 of 3,310 |
-| Admitted by the protocol | 305 |
+| Bots modeled exactly (RNG indices, digit and rise/fall contracts) | 2,253 of 3,310 |
+| Admitted by the protocol | 323 |
 | Expected loss per 100 contracts, flat stake (median) | 2.3 units |
-| Expected loss per 100 contracts, martingale (median) | 8.9 units, almost 4 times more |
-| Martingale bots with more than 50% ruin in one 1,000-contract session | 284 |
+| Expected loss per 100 contracts, martingale (median) | 8.7 units, almost 4 times more |
+| Martingale bots with more than 50% ruin in one 1,000-contract session | 232 |
 | Cheapest contracts (house edge) | DIGITDIFF, Over 0, Under 9: 1.4% |
 | Rise/Fall, Even/Odd | 2.3% to 2.4% |
 | Most expensive contracts | DIGITMATCH, Over 8, Under 1: 10.7% |
